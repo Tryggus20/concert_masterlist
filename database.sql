@@ -10,6 +10,19 @@ password VARCHAR(1000) not null
 INSERT INTO users ("username", "is_admin", "password")
 VALUES ('david', TRUE, 1234), ('scott', FALSE, 1234);
 
+INSERT INTO bands ("name")
+VALUES ('Dropkick Murphys'), ('The Interrupters'), ('Jesse Ahern')
+
+INSERT INTO concerts ("venue", "city", "state", "date")
+VALUES ('Scheels Arena', 'Fargo', 'ND', '2023/10/14')
+
+INSERT INTO band_concerts ("band_id", "concert_id", "concert_position")
+VALUES (1, 2, 1 ), (2,2,2), (3,2,3);
+
+INSERT INTO user_concerts ("user_id", "concert_id", "comments", "seat_location")
+VALUES (1, 2, 'Fun Show!', 'pit');
+
+
 
 --CONCERTS TABLE
 CREATE TABLE concerts (
@@ -87,24 +100,6 @@ drop table bands;
 drop table concerts;
 
 
--- Concerts for ALL USERS --BROKEN--
-SELECT "users".id, "users".username, "concerts".venue, "concerts".date, 
-ARRAY_AGG("bands".name ORDER BY "bands".concert_position ASC) FROM "users" 
-JOIN "user_concerts" ON "user_concerts".user_id = "users".id JOIN "concerts" 
-ON "concerts".id = "user_concerts".concert_id JOIN "bands" ON 
-"bands".concert_id = "concerts".id GROUP BY "users".id, "users".username,
- "concerts".venue, "concerts".date;
-
--- Concerts for a SPECIFIC USER --BROKEN--
-SELECT "users".id AS user_id, "users".username, "concerts".venue, "concerts".date, ARRAY_AGG("bands".name ORDER BY "bands".concert_position ASC) FROM "users" JOIN "user_concerts" ON "user_concerts".user_id= "users".id JOIN "concerts" ON "concerts".id = "user_concerts".concert_id JOIN "bands" ON "bands".concert_id = "concerts".id WHERE "user_id"=1 GROUP BY "users".id, "users".username, "concerts".venue, "concerts".date;
-
-
--- NEW Concerts for ALL USERS since table change              --TRY WITH JSON AGG LATER ON. object may be helpful
-SELECT "users".id, "users".username, "concerts".venue, "concerts".date, ARRAY_AGG("bands".name ORDER BY "band_concerts".concert_position ASC) FROM "users" JOIN "user_concerts" ON "user_concerts".user_id = "users".id JOIN "concerts" ON "concerts".id = "user_concerts".concert_id JOIN "band_concerts" ON "band_concerts".concert_id = "concerts".id JOIN "bands" on "bands".id = "bands_concerts".band_id;
-
-
-
-
 SELECT
     u.id AS user_id,
     u.username AS username,
@@ -131,3 +126,11 @@ LEFT JOIN
 WHERE
     uc.hidden = false
     AND uc.is_deleted = false;
+
+
+
+-- different queries for different pages?
+-- for card view I can select url from pictures limit 1.
+--maybe use that for card AND list view.
+-- just do not show the pic anywhere on list view
+-- Bands can be in an array for both views
