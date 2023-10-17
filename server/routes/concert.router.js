@@ -79,6 +79,67 @@ GROUP BY
     }); // end of get request for a specific user
 });
 
+// GET request for cards view (has 1st picture) for a specific user.
+router.get("/card/:id", (req, res) => {
+  const id = req.params.id;
+
+  const query = `
+  WITH MinPicture AS (
+    SELECT
+        band_concert_id,
+        MIN(id) as min_id
+    FROM
+        pictures
+    GROUP BY
+        band_concert_id
+)
+SELECT
+    users.id AS userId,
+    concerts.date AS date,
+    concerts.venue,
+    concerts.city,
+    concerts.state,
+    json_agg(bands.name) AS bands,
+    MinPicture.min_id AS pictureId,
+    pictures.url AS pictureUrl
+FROM
+    users
+JOIN
+    user_concerts ON users.id = user_concerts.user_id
+JOIN
+    concerts ON user_concerts.concert_id = concerts.id
+JOIN
+    band_concerts ON concerts.id = band_concerts.concert_id
+JOIN
+    bands ON band_concerts.band_id = bands.id
+LEFT JOIN
+    MinPicture ON band_concerts.id = MinPicture.band_concert_id
+LEFT JOIN
+    pictures ON MinPicture.min_id = pictures.id
+WHERE
+    users.id = $1
+GROUP BY
+    users.id,
+    concerts.date,
+    concerts.venue,
+    concerts.city,
+    concerts.state,
+    pictures.url,
+    MinPicture.min_id; 
+
+`;
+
+  pool
+    .query(query, [id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log("error in getting all concerts for a specific user", err);
+      res.sendStatus(500);
+    });
+});
+
 //                _-_-_-_-_-_-_-_-_- POST REQUEST _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 router.post("/add-concert/:id", async (req, res) => {
   const userId = req.params.id;
