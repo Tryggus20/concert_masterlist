@@ -24,8 +24,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/concerts', concertRouter)
-
+app.use('/api/concerts', concertRouter);
 // Serve static files
 app.use(express.static('build'));
 
@@ -36,3 +35,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
+
