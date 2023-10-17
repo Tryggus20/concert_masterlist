@@ -59,7 +59,7 @@ GROUP BY
     }); // end of get request for all users
 });
 
-// GET request for a specific user
+// GET request for a specific user for LIST VIEW
 router.get("/:id", (req, res) => {
   const id = req.params.id;
 
