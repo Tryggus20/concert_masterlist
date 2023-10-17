@@ -24,7 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 /* Routes */
-app.use('/api/user', userRouter);
+app.use('/api/users', userRouter);
 app.use('/api/concerts', concertRouter);
 app.use('/api/edit', editRouter);
 

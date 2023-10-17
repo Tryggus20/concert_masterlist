@@ -3,12 +3,11 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
-
-router.put("/:id", (req, res) => {
-    const id = req.params.id;
-  // changing POST to PUT ----- need t o change all of the insert to UPDATE and SET
+// TODO: fix Edit query and everything. aka re-write it!
+router.put("/:id", async (req, res) => {
+  // changing POST to PUT ----- need to change all of the insert to UPDATE and SET
   // I will have to re-think this. still see if band exists? idk
-  outer.post("/add-concert/:id", async (req, res) => {
+  // might be better to do it from scratch....
     const userId = req.params.id;
     const { venue, city, state, date, bandNames, comment, pictures } = req.body;
     console.log("req.body for /add-concert/:id", req.body);
@@ -86,7 +85,6 @@ router.put("/:id", (req, res) => {
 
 
 
-})
 
 
 
