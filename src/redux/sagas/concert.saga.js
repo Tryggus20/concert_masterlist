@@ -53,12 +53,24 @@ function* deleteConcertSaga(action) {
   }
 }
 
+// UPDATE CONCERT           TODO: figure out if I need to pass anything
+function* updateConcertSaga() {
+  try {
+    const response = yield axios({
+      method: "PUT",
+      url: "/api/update/:id",
+    });
+  } catch (err) {
+    console.log(err, "error in updateConcertSaga");
+  }
+}
+
 function* concertSaga() {
   yield takeEvery("FETCH_LIST_VIEW", fetchListViewSaga); //double check this!
   yield takeEvery("FETCH_CARD_VIEW", fetchCardViewSaga);
   yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailedViewSaga);
   yield takeEvery("DELETE_CONCERT", deleteConcertSaga);
-  
+  yield takeEvery("UPDATE_CONCERT", updateConcertSaga)
 }
 
 export default concertSaga;
