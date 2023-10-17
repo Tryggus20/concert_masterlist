@@ -2,9 +2,27 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
-// TODO: ADD GET FOR DETAILED VIEW 
+// TODO: ADD GET FOR DETAILED VIEW // returning multiple times with same data. need to fix!
 // TODO: ADD PUT REQUEST FOR CHANGING ALL DATA
-// TODO: FLATTEN GET REQUEST FOR CARDS SO IT SHOWS AN ARRAY OF BANDS WITH THE IMAGE INFO. // DONE!
+// TODO: ADD PUT REQUEST TO "DELETE CONCERT"
+
+// "delete" specific concert. will need to add conditional rendering to get requests
+router.put("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  const query = `UPDATE "user_concerts" 
+  SET "is_deleted" = TRUE, 
+      "deleted_date" = NOW() 
+  WHERE id = $1;`;
+  pool
+    .query(query, [id])
+    .then((result) => {
+      res.sendStatus(202);
+    })
+    .catch((err) => {
+      console.log("error in deleting concert", err);
+      res.sendStatus(500);
+    }); // end of delete for specific concert
+});
 
 // GET request for all users
 router.get("/", (req, res) => {
@@ -142,7 +160,7 @@ GROUP BY
       res.sendStatus(500);
     });
 });
-
+// ####################################################################################################
 //                _-_-_-_-_-_-_-_-_- POST REQUEST _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 router.post("/add-concert/:id", async (req, res) => {
   const userId = req.params.id;
@@ -218,4 +236,71 @@ router.post("/add-concert/:id", async (req, res) => {
     res.status(500).json({ error: "Internal server error." });
   }
 });
+// ####################################################################################################
+//                _-_-_-_-_-_-_-_-_- DETAIL GET _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+// GET request for detail view (has all pictures) for a specific concert and  user.
+router.get("/detail/:id", (req, res) => {
+  const id = req.params.id;
+
+  const query = `
+  WITH BandPictures AS (
+      SELECT
+          band_concerts.concert_id,
+          bands.name as band_name,
+          ARRAY_AGG(DISTINCT pictures.url) FILTER (WHERE pictures.url IS NOT NULL) AS pictureUrls
+      FROM
+          band_concerts
+      JOIN
+          bands ON band_concerts.band_id = bands.id
+      LEFT JOIN
+          pictures ON band_concerts.id = pictures.band_concert_id
+      GROUP BY
+          band_concerts.concert_id,
+          bands.name
+  )
+      SELECT
+          users.id AS userId,
+          concerts.date AS date,
+          concerts.venue,
+          concerts.city,
+          concerts.state,
+          ARRAY_AGG(DISTINCT bands.name) AS bands,
+          ARRAY_AGG(json_build_object('band', bp.band_name, 'pictureUrls', bp.pictureUrls)) AS bandPictures,
+          user_concerts.comments AS comments
+      FROM
+          users
+      JOIN
+          user_concerts ON users.id = user_concerts.user_id
+      JOIN
+          concerts ON user_concerts.concert_id = concerts.id
+      JOIN
+          band_concerts ON concerts.id = band_concerts.concert_id
+      JOIN
+          bands ON band_concerts.band_id = bands.id
+      LEFT JOIN (
+          SELECT DISTINCT ON (concert_id, band_name) concert_id, band_name, pictureUrls
+          FROM BandPictures
+      ) bp ON concerts.id = bp.concert_id
+      WHERE
+          users.id = $1
+      GROUP BY
+          users.id,
+          concerts.date,
+          concerts.venue,
+          concerts.city,
+          concerts.state,
+          user_concerts.comments;
+    `;
+
+  pool
+    .query(query, [id])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((err) => {
+      console.log("error in getting all concerts for a specific user", err);
+      res.sendStatus(500);
+    });
+}); // end of detail get for a specific concert and user.
+
 module.exports = router;
