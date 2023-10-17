@@ -2,6 +2,10 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
+// TODO: ADD GET FOR DETAILED VIEW 
+// TODO: ADD PUT REQUEST FOR CHANGING ALL DATA
+// TODO: FLATTEN GET REQUEST FOR CARDS SO IT SHOWS AN ARRAY OF BANDS WITH THE IMAGE INFO. // DONE!
+
 // GET request for all users
 router.get("/", (req, res) => {
   const query = `SELECT
@@ -86,12 +90,14 @@ router.get("/card/:id", (req, res) => {
   const query = `
   WITH MinPicture AS (
     SELECT
-        band_concert_id,
-        MIN(id) as min_id
+        band_concerts.concert_id,
+        MIN(pictures.id) as min_id
     FROM
-        pictures
+        band_concerts
+    LEFT JOIN
+        pictures ON band_concerts.id = pictures.band_concert_id
     GROUP BY
-        band_concert_id
+        band_concerts.concert_id
 )
 SELECT
     users.id AS userId,
@@ -99,8 +105,7 @@ SELECT
     concerts.venue,
     concerts.city,
     concerts.state,
-    json_agg(bands.name) AS bands,
-    MinPicture.min_id AS pictureId,
+    ARRAY_AGG(DISTINCT bands.name) AS bands,
     pictures.url AS pictureUrl
 FROM
     users
@@ -113,7 +118,7 @@ JOIN
 JOIN
     bands ON band_concerts.band_id = bands.id
 LEFT JOIN
-    MinPicture ON band_concerts.id = MinPicture.band_concert_id
+    MinPicture ON concerts.id = MinPicture.concert_id
 LEFT JOIN
     pictures ON MinPicture.min_id = pictures.id
 WHERE
@@ -124,9 +129,7 @@ GROUP BY
     concerts.venue,
     concerts.city,
     concerts.state,
-    pictures.url,
-    MinPicture.min_id; 
-
+    pictures.url;
 `;
 
   pool
