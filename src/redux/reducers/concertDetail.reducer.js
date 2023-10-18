@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 
 const concertDetailReducer = (state = {}, action) => {
   switch (action.type) {
-    case "SET_DETAILVIEW_VIEW":
+    case "SET_DETAIL_VIEW":
       return action.payload;
       case "ADD_CONCERT":
         return [...state, action.payload]
