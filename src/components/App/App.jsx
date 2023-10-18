@@ -15,7 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import CardView from '../CardView/CardView';
-import InfoPage from '../InfoPage/InfoPage';
+import ListView from '../ListView/ListView';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -45,7 +45,7 @@ function App() {
             exact
             path="/about"
           >
-            <AboutPage />
+            <ListView />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -63,9 +63,9 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path="/list"
           >
-            <InfoPage />
+            <ListView />
           </ProtectedRoute>
 
           <Route
