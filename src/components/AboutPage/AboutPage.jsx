@@ -9,7 +9,7 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <p>This app is designed to keep track of the concerts you have been to as well as their memories. Sign up and get started today! You can add the minimal information like the venue, date, and bands. Or you can go above and beyond and add pictures and comments about the show. Each concert displays in an easy to view mode.</p>
       </div>
     </div>
   );

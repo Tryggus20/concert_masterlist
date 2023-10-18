@@ -15,14 +15,16 @@ function* fetchListViewSaga() {
 }
 
 // CARD VIEW
-function* fetchCardViewSaga() {
+function* fetchCardViewSaga(user) {
   try {
+    console.log("fetchCardViewSaga*&*&*&*&*&*&", user);
     const response = yield axios({
       method: "GET",
-      url: "/api/card/:id",
+      url: `/api/concerts/card/${user.id}`,
     });
     yield put({ type: "SET_CARD_VIEW", payload: response.data });
   } catch (err) {
+    console.log("fetchCardViewSaga error", user);
     console.log(err, "error in fetchCardViewSaga");
   }
 }
@@ -32,7 +34,7 @@ function* fetchDetailedViewSaga() {
   try {
     const response = yield axios({
       method: "GET",
-      url: "/api/detail/:id",
+      url: "/api/concerts/detail/:id",
     });
     yield put({ type: "SET_DETAIL_VIEW", payload: response.data });
   } catch (err) {
@@ -45,7 +47,7 @@ function* deleteConcertSaga(action) {
   try {
     yield axios({
       method: "PUT",
-      url: `/api/concert/delete/:id`,
+      url: `/api/concerts/delete/:id`,
     });
     yield put({ type: "FETCH_CARD_VIEW" });
   } catch (err) {
@@ -71,6 +73,7 @@ function* concertSaga() {
   yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailedViewSaga);
   yield takeEvery("DELETE_CONCERT", deleteConcertSaga);
   yield takeEvery("UPDATE_CONCERT", updateConcertSaga)
+
 }
 
 export default concertSaga;

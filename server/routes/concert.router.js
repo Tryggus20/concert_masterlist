@@ -3,8 +3,9 @@ const pool = require("../modules/pool");
 const router = express.Router();
 
 // TODO: ADD GET FOR DETAILED VIEW // returning multiple times with same data. need to fix!
-// TODO: ADD PUT REQUEST FOR CHANGING ALL DATA
-// TODO: ADD PUT REQUEST TO "DELETE CONCERT"
+// TODO: ADD PUT REQUEST TO "DELETE CONCERT" // DONE
+// TODO: FIX EDIT ROUTER WITH LOGIC AND QUERY TEXT
+
 
 // "delete" specific concert. will need to add conditional rendering to get requests
 router.put("/delete/:id", (req, res) => {

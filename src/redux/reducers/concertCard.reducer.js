@@ -1,14 +1,15 @@
 import { combineReducers } from "redux";
 
-const concertReducer = (state = [], action) => {
+const concertListReducer = (state = [], action) => {
   switch (action.type) {
-    case "SET_LIST_VIEW":
+    case "SET_CARD_VIEW":
       return action.payload;
       case "ADD_CONCERT":
         return [...state, action.payload]
+    
     default:
       return state;
   }
 };
 
-export default combineReducers({ concertReducer });
+export default combineReducers({ concertListReducer });
