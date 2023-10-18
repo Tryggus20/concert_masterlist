@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import DetailView from '../DetailView/DetailView';
+import ConcertForm from '../ConcertForm/ConcertForm';
 
 import './App.css';
 
@@ -89,6 +90,13 @@ function App() {
               <LoginPage />
             }
           </Route>
+          <ProtectedRoute
+            // logged in shows Concert Form else shows LoginPage
+            exact
+            path="/form"
+          >
+            <ConcertForm />
+          </ProtectedRoute>
 
           <Route
             exact
