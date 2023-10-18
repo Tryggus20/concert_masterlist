@@ -3,9 +3,11 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useHistory } from "react-router-dom";
 
-// bands may not be staying in order
+// TODO: once clicked on, will need to pass on the user_concerts.id
+// to the concertSaga to make sure the corrct user_concert is shown
 
-function CardView() {
+
+function DetailView() {
   const history = useHistory();
   const dispatch = useDispatch();
 // Selector to get info from store
@@ -13,16 +15,16 @@ function CardView() {
   const store= useSelector ((store) => store)
   useEffect(() => {
     console.log("userID:", user);
-    dispatch({ type: "FETCH_CARD_VIEW", payload: user });
+    dispatch({ type: "FETCH_DETAIL_VIEW", payload: user });
     console.log(store);
   }, []);
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <h4>Concert Recap (CardView):</h4>
+      <h4>Concert Recap (DetailView):</h4>
       {/* Display the entire store as JSON will need to remove eventually*/}
-      <pre>{JSON.stringify(store.concertCard, null, 2)}</pre>
+      <pre>{JSON.stringify(store.concertDetail, null, 2)}</pre>
 
       <LogOutButton className="btn" />
     </div>
@@ -30,4 +32,4 @@ function CardView() {
 }
 
 // this allows us to use <App /> in index.js
-export default CardView;
+export default DetailView;

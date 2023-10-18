@@ -1,12 +1,28 @@
 import { takeEvery, put } from "redux-saga/effects";
 import axios from "axios";
 
+
+
+// Detail VIEW
+function* fetchDetailViewSaga(action) { //need user_concerts.id
+    try {
+      const response = yield axios({
+        method: "GET",
+        url: `/api/concerts/detail/${action.payload.id}`
+      });
+      yield put({ type: "SET_DETAIL_VIEW", payload: response.data });
+    } catch (err) {
+      console.log(err, "error in fetchDetailViewSaga");
+    }
+  }
+
+
 // LIST VIEW
-function* fetchListViewSaga() {
+function* fetchListViewSaga(action) {
   try {
     const response = yield axios({
       method: "GET",
-      url: "/api/concert/:id",
+      url: `/api/concerts/${action.payload.id}`
     });
     yield put({ type: "SET_LIST_VIEW", payload: response.data });
   } catch (err) {
@@ -68,11 +84,12 @@ function* updateConcertSaga() {
 }
 
 function* concertSaga() {
-  yield takeEvery("FETCH_LIST_VIEW", fetchListViewSaga); //double check this!
+  yield takeEvery("FETCH_LIST_VIEW", fetchListViewSaga); 
   yield takeEvery("FETCH_CARD_VIEW", fetchCardViewSaga);
   yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailedViewSaga);
   yield takeEvery("DELETE_CONCERT", deleteConcertSaga);
-  yield takeEvery("UPDATE_CONCERT", updateConcertSaga)
+  yield takeEvery("UPDATE_CONCERT", updateConcertSaga);
+  yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailViewSaga);
 
 }
 

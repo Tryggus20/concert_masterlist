@@ -19,6 +19,7 @@ import ListView from '../ListView/ListView';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import DetailView from '../DetailView/DetailView';
 
 import './App.css';
 
@@ -61,13 +62,20 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows List View else shows LoginPage
             exact
             path="/list"
           >
             <ListView />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows Detail View else shows LoginPage
+            exact
+            path="/detail"
+          >
+            <DetailView />
+          </ProtectedRoute>
           <Route
             exact
             path="/login"

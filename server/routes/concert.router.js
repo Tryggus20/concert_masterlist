@@ -241,7 +241,7 @@ router.post("/add-concert/:id", async (req, res) => {
 // ####################################################################################################
 //                _-_-_-_-_-_-_-_-_- DETAIL GET _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 // GET request for detail view (has all pictures) for a specific concert and  user.
-router.get("/detail/:id", (req, res) => {
+router.get("/detail/:id", (req, res) => { // ID should be user_concerts.id
   const id = req.params.id;
 
   const query = `
