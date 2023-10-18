@@ -15,12 +15,12 @@ function* fetchListViewSaga() {
 }
 
 // CARD VIEW
-function* fetchCardViewSaga(user) {
+function* fetchCardViewSaga(action) {
   try {
-    console.log("fetchCardViewSaga*&*&*&*&*&*&", user);
+    console.log("fetchCardViewSaga*&*&*&*&*&*&", action, "id of:", action.payload.id);
     const response = yield axios({
       method: "GET",
-      url: `/api/concerts/card/${user.id}`,
+      url: `/api/concerts/card/${action.payload.id}`,
     });
     yield put({ type: "SET_CARD_VIEW", payload: response.data });
   } catch (err) {
