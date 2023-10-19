@@ -6,14 +6,23 @@ import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 
 // TODO: NEED TO INTEGRATE INTO APP AND INTO NAV/ROUTES
-
+// TODO: Fix the wonkiness of the add picture buttons
 export default function ConcertForm() {
+    dispatch = useDispatch
+  const [date, setDate] = useState("");
+  const [venue, setVenue] = useState("");
+  const [city, setCity] = useState("");
+  // actual USA State (initials) not a generic "useState"
+  const [state, setState] = useState("");
+  const [comments, setComments] = useState("");
+
   const [bands, setBands] = useState([]);
   const [currentBandIndex, setCurrentBandIndex] = useState(null);
   const [pictures, setPictures] = useState([]);
   const handleAddBand = (band) => {
     setBands([...bands, { band, pictures: [] }]);
   };
+  // Adding a new picture to a specific band
   const handleAddPicture = (url) => {
     if (currentBandIndex !== null) {
       const updatedBands = [...bands];
@@ -21,7 +30,38 @@ export default function ConcertForm() {
       setBands(updatedBands);
     }
   };
+  // Submit Form
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!date || !venue || !city || bands.length === 0) {
+      alert("Please fill in all fields.");
+      return; // Do not proceed with submission if a field is empty
+    }
+    const concertData = {
+        date,
+        venue,
+        city,
+        state,
+        comments,
+        bands,
+        pictures,
+    }
+    console.log("concertData", concertData)
+    dispatch({ type: "ADD_CONCERT", payload: concertData})
+    //clear inputs after submit
+    setDate("");
+    setVenue("");
+    setCity("");   
+     setState("");
+     setComments("");
+     setBands([]);
+     setPictures([]);
 
+
+
+
+
+  };
   return (
     <div className="inputs">
       <h1>Add A New Concert!</h1>
@@ -42,7 +82,8 @@ export default function ConcertForm() {
       </label>
       <br />
       <label>
-        State:<input type="text" id="state" placeholder="State Abbr."></input>
+        State:
+        <input type="text" id="state" placeholder="State Abbr."></input>
       </label>
 
       <br />
