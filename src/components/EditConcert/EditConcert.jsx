@@ -1,49 +1,42 @@
-import React, { useEffect, useState } from "react";
-import LogOutButton from "../LogOutButton/LogOutButton";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 
-// TODO: Limit state to 2 characters~!!!!!
-// TODO: NEED TO INTEGRATE INTO APP AND INTO NAV/ROUTES
-export default function ConcertForm() {
+export default function EditConcert({ concertData }) {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  // TODO: SEND PROPS FROM DETAILED VIEW
+  // TODO: give this page a nav location
+  // TODO: make sure this works with the backend edit
 
   const [date, setDate] = useState("");
   const [venue, setVenue] = useState("");
   const [city, setCity] = useState("");
-  // actual USA State (initials) not a generic "useState"
   const [stateAbr, setStateAbr] = useState("");
   const [comments, setComments] = useState("");
-
   const [bands, setBands] = useState([]);
-  const [currentBandIndex, setCurrentBandIndex] = useState(null);
   const [pictures, setPictures] = useState([]);
-const [id, setId] = useState ("");
-const userId = useSelector((state) => state.user.id)
-  
-  const handleAddBand = (band) => {
-    setBands([...bands, { band, pictures: [] }]);
-  };
-  // Adding a new picture to a specific band
-  const handleAddPicture = (bandIndex, url) => {
-    if (bandIndex !== null) {
-      const updatedBands = [...bands];
-      updatedBands[bandIndex].pictures.push(url);
-      setBands(updatedBands);
+
+  // Initialize state with concertData when component mounts
+  useEffect(() => {
+    if (concertData) {
+      setDate(concertData.date);
+      setVenue(concertData.venue);
+      setCity(concertData.city);
+      setStateAbr(concertData.state);
+      setComments(concertData.comments);
+      setBands(concertData.bands);
+      setPictures(concertData.pictures);
     }
-  };
-  // Submit Form
+  }, [concertData]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    if ( date === "" || venue=== "" || city === "" ) {
-      alert("Please fill in all fields.");
-      return; // Do not proceed with submission if a field is empty
-    }
-    const concertData = {
+    // Implement logic to edit the concert using the updated data
+    const editedConcertData = {
       date,
       venue,
       city,
@@ -51,11 +44,11 @@ const userId = useSelector((state) => state.user.id)
       comments,
       bands,
       pictures,
-      id: userId
+      id: concertData.id, // Include the ID for editing
     };
-    console.log("concertData", concertData);
-    dispatch({ type: "ADD_CONCERT", payload: concertData });
-    // clear inputs after submit
+    // Dispatch an "EDIT_CONCERT" action with the updated data
+    dispatch({ type: "EDIT_CONCERT", payload: editedConcertData });
+    // Clear inputs and go back to home
     setDate("");
     setVenue("");
     setCity("");
@@ -63,13 +56,13 @@ const userId = useSelector((state) => state.user.id)
     setComments("");
     setBands([]);
     setPictures([]);
-    // go back to home after concert has been added
-    // TODO: Re-activate  history.push when done testing routes
     history.push("/");
   };
+  
+
   return (
     <div className="inputs">
-      <h1>Add A New Concert!</h1>
+      <h1>Edit Concert</h1>
       <label>
         Date:
         <input
@@ -125,9 +118,6 @@ const userId = useSelector((state) => state.user.id)
           </button>
         </div>
       ))}
-      {/* COMPONENTIZE ME Image */}
-      {/* <input type="text" id="url" placeholder='Picture URL only' ></input><button>Add Another</button>
-<br/> */}
       <br />
       <textarea
         rows="3"
@@ -136,8 +126,7 @@ const userId = useSelector((state) => state.user.id)
         onChange={(e) => setComments(e.target.value)}
       ></textarea>
       <br />
-      <br />
-      <button onClick={handleSubmit}>Submit</button>
+      <br />      <button onClick={handleSubmit}>Save Changes</button>
     </div>
   );
 }

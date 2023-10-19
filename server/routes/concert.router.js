@@ -6,7 +6,6 @@ const router = express.Router();
 // TODO: ADD PUT REQUEST TO "DELETE CONCERT" // DONE
 // TODO: FIX EDIT ROUTER WITH LOGIC AND QUERY TEXT
 
-
 // "delete" specific concert. will need to add conditional rendering to get requests
 router.put("/delete/:id", (req, res) => {
   const id = req.params.id;
@@ -166,13 +165,14 @@ GROUP BY
 //####################################################################################################
 router.post("/add-concert/:id", async (req, res) => {
   const userId = req.params.id;
-  const { venue, city, state, date, bandNames, comment, pictures } = req.body;
-  console.log("req.body for /add-concert/:id", req.body);
+console.log("userId:------_________----------______------______", userId);
+  const { venue, city, state, date, comments, bands } = req.body;
 
   try {
     // Check if the bands exist and get their IDs
     const bandIds = [];
-    for (const bandName of bandNames) {
+    for (const bandData of bands) {
+      const bandName = bandData.band;
       const result = await pool.query("SELECT id FROM bands WHERE name = $1", [
         bandName,
       ]);
@@ -184,7 +184,7 @@ router.post("/add-concert/:id", async (req, res) => {
         );
         bandIds.push(insertBandResult.rows[0].id);
       } else {
-        //Band does exist, so gt the id
+        // Band does exist, so get the id
         bandIds.push(result.rows[0].id);
       }
     }
@@ -207,8 +207,15 @@ router.post("/add-concert/:id", async (req, res) => {
     }
 
     // Insert the bands and concert_band relationships
-    let bandConcertIds = []; // Move the declaration outside the loop.
-    for (const bandId of bandIds) {
+    let bandConcertIds = [];
+    for (let i = 0; i < bandIds.length; i++) {
+      const bandId = bandIds[i];
+
+      // Handle pictures for each band
+      const bandData = bands[i]; // Use the current index to access the correct band data
+      const urls = bandData.pictures || []; // Use an empty array if no pictures exist for the band
+
+      // Insert records into band_concerts table 
       const result = await pool.query(
         "INSERT INTO band_concerts (band_id, concert_id) VALUES ($1, $2) RETURNING id",
         [bandId, concertId]
@@ -216,21 +223,21 @@ router.post("/add-concert/:id", async (req, res) => {
       const bandConcertId = result.rows[0].id;
       bandConcertIds.push(bandConcertId);
 
-      const bandName = bandNames[bandIds.indexOf(bandId)]; // Get band name using the index of bandId in bandIds array
-      const urls = pictures[bandName];
-
       for (const url of urls) {
+        // Insert records into the pictures table 
         await pool.query(
           "INSERT INTO pictures (user_id, band_concert_id, url) VALUES ($1, $2, $3)",
           [userId, bandConcertId, url]
         );
       }
     }
-    // Insert the comment
+
+    // Insert the comment and seat_location into user_concerts table
+    console.log("000000000000000000", userId, concertId, comments);
     await pool.query(
-      "INSERT INTO user_concerts (user_id, concert_id, comments) VALUES ($1, $2, $3)",
-      [userId, concertId, comment]
-    );
+        "INSERT INTO user_concerts (user_id, concert_id, comments) VALUES ($1, $2, $3)",
+        [userId, concertId, comments]
+      );
 
     res.status(201).json({ message: "Concert added successfully." });
   } catch (error) {
@@ -238,10 +245,14 @@ router.post("/add-concert/:id", async (req, res) => {
     res.status(500).json({ error: "Internal server error." });
   }
 });
+
+
+
 // ####################################################################################################
 //                _-_-_-_-_-_-_-_-_- DETAIL GET _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
 // GET request for detail view (has all pictures) for a specific concert and  user.
-router.get("/detail/:id", (req, res) => { // ID should be user_concerts.id
+router.get("/detail/:id", (req, res) => {
+  // ID should be user_concerts.id
   const id = req.params.id;
 
   const query = `

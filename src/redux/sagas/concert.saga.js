@@ -40,17 +40,17 @@ function* fetchCardViewSaga(action) {
     });
     yield put({ type: "SET_CARD_VIEW", payload: response.data });
   } catch (err) {
-    console.log("fetchCardViewSaga error", user);
+    // console.log("fetchCardViewSaga error", user);
     console.log(err, "error in fetchCardViewSaga");
   }
 }
 
 // DETAILED VIEW
-function* fetchDetailedViewSaga() {
+function* fetchDetailedViewSaga(action) { // TODO: This should be the USER_CONCERTS.ID
   try {
     const response = yield axios({
       method: "GET",
-      url: "/api/concerts/detail/:id",
+      url: `/api/concerts/detail/${action.payload.id}`,
     });
     yield put({ type: "SET_DETAIL_VIEW", payload: response.data });
   } catch (err) {
@@ -60,6 +60,7 @@ function* fetchDetailedViewSaga() {
 
 // TODO: will need to double check action.payload is just the user_concert.id
 function* deleteConcertSaga(action) {
+    console.log("deleteConcertSaga action.payload:", action.payload);
   try {
     yield axios({
       method: "PUT",
@@ -87,7 +88,7 @@ function* updateConcertSaga() {
 function* addConcertSaga(action) {
     const newConcert= action.payload;
     try {
-        yield axios.post('/api/concerts/add-concert/:id', newConcert)
+        yield axios.post(`/api/concerts/add-concert/${action.payload.id}`, newConcert)
         yield put ({ type: 'FETCH_CARD_VIEW' });
     } catch (err) {
         console.log("error in addConcertSaga", err, action.payload);
