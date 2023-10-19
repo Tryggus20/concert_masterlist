@@ -1,17 +1,20 @@
-import React, { useEffect } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect } from "react";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import "./CardView.css"; 
+
 
 function CardView() {
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  const concertCard = useSelector((store) => store.concertCard.concertCardReducer) || []; // Access concertCard properly
-  console.log(concertCard, '&&&&&&&&&&&&&&&&&&&&&&&');
+  const concertCard =
+    useSelector((store) => store.concertCard.concertCardReducer) || []; // Access concertCard properly
+  console.log(concertCard, "&&&&&&&&&&&&&&&&&&&&&&&");
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_CARD_VIEW', payload: user });
+    dispatch({ type: "FETCH_CARD_VIEW", payload: user });
     console.log(concertCard, "========================");
   }, []);
 
@@ -21,25 +24,23 @@ function CardView() {
       <p>Your ID is: {user.id}</p>
       <h4>Concert Recap (CardView):</h4>
       <div>
-        
         <section className="concertCard">
           {concertCard.map((concert) => (
-            <div
-              className="concert-card"
+            <div 
+              className="concert-card card-border card-content"
               key={concert.id}
               onClick={() => history.push(`/details/${concert.id}`)}
             >
-              <div>
+              <div >
                 <p>Date: {concert.date}</p>
               </div>
               <div>
-                <img
-                  src={concert.pictureurl || 'placeholder-url.jpg'}
+                <img style={{ maxHeight: '250px', maxWidth: '250px' }}
+                  src={concert.pictureurl || "placeholder-url.jpg"}
                   alt="Concert"
                 />
               </div>
               <div>
-                <p>Bands:</p>
                 {concert.bands.map((band, index) => (
                   <p key={index}>{band}</p>
                 ))}
