@@ -8,12 +8,12 @@ import PictureInput from "../PictureInput/PictureInput";
 // TODO: NEED TO INTEGRATE INTO APP AND INTO NAV/ROUTES
 // TODO: Fix the wonkiness of the add picture buttons
 export default function ConcertForm() {
-    dispatch = useDispatch
+  const dispatch = useDispatch();
   const [date, setDate] = useState("");
   const [venue, setVenue] = useState("");
   const [city, setCity] = useState("");
   // actual USA State (initials) not a generic "useState"
-  const [state, setState] = useState("");
+  const [stateAbr, setStateAbr] = useState("");
   const [comments, setComments] = useState("");
 
   const [bands, setBands] = useState([]);
@@ -23,44 +23,42 @@ export default function ConcertForm() {
     setBands([...bands, { band, pictures: [] }]);
   };
   // Adding a new picture to a specific band
-  const handleAddPicture = (url) => {
-    if (currentBandIndex !== null) {
+  const handleAddPicture = (bandIndex, url) => {
+    if (bandIndex !== null) {
       const updatedBands = [...bands];
-      updatedBands[currentBandIndex].pictures.push(url);
+      updatedBands[bandIndex].pictures.push(url);
       setBands(updatedBands);
     }
   };
   // Submit Form
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!date || !venue || !city || bands.length === 0) {
-      alert("Please fill in all fields.");
-      return; // Do not proceed with submission if a field is empty
-    }
+    // if (!date || !venue || !city ) {
+    //   alert("Please fill in all fields.");
+    //   return; // Do not proceed with submission if a field is empty
+    // }
     const concertData = {
-        date,
-        venue,
-        city,
-        state,
-        comments,
-        bands,
-        pictures,
-    }
-    console.log("concertData", concertData)
-    dispatch({ type: "ADD_CONCERT", payload: concertData})
+      date,
+      venue,
+      city,
+      state : stateAbr,
+      comments,
+      bands,
+      pictures,
+    };
+    console.log("concertData", concertData);
+    dispatch({ type: "ADD_CONCERT", payload: concertData });
     //clear inputs after submit
     setDate("");
     setVenue("");
-    setCity("");   
-     setState("");
-     setComments("");
-     setBands([]);
-     setPictures([]);
-
-
-
-
-
+    setCity("");
+    setStateAbr("");
+    setComments("");
+    setBands([]);
+    setPictures([]);
+    // go back to home after concert has been added
+    // TODO: Re-activate  history.push when done testing routes
+    // history.push("/");
   };
   return (
     <div className="inputs">
@@ -94,7 +92,7 @@ export default function ConcertForm() {
           {band.pictures.map((url, pictureIndex) => (
             <div key={pictureIndex}>{url}</div>
           ))}
-          <PictureInput onAddPicture={handleAddPicture} />
+          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />
           {/* Set the current band index when adding pictures */}
           <button onClick={() => setCurrentBandIndex(bandIndex)}>
             Add Picture for {band.band}
@@ -108,7 +106,7 @@ export default function ConcertForm() {
       <textarea rows="3" cols="30" placeholder="Comments"></textarea>
       <br />
       <br />
-      <button>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </div>
   );
 }

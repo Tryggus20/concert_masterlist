@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-export default function PictureInput({ onAddPicture }) {
+export default function PictureInput({ bandIndex, onAddPicture }) {
   const [url, setUrl] = useState('');
 
   const handleAddPicture = () => {
-    onAddPicture(url);
+    onAddPicture(bandIndex, url);
     setUrl('');
   };
 

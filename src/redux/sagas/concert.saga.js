@@ -83,6 +83,17 @@ function* updateConcertSaga() {
   }
 }
 
+// ADDING NEW CONCERT
+function* addConcertSaga(action) {
+    const newConcert= action.payload;
+    try {
+        yield axios.post('/api/concerts/add-concert/:id', newConcert)
+        yield put ({ type: 'FETCH_CARD_VIEW' });
+    } catch (err) {
+        console.log("error in addConcertSaga", err, action.payload);
+    }
+}
+
 function* concertSaga() {
   yield takeEvery("FETCH_LIST_VIEW", fetchListViewSaga); 
   yield takeEvery("FETCH_CARD_VIEW", fetchCardViewSaga);
@@ -90,7 +101,7 @@ function* concertSaga() {
   yield takeEvery("DELETE_CONCERT", deleteConcertSaga);
   yield takeEvery("UPDATE_CONCERT", updateConcertSaga);
   yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailViewSaga);
-
+yield takeEvery( "ADD_CONCERT", addConcertSaga)
 }
 
 export default concertSaga;
