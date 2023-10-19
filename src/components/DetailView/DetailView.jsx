@@ -17,7 +17,7 @@ function DetailView() {
   useEffect(() => {
     console.log("userID:", user, id);
     // I do not want user I want user_concerts.id 
-    dispatch({ type: "FETCH_DETAIL_VIEW", payload: id });
+    dispatch({ type: "FETCH_DETAIL_VIEW", payload: {id} });
     console.log(store);
   }, []);
   return (
