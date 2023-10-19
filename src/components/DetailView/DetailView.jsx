@@ -28,6 +28,12 @@ function DetailView() {
       {/* Display the entire store as JSON TODO: will need to remove eventually*/}
       <pre>{JSON.stringify(store.concertDetail, null, 2)}</pre>
 
+<button onClick={() => history.push(`/edit/${id}`)}>edit</button>
+<br/>
+<br/>
+<br/>
+<br/>
+
       <LogOutButton className="btn" />
     </div>
   );

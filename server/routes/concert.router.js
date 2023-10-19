@@ -276,7 +276,7 @@ router.get("/detail/:id", (req, res) => {
     .catch((err) => {
       console.log(
         "error in getting DETAIL VIEW FOR A SPECIFIC USER AND CONCERT",
-        err
+        err, req.params
       );
       res.sendStatus(500);
     });

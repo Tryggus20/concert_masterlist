@@ -23,6 +23,7 @@ import DetailView from '../DetailView/DetailView';
 import ConcertForm from '../ConcertForm/ConcertForm';
 
 import './App.css';
+import EditConcert from '../EditConcert/EditConcert';
 
 function App() {
   const dispatch = useDispatch();
@@ -90,6 +91,28 @@ function App() {
               <LoginPage />
             }
           </Route>
+
+          <ProtectedRoute
+            // logged in shows Detail View else shows LoginPage
+            exact
+            path="/edit/:id"
+          >
+            <EditConcert />
+          </ProtectedRoute>
+          <Route
+            exact
+            path="/login"
+          >
+            {user.id ?
+              // If the user is already logged in, 
+              // redirect to the /user page
+              <Redirect to="/users" />
+              :
+              // Otherwise, show the login page
+              <LoginPage />
+            }
+          </Route>
+
           <ProtectedRoute
             // logged in shows Concert Form else shows LoginPage
             exact
