@@ -23,7 +23,7 @@ function DetailView() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h4>Concert Recap (DetailView):</h4>
-      {/* Display the entire store as JSON will need to remove eventually*/}
+      {/* Display the entire store as JSON TODO: will need to remove eventually*/}
       <pre>{JSON.stringify(store.concertDetail, null, 2)}</pre>
 
       <LogOutButton className="btn" />

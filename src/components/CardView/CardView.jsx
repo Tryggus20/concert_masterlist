@@ -1,33 +1,61 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector, useDispatch} from 'react-redux';
-import { useHistory } from "react-router-dom";
-
-// bands may not be staying in order
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 function CardView() {
   const history = useHistory();
   const dispatch = useDispatch();
-// Selector to get info from store
   const user = useSelector((store) => store.user);
-  const store= useSelector ((store) => store)
+  const concertCard = useSelector((store) => store.concertCard.concertCardReducer) || []; // Access concertCard properly
+  console.log(concertCard, '&&&&&&&&&&&&&&&&&&&&&&&');
+
   useEffect(() => {
-    console.log("userID:", user);
-    dispatch({ type: "FETCH_CARD_VIEW", payload: user });
-    console.log(store);
+    dispatch({ type: 'FETCH_CARD_VIEW', payload: user });
+    console.log(concertCard, "========================");
   }, []);
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h4>Concert Recap (CardView):</h4>
-      {/* Display the entire store as JSON will need to remove eventually*/}
-      <pre>{JSON.stringify(store.concertCard, null, 2)}</pre>
-
+      <div>
+        
+        <section className="concertCard">
+          {concertCard.map((concert) => (
+            <div
+              className="concert-card"
+              key={concert.id}
+              onClick={() => history.push(`/details/${concert.id}`)}
+            >
+              <div>
+                <p>Date: {concert.date}</p>
+              </div>
+              <div>
+                <img
+                  src={concert.pictureurl || 'placeholder-url.jpg'}
+                  alt="Concert"
+                />
+              </div>
+              <div>
+                <p>Bands:</p>
+                {concert.bands.map((band, index) => (
+                  <p key={index}>{band}</p>
+                ))}
+              </div>
+              <div>
+                <p>Venue: {concert.venue}</p>
+                <p>City: {concert.city}</p>
+                <p>State: {concert.state}</p>
+              </div>
+            </div>
+          ))}
+        </section>
+      </div>
       <LogOutButton className="btn" />
     </div>
   );
 }
 
-// this allows us to use <App /> in index.js
 export default CardView;
