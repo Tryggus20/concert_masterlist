@@ -25,10 +25,10 @@ function CardView() {
       <h4>Concert Recap (CardView):</h4>
       <div>
         <section className="concertCard">
-          {concertCard.map((concert) => (
+          {concertCard.map((concert, index) => (
             <div 
               className="concert-card card-border card-content"
-              key={concert.userconcertid.id}
+              key={index}
               onClick={() => history.push(`/details/${concert.userconcertid}`)}
             >
               <div >

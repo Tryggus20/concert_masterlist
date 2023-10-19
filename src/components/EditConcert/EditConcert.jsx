@@ -1,13 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
+import { useParams } from "react-router-dom";
 
-export default function EditConcert({ concertData }) {
+export default function EditConcert() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { id } = useParams();
+  const concertData = useSelector((state) => state.concertDetail.concertDetailReducer);
+  
+  useEffect(() => {
+    if (concertData) {
+      setDate(concertData.date);
+      setVenue(concertData.venue);
+      setCity(concertData.city);
+      setStateAbr(concertData.state);
+      setComments(concertData.comments);
+      setBands(concertData.bands);
+      setPictures(concertData.bandpictures); // Adjust for the structure of your data
+    }
+  }, [concertData]);
 
+
+console.log("```````````````````````````", concertData);
   // TODO: SEND PROPS FROM DETAILED VIEW
   // TODO: give this page a nav location
   // TODO: make sure this works with the backend edit
@@ -77,7 +94,7 @@ export default function EditConcert({ concertData }) {
         Date:
         <input
           type="date"
-          id="date"
+          id="date" value={date}
           onChange={(e) => setDate(e.target.value)}
         />
       </label>
@@ -86,7 +103,7 @@ export default function EditConcert({ concertData }) {
         Venue:
         <input
           type="text"
-          id="venue"
+          id="venue" value={venue}
           placeholder="Venue"
           onChange={(e) => setVenue(e.target.value)}
         ></input>
@@ -96,7 +113,7 @@ export default function EditConcert({ concertData }) {
         City :
         <input
           type="text"
-          id="city"
+          id="city" value={city}
           placeholder="City"
           onChange={(e) => setCity(e.target.value)}
         ></input>
@@ -107,27 +124,27 @@ export default function EditConcert({ concertData }) {
         <input
           type="text"
           id="state"
-          maxLength="2"
+          maxLength="2" value={stateAbr}
           placeholder="State Abbr."
           onChange={(e) => setStateAbr(e.target.value)}
         ></input>
       </label>
 
       <br />
-      <BandInput onAddBand={handleAddBand} />
+       {/* <BandInput onAddBand={handleAddBand} />
       {bands.map((band, bandIndex) => (
         <div key={bandIndex}>
           <h2>{band.band}</h2>
           {band.pictures.map((url, pictureIndex) => (
             <div key={pictureIndex}>{url}</div>
           ))}
-          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />
+          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />  */}
           {/* Set the current band index when adding pictures */}
-          <button onClick={() => setCurrentBandIndex(bandIndex)}>
+           {/* <button onClick={() => setCurrentBandIndex(bandIndex)}>
             Add Picture for {band.band}
-          </button>
+          </button> 
         </div>
-      ))}
+        ))} */}
       <br />
       <textarea
         rows="3"
