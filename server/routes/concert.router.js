@@ -226,18 +226,17 @@ router.get("/detail/:id", (req, res) => {
   const query = `
   WITH BandPictures AS (
     SELECT
-        band_concerts.concert_id,
+        bands.id as band_id,
         bands.name as band_name,
         ARRAY_AGG(DISTINCT pictures.url) FILTER (WHERE pictures.url IS NOT NULL) AS pictureUrls
     FROM
-        band_concerts
+        bands
     JOIN
-        bands ON band_concerts.band_id = bands.id
+        band_concerts ON band_concerts.band_id = bands.id
     LEFT JOIN
         pictures ON band_concerts.id = pictures.band_concert_id
     GROUP BY
-        band_concerts.concert_id,
-        bands.name
+        bands.id
   )
   SELECT
       users.id AS userId,
@@ -258,10 +257,7 @@ router.get("/detail/:id", (req, res) => {
       band_concerts ON concerts.id = band_concerts.concert_id
   JOIN
       bands ON band_concerts.band_id = bands.id
-  LEFT JOIN (
-      SELECT DISTINCT ON (concert_id, band_name) concert_id, band_name, pictureUrls
-      FROM BandPictures
-  ) bp ON concerts.id = bp.concert_id
+  LEFT JOIN BandPictures AS bp ON bands.id = bp.band_id
   WHERE
       user_concerts.id = $1
   GROUP BY
