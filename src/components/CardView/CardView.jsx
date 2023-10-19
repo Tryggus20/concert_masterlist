@@ -17,7 +17,7 @@ function CardView() {
     dispatch({ type: "FETCH_CARD_VIEW", payload: user });
     console.log(concertCard, "========================");
   }, []);
-
+/* TODO: ADD generic placeholder image if no image uploaded */
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
@@ -28,15 +28,15 @@ function CardView() {
           {concertCard.map((concert) => (
             <div 
               className="concert-card card-border card-content"
-              key={concert.id}
-              onClick={() => history.push(`/details/${concert.id}`)}
+              key={concert.userconcertid.id}
+              onClick={() => history.push(`/details/${concert.userconcertid}`)}
             >
               <div >
                 <p>Date: {concert.date}</p>
               </div>
               <div>
                 <img style={{ maxHeight: '250px', maxWidth: '250px' }}
-                  src={concert.pictureurl || "placeholder-url.jpg"}
+                  src={concert.pictureurl || "https://cdn.pixabay.com/photo/2018/05/10/11/34/concert-3387324_1280.jpg"}  // ADD image here!!!!!!
                   alt="Concert"
                 />
               </div>

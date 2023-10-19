@@ -73,7 +73,7 @@ function App() {
           <ProtectedRoute
             // logged in shows Detail View else shows LoginPage
             exact
-            path="/detail"
+            path="/details/:id"
           >
             <DetailView />
           </ProtectedRoute>

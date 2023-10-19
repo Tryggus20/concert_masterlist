@@ -6,7 +6,7 @@ const router = express.Router();
 // TODO: ADD PUT REQUEST TO "DELETE CONCERT" // DONE
 // TODO: FIX EDIT ROUTER WITH LOGIC AND QUERY TEXT
 
-// "delete" specific concert. will need to add conditional rendering to get requests
+// "delete" specific concert. will need to add conditional rendering to GET requests on this page
 router.put("/delete/:id", (req, res) => {
   const id = req.params.id;
   const query = `UPDATE "user_concerts" 
@@ -22,41 +22,6 @@ router.put("/delete/:id", (req, res) => {
       console.log("error in deleting concert", err);
       res.sendStatus(500);
     }); // end of delete for specific concert
-});
-
-// GET request for all users
-router.get("/", (req, res) => {
-  const query = `SELECT
-  user_concerts.user_id,
-  concerts.date,
-  concerts.venue,
-  concerts.city,
-  concerts.state,
-  json_agg(bands.name) AS bands
-FROM
-  user_concerts
-JOIN
-  concerts ON user_concerts.concert_id = concerts.id
-JOIN
-  band_concerts ON concerts.id = band_concerts.concert_id
-JOIN
-  bands ON band_concerts.band_id = bands.id
-GROUP BY
-  user_concerts.user_id,
-  concerts.date,
-  concerts.venue,
-  concerts.city,
-  concerts.state;
-`;
-  pool
-    .query(query)
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch((err) => {
-      console.log("error in getting all concerts for a specific user", err);
-      res.sendStatus(500);
-    }); // end of get request for all users
 });
 
 // GET request for a specific user for LIST VIEW
@@ -96,7 +61,10 @@ GROUP BY
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log("error in getting all concerts for a specific user", err);
+      console.log(
+        "error in getting all concerts for a specific user LIST VIEW",
+        err
+      );
       res.sendStatus(500);
     }); // end of get request for a specific user
 });
@@ -118,6 +86,7 @@ router.get("/card/:id", (req, res) => {
         band_concerts.concert_id
 )
 SELECT
+    user_concerts.id AS userConcertId, -- Include the user_concerts.id
     users.id AS userId,
     concerts.date AS date,
     concerts.venue,
@@ -142,6 +111,7 @@ LEFT JOIN
 WHERE
     users.id = $1
 GROUP BY
+    user_concerts.id, -- Group by user_concerts.id
     users.id,
     concerts.date,
     concerts.venue,
@@ -156,7 +126,7 @@ GROUP BY
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log("error in getting all concerts for a specific user", err);
+      console.log("error in getting CardView for a specific user", err);
       res.sendStatus(500);
     });
 });
@@ -165,7 +135,7 @@ GROUP BY
 //####################################################################################################
 router.post("/add-concert/:id", async (req, res) => {
   const userId = req.params.id;
-console.log("userId:------_________----------______------______", userId);
+  console.log("userId:------_________----------______------______", userId);
   const { venue, city, state, date, comments, bands } = req.body;
 
   try {
@@ -215,7 +185,7 @@ console.log("userId:------_________----------______------______", userId);
       const bandData = bands[i]; // Use the current index to access the correct band data
       const urls = bandData.pictures || []; // Use an empty array if no pictures exist for the band
 
-      // Insert records into band_concerts table 
+      // Insert records into band_concerts table
       const result = await pool.query(
         "INSERT INTO band_concerts (band_id, concert_id) VALUES ($1, $2) RETURNING id",
         [bandId, concertId]
@@ -224,7 +194,7 @@ console.log("userId:------_________----------______------______", userId);
       bandConcertIds.push(bandConcertId);
 
       for (const url of urls) {
-        // Insert records into the pictures table 
+        // Insert records into the pictures table
         await pool.query(
           "INSERT INTO pictures (user_id, band_concert_id, url) VALUES ($1, $2, $3)",
           [userId, bandConcertId, url]
@@ -235,9 +205,9 @@ console.log("userId:------_________----------______------______", userId);
     // Insert the comment and seat_location into user_concerts table
     console.log("000000000000000000", userId, concertId, comments);
     await pool.query(
-        "INSERT INTO user_concerts (user_id, concert_id, comments) VALUES ($1, $2, $3)",
-        [userId, concertId, comments]
-      );
+      "INSERT INTO user_concerts (user_id, concert_id, comments) VALUES ($1, $2, $3)",
+      [userId, concertId, comments]
+    );
 
     res.status(201).json({ message: "Concert added successfully." });
   } catch (error) {
@@ -245,8 +215,6 @@ console.log("userId:------_________----------______------______", userId);
     res.status(500).json({ error: "Internal server error." });
   }
 });
-
-
 
 // ####################################################################################################
 //                _-_-_-_-_-_-_-_-_- DETAIL GET _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
@@ -257,53 +225,52 @@ router.get("/detail/:id", (req, res) => {
 
   const query = `
   WITH BandPictures AS (
-      SELECT
-          band_concerts.concert_id,
-          bands.name as band_name,
-          ARRAY_AGG(DISTINCT pictures.url) FILTER (WHERE pictures.url IS NOT NULL) AS pictureUrls
-      FROM
-          band_concerts
-      JOIN
-          bands ON band_concerts.band_id = bands.id
-      LEFT JOIN
-          pictures ON band_concerts.id = pictures.band_concert_id
-      GROUP BY
-          band_concerts.concert_id,
-          bands.name
+    SELECT
+        band_concerts.concert_id,
+        bands.name as band_name,
+        ARRAY_AGG(DISTINCT pictures.url) FILTER (WHERE pictures.url IS NOT NULL) AS pictureUrls
+    FROM
+        band_concerts
+    JOIN
+        bands ON band_concerts.band_id = bands.id
+    LEFT JOIN
+        pictures ON band_concerts.id = pictures.band_concert_id
+    GROUP BY
+        band_concerts.concert_id,
+        bands.name
   )
-      SELECT
-          users.id AS userId,
-          concerts.date AS date,
-          concerts.venue,
-          concerts.city,
-          concerts.state,
-          ARRAY_AGG(DISTINCT bands.name) AS bands,
-          ARRAY_AGG(json_build_object('band', bp.band_name, 'pictureUrls', bp.pictureUrls)) AS bandPictures,
-          user_concerts.comments AS comments
-      FROM
-          users
-      JOIN
-          user_concerts ON users.id = user_concerts.user_id
-      JOIN
-          concerts ON user_concerts.concert_id = concerts.id
-      JOIN
-          band_concerts ON concerts.id = band_concerts.concert_id
-      JOIN
-          bands ON band_concerts.band_id = bands.id
-      LEFT JOIN (
-          SELECT DISTINCT ON (concert_id, band_name) concert_id, band_name, pictureUrls
-          FROM BandPictures
-      ) bp ON concerts.id = bp.concert_id
-      WHERE
-          users.id = $1
-      GROUP BY
-          users.id,
-          concerts.date,
-          concerts.venue,
-          concerts.city,
-          concerts.state,
-          user_concerts.comments;
-    `;
+  SELECT
+      users.id AS userId,
+      concerts.date AS date,
+      concerts.venue,
+      concerts.city,
+      concerts.state,
+      ARRAY_AGG(DISTINCT bands.name) AS bands,
+      ARRAY_AGG(json_build_object('band', bp.band_name, 'pictureUrls', bp.pictureUrls)) AS bandPictures,
+      user_concerts.comments AS comments
+  FROM
+      users
+  JOIN
+      user_concerts ON users.id = user_concerts.user_id
+  JOIN
+      concerts ON user_concerts.concert_id = concerts.id
+  JOIN
+      band_concerts ON concerts.id = band_concerts.concert_id
+  JOIN
+      bands ON band_concerts.band_id = bands.id
+  LEFT JOIN (
+      SELECT DISTINCT ON (concert_id, band_name) concert_id, band_name, pictureUrls
+      FROM BandPictures
+  ) bp ON concerts.id = bp.concert_id
+  WHERE
+      user_concerts.id = $1
+  GROUP BY
+      users.id,  -- Add users.id to the GROUP BY clause
+      concerts.date,
+      concerts.venue,
+      concerts.city,
+      concerts.state,
+      user_concerts.comments;`;
 
   pool
     .query(query, [id])
@@ -311,9 +278,12 @@ router.get("/detail/:id", (req, res) => {
       res.send(result.rows);
     })
     .catch((err) => {
-      console.log("error in getting all concerts for a specific user", err);
+      console.log(
+        "error in getting DETAIL VIEW FOR A SPECIFIC USER AND CONCERT",
+        err
+      );
       res.sendStatus(500);
     });
-}); // end of detail get for a specific concert and user.
+}); // end of detail GET for a specific concert and user.
 
 module.exports = router;

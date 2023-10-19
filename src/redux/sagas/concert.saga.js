@@ -48,6 +48,7 @@ function* fetchCardViewSaga(action) {
 // DETAILED VIEW
 function* fetchDetailedViewSaga(action) { // TODO: This should be the USER_CONCERTS.ID
   try {
+    console.log(action.payload, "+++++++++++++++++++++++++++");
     const response = yield axios({
       method: "GET",
       url: `/api/concerts/detail/${action.payload.id}`,

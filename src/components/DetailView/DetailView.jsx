@@ -1,21 +1,23 @@
 import React, {useEffect} from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 // TODO: once clicked on, will need to pass on the user_concerts.id
 // to the concertSaga to make sure the corrct user_concert is shown
 
 
 function DetailView() {
+  const id= useParams().id
   const history = useHistory();
   const dispatch = useDispatch();
 // Selector to get info from store
   const user = useSelector((store) => store.user);
   const store= useSelector ((store) => store)
   useEffect(() => {
-    console.log("userID:", user);
-    dispatch({ type: "FETCH_DETAIL_VIEW", payload: user });
+    console.log("userID:", user, id);
+    // I do not want user I want user_concerts.id 
+    dispatch({ type: "FETCH_DETAIL_VIEW", payload: id });
     console.log(store);
   }, []);
   return (
