@@ -9,7 +9,7 @@ export default function EditConcert() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
-  const concertData = useSelector((state) => state.concertDetail.concertDetailReducer);
+  const concertData = useSelector((state) => state.concertDetail.concertDetailReducer[0]);
   
   useEffect(() => {
     if (concertData) {
@@ -19,14 +19,13 @@ export default function EditConcert() {
       setStateAbr(concertData.state);
       setComments(concertData.comments);
       setBands(concertData.bands);
-      setPictures(concertData.bandpictures); // Adjust for the structure of your data
+      setPictures(concertData.bandpictures);
     }
   }, [concertData]);
 
 
 console.log("```````````````````````````", concertData);
-  // TODO: SEND PROPS FROM DETAILED VIEW
-  // TODO: give this page a nav location
+
   // TODO: make sure this works with the backend edit
 
   const [date, setDate] = useState("");
@@ -86,6 +85,11 @@ console.log("```````````````````````````", concertData);
     history.push("/");
   };
   
+  if (!concertData) {
+    return (
+        <div><h1>Loading</h1></div>
+    );
+  }
 
   return (
     <div className="inputs">
@@ -131,20 +135,21 @@ console.log("```````````````````````````", concertData);
       </label>
 
       <br />
-       {/* <BandInput onAddBand={handleAddBand} />
-      {bands.map((band, bandIndex) => (
+       <BandInput onAddBand={handleAddBand} />
+      {concertData.bandpictures.map((band, bandIndex) => (
         <div key={bandIndex}>
           <h2>{band.band}</h2>
-          {band.pictures.map((url, pictureIndex) => (
+          {band.pictureUrls && band.pictureUrls.map((url, pictureIndex) => (
             <div key={pictureIndex}>{url}</div>
           ))}
-          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />  */}
+          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />  
           {/* Set the current band index when adding pictures */}
-           {/* <button onClick={() => setCurrentBandIndex(bandIndex)}>
+            <button onClick={() => setCurrentBandIndex(bandIndex)}>
             Add Picture for {band.band}
           </button> 
         </div>
-        ))} */}
+        ))
+      }
       <br />
       <textarea
         rows="3"

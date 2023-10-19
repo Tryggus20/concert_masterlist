@@ -245,7 +245,7 @@ router.get("/detail/:id", (req, res) => {
       concerts.city,
       concerts.state,
       ARRAY_AGG(DISTINCT bands.name) AS bands,
-      ARRAY_AGG(json_build_object('band', bp.band_name, 'pictureUrls', bp.pictureUrls)) AS bandPictures,
+      ARRAY_AGG(json_build_object('band_id', bp.band_id, 'band', bp.band_name, 'pictureUrls', bp.pictureUrls)) AS bandPictures,
       user_concerts.comments AS comments
   FROM
       users
