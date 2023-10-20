@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AboutPage from '../AboutPage/AboutPage';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import AboutPage from '../AboutPage/AboutPage';
 
 function RegisterPage() {
   const history = useHistory();
@@ -21,6 +22,7 @@ function RegisterPage() {
           Login
         </button>
       </center>
+      <AboutPage />
     </div>
   );
 }

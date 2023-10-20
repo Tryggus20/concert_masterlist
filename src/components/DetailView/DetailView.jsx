@@ -47,7 +47,7 @@ function DetailView() {
               <p className="bold">{bandpictures.band}</p>
                {bandpictures.pictureUrls?.map((pictures, index) => (
                 <>
-                  <img src={pictures}  style={{ maxHeight: '800px', maxWidth: '800px' }}/>
+                  <img src={pictures} alt="Image not found" style={{ maxHeight: '800px', maxWidth: '800px' }}/>
                 </>
               ))} 
             </>

@@ -122,3 +122,6 @@ input, textarea {
 .concertList {
   max-width: 50%;
 }
+.about {
+  text-align: center;
+}

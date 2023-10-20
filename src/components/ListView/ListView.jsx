@@ -19,7 +19,9 @@ function ListView() {
   console.log("concertList", concertList, concertList.bands);
   return (
     <div className="container">
-      <input placeholder="Search" type="text"></input>
+      {/* TODO: may want to use fuzzysearch from  npm install --save react-fuzzy */}
+
+      <input placeholder="Search" type="text"></input> 
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h4>Concert Recap (List View):</h4>
