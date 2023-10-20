@@ -137,7 +137,6 @@ GROUP BY
 //####################################################################################################
 router.post("/add-concert/:id", async (req, res) => {
   const userId = req.params.id;
-  console.log("userId:------_________----------______------______", userId);
   const { venue, city, state, date, comments, bands } = req.body;
 
   try {

@@ -14,7 +14,6 @@ function ListView() {
   useEffect(() => {
     console.log("userID:", user);
     dispatch({ type: "FETCH_LIST_VIEW", payload: user });
-    console.log(store);
   }, []);
   return (
     <div className="container">

@@ -69,13 +69,13 @@ console.log("id is:", id);
       city,
       state: stateAbr,
       comments,
-      bands,
-      pictures,
+    //   bands,
+    //   pictures,
       id: concertData.id, // Include the ID for editing
       concertId: {id} // TODO: ConcertId is not getting added....
     };
     // Dispatch an "EDIT_CONCERT" action with the updated data
-    console.log("=+=+=+=+=+=+=+===+=+=+=+=+=+=+===++=+=");
+    console.log("=+=+=+=+=+=+=+===+=+=+=+=+=+=+===++=+= editedConcertData n Editconcert.jsx", editedConcertData);
     dispatch({ type: "EDIT_CONCERT", payload: editedConcertData });
     // Clear inputs and go back to home
     setDate("");
@@ -83,8 +83,8 @@ console.log("id is:", id);
     setCity("");
     setStateAbr("");
     setComments("");
-    setBands([]);
-    setPictures([]);
+    // setBands([]);
+    // setPictures([]);
     history.push("/");
   };
   
@@ -137,7 +137,7 @@ console.log("id is:", id);
         ></input>
       </label>
 
-      <br />
+      {/* <br />
        <BandInput onAddBand={handleAddBand} />
       {concertData.bandpictures.map((band, bandIndex) => (
         <div key={bandIndex}>
@@ -145,14 +145,14 @@ console.log("id is:", id);
           {band.pictureUrls && band.pictureUrls.map((url, pictureIndex) => (
             <div key={pictureIndex}>{url}</div>
           ))}
-          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />  
+          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />   */}
           {/* Set the current band index when adding pictures */}
-            <button onClick={() => setCurrentBandIndex(bandIndex)}>
+            {/* <button onClick={() => setCurrentBandIndex(bandIndex)}>
             Add Picture for {band.band}
           </button> 
         </div>
         ))
-      }
+      } */}
       <br />
       <textarea
         rows="3"

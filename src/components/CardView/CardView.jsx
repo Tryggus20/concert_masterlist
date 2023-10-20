@@ -11,11 +11,9 @@ function CardView() {
   const user = useSelector((store) => store.user);
   const concertCard =
     useSelector((store) => store.concertCard.concertCardReducer) || []; // Access concertCard properly
-  console.log(concertCard, "&&&&&&&&&&&&&&&&&&&&&&&");
 
   useEffect(() => {
     dispatch({ type: "FETCH_CARD_VIEW", payload: user });
-    console.log(concertCard, "========================");
   }, []);
   return (
     <div className="container">

@@ -31,12 +31,6 @@ function* fetchListViewSaga(action) {
 // CARD VIEW
 function* fetchCardViewSaga(action) {
   try {
-    console.log(
-      "fetchCardViewSaga*&*&*&*&*&*&",
-      action,
-      "id of:",
-      action.payload.id
-    );
     const response = yield axios({
       method: "GET",
       url: `/api/concerts/card/${action.payload.id}`,
@@ -52,7 +46,6 @@ function* fetchCardViewSaga(action) {
 function* fetchDetailedViewSaga(action) {
   // TODO: This should be the USER_CONCERTS.ID
   try {
-    console.log(action.payload, "+++++++++++++++++++++++++++");
     const response = yield axios({
       method: "GET",
       url: `/api/concerts/detail/${action.payload.id}`,
@@ -65,7 +58,6 @@ function* fetchDetailedViewSaga(action) {
 
 // TODO: will need to double check action.payload is just the user_concert.id
 function* deleteConcertSaga(action) {
-  console.log("deleteConcertSaga action.payload:", action.payload.id);
   try {
     yield axios({
       method: "PUT",
@@ -105,14 +97,15 @@ function* addConcertSaga(action) {
 
 // Editing Concert
 function* editConcertSaga(action) {
-    console.log("editConcertSaga action payload:", action.payload.concertId);
+  console.log("editConcertSaga action payload:", action.payload);
   try {
     const response = yield axios({
       method: "PUT",
-      url: `/api/edit/${action.payload.id}`, //will need to be user_concert_id
+      url: `/api/edit/${action.payload.concertId.id}`,
+      payload: action.payload, 
     });
   } catch (err) {
-    console.log(err, "error in editConcertSaga");
+    console.log(err, "error in editConcertSaga", action.payload);
   }
 }
 
