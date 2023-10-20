@@ -46,7 +46,8 @@ JOIN
 JOIN
     bands ON band_concerts.band_id = bands.id
 WHERE
-    users.id = $1
+    users.id = $1 
+    AND user_concerts.is_deleted = false
 GROUP BY
     users.id,
     concerts.date,
@@ -110,6 +111,7 @@ LEFT JOIN
     pictures ON MinPicture.min_id = pictures.id
 WHERE
     users.id = $1
+    AND user_concerts.is_deleted = false
 GROUP BY
     user_concerts.id, -- Group by user_concerts.id
     users.id,
@@ -260,6 +262,7 @@ router.get("/detail/:id", (req, res) => {
   LEFT JOIN BandPictures AS bp ON bands.id = bp.band_id
   WHERE
       user_concerts.id = $1
+      AND user_concerts.is_deleted = false
   GROUP BY
       users.id,  -- Add users.id to the GROUP BY clause
       concerts.date,

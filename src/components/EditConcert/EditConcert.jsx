@@ -25,8 +25,9 @@ export default function EditConcert() {
 
 
 console.log("```````````````````````````", concertData);
-
+console.log("id is:", id);
   // TODO: make sure this works with the backend edit
+  // TODO: Make sure I am actually sending to the back end and not just changing state.... 
 
   const [date, setDate] = useState("");
   const [venue, setVenue] = useState("");
@@ -71,8 +72,10 @@ console.log("```````````````````````````", concertData);
       bands,
       pictures,
       id: concertData.id, // Include the ID for editing
+      concertId: {id} // TODO: ConcertId is not getting added....
     };
     // Dispatch an "EDIT_CONCERT" action with the updated data
+    console.log("=+=+=+=+=+=+=+===+=+=+=+=+=+=+===++=+=");
     dispatch({ type: "EDIT_CONCERT", payload: editedConcertData });
     // Clear inputs and go back to home
     setDate("");

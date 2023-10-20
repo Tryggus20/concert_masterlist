@@ -17,7 +17,6 @@ function CardView() {
     dispatch({ type: "FETCH_CARD_VIEW", payload: user });
     console.log(concertCard, "========================");
   }, []);
-/* TODO: ADD generic placeholder image if no image uploaded */
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>

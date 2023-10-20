@@ -20,6 +20,12 @@ function DetailView() {
     dispatch({ type: "FETCH_DETAIL_VIEW", payload: {id} });
     console.log(store);
   }, []);
+
+  const handleDelete = (event) => {
+    event.preventDefault();
+    dispatch({ type: "DELETE_CONCERT", payload: {id}})
+  }
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
@@ -30,6 +36,7 @@ function DetailView() {
 
 <button onClick={() => history.push(`/edit/${id}`)}>edit</button>
 <br/>
+<button onClick={handleDelete}>Delete Concert</button>
 <br/>
 <br/>
 <br/>
