@@ -242,6 +242,7 @@ router.get("/detail/:id", (req, res) => {
   SELECT
       users.id AS userId,
       concerts.date AS date,
+      concerts.id AS concert_id,
       concerts.venue,
       concerts.city,
       concerts.state,
@@ -268,6 +269,7 @@ router.get("/detail/:id", (req, res) => {
       concerts.venue,
       concerts.city,
       concerts.state,
+      concerts.id,
       user_concerts.comments;`;
 
   pool

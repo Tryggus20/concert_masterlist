@@ -97,12 +97,12 @@ function* addConcertSaga(action) {
 
 // Editing Concert
 function* editConcertSaga(action) {
-  console.log("editConcertSaga action payload:", action.payload);
+  console.log("editConcertSaga action payload:", action.payload.concertId);
   try {
     const response = yield axios({
       method: "PUT",
-      url: `/api/edit/${action.payload.concertId.id}`,
-      payload: action.payload, 
+      url: `/api/edit/${action.payload.userConcertId}`,
+      data: action.payload
     });
   } catch (err) {
     console.log(err, "error in editConcertSaga", action.payload);

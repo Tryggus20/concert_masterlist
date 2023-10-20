@@ -60,6 +60,8 @@ console.log("id is:", id);
     }
   }, [concertData]);
 
+  console.log(concertData)
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Implement logic to edit the concert using the updated data
@@ -71,8 +73,8 @@ console.log("id is:", id);
       comments,
     //   bands,
     //   pictures,
-      id: concertData.id, // Include the ID for editing
-      concertId: {id} // TODO: ConcertId is not getting added....
+      concert_id: concertData.concert_id, // Include the ID for editing
+      userConcertId: id // TODO: ConcertId is not getting added....
     };
     // Dispatch an "EDIT_CONCERT" action with the updated data
     console.log("=+=+=+=+=+=+=+===+=+=+=+=+=+=+===++=+= editedConcertData n Editconcert.jsx", editedConcertData);
@@ -157,7 +159,7 @@ console.log("id is:", id);
       <textarea
         rows="3"
         cols="30"
-        placeholder="Comments"
+        placeholder="Comments" value={comments}
         onChange={(e) => setComments(e.target.value)}
       ></textarea>
       <br />

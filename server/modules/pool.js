@@ -32,4 +32,6 @@ else {
     });
 }
 
+pool.on('connect', () => console.log("connected to postgres"))
+
 module.exports = pool;
