@@ -10,17 +10,23 @@ function DetailView() {
   // Selector to get info from store
   const user = useSelector((store) => store.user);
   const store = useSelector((store) => store);
-  const concertDetail = useSelector((store) => store.concertDetail.concertDetailReducer);
+  const concertDetails = useSelector(
+    (store) => store.concertDetail.concertDetailReducer
+  );
   useEffect(() => {
     console.log("userID:", user, id);
     dispatch({ type: "FETCH_DETAIL_VIEW", payload: { id } });
-    console.log("detailView store", concertDetail);
+    console.log("detailView store", concertDetails);
+    console.log("detail view city", concertDetails.city);
   }, []);
+  // concertDetails is an ARRAY of 1 object
+  // detailView.store bandPictures is an array of objects has bandId, band, and pictureUrls array.
+  // detailView.store bands has an array of bands
 
   const handleDelete = (event) => {
     event.preventDefault();
     dispatch({ type: "DELETE_CONCERT", payload: { id } });
-    history.push(`/home`)
+    history.push(`/home`);
   };
 
   return (
@@ -28,9 +34,33 @@ function DetailView() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h4>Concert Recap (DetailView):</h4>
+      <hr />
       {/* Display the entire store as JSON TODO: will need to remove eventually*/}
-      <pre>{JSON.stringify(store.concertDetail, null, 2)}</pre>
+      <pre>{JSON.stringify(store.concertDetails, null, 2)}</pre>
 
+      {/* Details View starts here!!!!!! */}
+      {concertDetails.map((concertDetail, index) => (
+        <>
+          <p>{new Date(concertDetail?.date).toLocaleDateString()}</p>
+          {concertDetail.bandpictures?.map((bandpictures, index) => (
+            <>
+              <p className="bold">{bandpictures.band}</p>
+               {bandpictures.pictureUrls?.map((pictures, index) => (
+                <>
+                  <img src={pictures}  style={{ maxHeight: '800px', maxWidth: '800px' }}/>
+                </>
+              ))} 
+            </>
+          ))}
+          <p>{concertDetail.venue}</p>
+          <p>
+            {" "}
+            {concertDetail.city}, {concertDetail.state}
+          </p>
+        </>
+      ))}
+
+      {/* Details View ends here !!!!!! */}
       <button onClick={() => history.push(`/edit/${id}`)}>edit</button>
       <br />
       <button onClick={handleDelete}>Delete Concert</button>

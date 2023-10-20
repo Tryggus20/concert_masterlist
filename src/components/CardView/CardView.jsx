@@ -23,6 +23,7 @@ function CardView() {
       <h4>Concert Recap (CardView):</h4>
       <div>
         <section className="concertCard">
+               {/* map over concertCard here  */}
           {concertCard.map((concert, index) => (
             <div 
               className="concert-card card-border card-content"
