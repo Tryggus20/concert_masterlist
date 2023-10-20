@@ -264,7 +264,7 @@ router.get("/detail/:id", (req, res) => {
       user_concerts.id = $1
       AND user_concerts.is_deleted = false
   GROUP BY
-      users.id,  -- Add users.id to the GROUP BY clause
+      users.id,  
       concerts.date,
       concerts.venue,
       concerts.city,

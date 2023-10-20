@@ -30,7 +30,7 @@ function CardView() {
               onClick={() => history.push(`/details/${concert.userconcertid}`)}
             >
               <div >
-                <p>Date: {concert.date}</p>
+                <p>Date: {new Date(concert.date).toLocaleDateString()}</p>
               </div>
               <div>
                 <img style={{ maxHeight: '250px', maxWidth: '250px' }}

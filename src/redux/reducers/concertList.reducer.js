@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-const concertListReducer = (state = {}, action) => {
+const concertListReducer = (state = [], action) => {
   switch (action.type) {
     case "SET_LIST_VIEW":
       return action.payload;

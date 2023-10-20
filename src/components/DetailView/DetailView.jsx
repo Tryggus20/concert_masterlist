@@ -1,30 +1,27 @@
-import React, {useEffect} from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector, useDispatch} from 'react-redux';
+import React, { useEffect } from "react";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
-// TODO: once clicked on, will need to pass on the user_concerts.id
-// to the concertSaga to make sure the corrct user_concert is shown
-
-
 function DetailView() {
-  const id= useParams().id
+  const id = useParams().id;
   const history = useHistory();
   const dispatch = useDispatch();
-// Selector to get info from store
+  // Selector to get info from store
   const user = useSelector((store) => store.user);
-  const store= useSelector ((store) => store)
+  const store = useSelector((store) => store);
+  const concertDetail = useSelector((store) => store.concertDetail.concertDetailReducer);
   useEffect(() => {
     console.log("userID:", user, id);
-    // I do not want user I want user_concerts.id 
-    dispatch({ type: "FETCH_DETAIL_VIEW", payload: {id} });
-    console.log("detailView store",store);
+    dispatch({ type: "FETCH_DETAIL_VIEW", payload: { id } });
+    console.log("detailView store", concertDetail);
   }, []);
 
   const handleDelete = (event) => {
     event.preventDefault();
-    dispatch({ type: "DELETE_CONCERT", payload: {id}})
-  }
+    dispatch({ type: "DELETE_CONCERT", payload: { id } });
+    history.push(`/home`)
+  };
 
   return (
     <div className="container">
@@ -34,13 +31,15 @@ function DetailView() {
       {/* Display the entire store as JSON TODO: will need to remove eventually*/}
       <pre>{JSON.stringify(store.concertDetail, null, 2)}</pre>
 
-<button onClick={() => history.push(`/edit/${id}`)}>edit</button>
-<br/>
-<button onClick={handleDelete}>Delete Concert</button>
-<br/>
-<br/>
-<br/>
-
+      <button onClick={() => history.push(`/edit/${id}`)}>edit</button>
+      <br />
+      <button onClick={handleDelete}>Delete Concert</button>
+      <br />
+      <br />
+      <br />
+      <button onClick={history.goBack}>Back</button>
+      <br />
+      <br />
       <LogOutButton className="btn" />
     </div>
   );

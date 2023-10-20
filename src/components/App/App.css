@@ -115,3 +115,10 @@ input, textarea {
   text-align: center;
 
 }
+.bold {
+  font-weight: bold;
+}
+
+.concertList {
+  max-width: 50%;
+}
