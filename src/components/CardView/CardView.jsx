@@ -5,16 +5,17 @@ import { useHistory } from "react-router-dom";
 import "./CardView.css"; 
 
 
-function CardView() {
+function CardView() { 
   const history = useHistory();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   const concertCard =
-    useSelector((store) => store.concertCard.concertCardReducer) || []; // Access concertCard properly
+    useSelector((store) => store.concertCard.concertCardReducer) || []; 
 
   useEffect(() => {
     dispatch({ type: "FETCH_CARD_VIEW", payload: user });
   }, []);
+  
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>

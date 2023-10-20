@@ -11,18 +11,18 @@ function ListView() {
 // Selector to get info from store
   const user = useSelector((store) => store.user);
   const store= useSelector ((store) => store)
+  const concertList = useSelector((store) => store.concertList.concertListReducer)
   useEffect(() => {
     console.log("userID:", user);
     dispatch({ type: "FETCH_LIST_VIEW", payload: user });
   }, []);
+  console.log("concertList",concertList);
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h4>Concert Recap (List View):</h4>
-      {/* Display the entire store as JSON will need to remove eventually*/}
-      <pre>{JSON.stringify(store.concertList, null, 2)}</pre>
-
+    
       <LogOutButton className="btn" />
     </div>
   );
