@@ -34,7 +34,6 @@ function DetailView() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h4>Concert Recap (DetailView):</h4>
-      <hr />
       {/* Display the entire store as JSON TODO: will need to remove eventually*/}
       <pre>{JSON.stringify(store.concertDetails, null, 2)}</pre>
 
@@ -42,6 +41,8 @@ function DetailView() {
       {concertDetails.map((concertDetail, index) => (
         <>
           <p>{new Date(concertDetail?.date).toLocaleDateString()}</p>
+          <hr />
+
           {concertDetail.bandpictures?.map((bandpictures, index) => (
             <>
               <p className="bold">{bandpictures.band}</p>
@@ -50,6 +51,7 @@ function DetailView() {
                   <img src={pictures} alt="Image not found" style={{ maxHeight: '800px', maxWidth: '800px' }}/>
                 </>
               ))} 
+            <hr/>
             </>
           ))}
           <p>{concertDetail.venue}</p>

@@ -138,32 +138,31 @@ console.log("id is:", id);
           onChange={(e) => setStateAbr(e.target.value)}
         ></input>
       </label>
-
-      {/* <br />
-       <BandInput onAddBand={handleAddBand} />
-      {concertData.bandpictures.map((band, bandIndex) => (
-        <div key={bandIndex}>
-          <h2>{band.band}</h2>
-          {band.pictureUrls && band.pictureUrls.map((url, pictureIndex) => (
-            <div key={pictureIndex}>{url}</div>
-          ))}
-          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />   */}
-          {/* Set the current band index when adding pictures */}
-            {/* <button onClick={() => setCurrentBandIndex(bandIndex)}>
-            Add Picture for {band.band}
-          </button> 
-        </div>
-        ))
-      } */}
       <br />
       <textarea
         rows="3"
         cols="30"
         placeholder="Comments" value={comments}
         onChange={(e) => setComments(e.target.value)}
-      ></textarea>
-      <br />
-      <br />      <button onClick={handleSubmit}>Save Changes</button>
+        ></textarea>
+      <br />      <button onClick={handleSubmit}>Update Concert Info</button>
+      <hr/>
+         <br />
+             <BandInput onAddBand={handleAddBand} />
+            {concertData.bandpictures.map((band, bandIndex) => (
+              <div key={bandIndex}>
+                <h2>{band.band}</h2>
+                <input value={band.band}></input>
+                {band.pictureUrls && band.pictureUrls.map((url, pictureIndex) => (
+                  <div key={pictureIndex}><input value={url}></input></div>
+                ))}
+                <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />   
+                {/* Set the current band index when adding pictures */}
+                 
+                <button>Update Band and Picture Info</button>
+              </div>
+              ))
+            } 
     </div>
   );
 }

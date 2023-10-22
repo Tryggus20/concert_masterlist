@@ -120,9 +120,6 @@ const userId = useSelector((state) => state.user.id)
           ))}
           <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />
           {/* Set the current band index when adding pictures */}
-          <button onClick={() => setCurrentBandIndex(bandIndex)}>
-            Add Picture for {band.band}
-          </button>
         </div>
       ))}
       {/* COMPONENTIZE ME Image */}
