@@ -53,7 +53,9 @@ GROUP BY
     concerts.date,
     concerts.venue,
     concerts.city,
-    concerts.state;
+    concerts.state
+    ORDER BY
+    concerts.date DESC;
 
   ;`;
   pool
@@ -119,7 +121,9 @@ GROUP BY
     concerts.venue,
     concerts.city,
     concerts.state,
-    pictures.url;
+    pictures.url
+    ORDER BY
+    concerts.date DESC;
 `;
 
   pool

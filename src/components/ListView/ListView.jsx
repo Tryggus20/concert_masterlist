@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-
+import Fuse from "fuse.js";
 function ListView() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -11,7 +11,18 @@ function ListView() {
   const store = useSelector((store) => store);
   const concertList = useSelector(
     (store) => store.concertList.concertListReducer
-  );
+    );
+    // trying fuzzy search
+    const fuse = new Fuse(concertList, {
+      keys: [
+        'band',
+        'venue',
+        'city',
+        'date'
+      ]
+    })
+    console.log("fuse", fuse);
+    //end of fuzzy search
   useEffect(() => {
     console.log("userID:", user);
     dispatch({ type: "FETCH_LIST_VIEW", payload: user });
