@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -9,56 +9,92 @@ function ListView() {
   // Selector to get info from store
   const user = useSelector((store) => store.user);
   const store = useSelector((store) => store);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const concertList = useSelector(
     (store) => store.concertList.concertListReducer
-    );
-    // trying fuzzy search
-    const fuse = new Fuse(concertList, {
-      keys: [
-        'band',
-        'venue',
-        'city',
-        'date'
-      ]
-    })
-    console.log("fuse", fuse);
-    //end of fuzzy search
+  );
+  const processedSearchResults = searchResults.map((result) => result.item);
+
   useEffect(() => {
     console.log("userID:", user);
     dispatch({ type: "FETCH_LIST_VIEW", payload: user });
   }, []);
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+  useEffect(() => {
+    // trying fuzzy search
+    const fuse = new Fuse(concertList, {
+      keys: [["bands"], "venue", "city", "date"],
+      threshold: 0.3,
+
+    });
+    console.log("fuse", fuse, "search Results:", searchResults);
+    //end of fuzzy search
+    if (!searchQuery) {
+      // If the search query is empty, show all concerts
+      setSearchResults([]);
+    } else {
+      // Perform the Fuse.js search and update searchResults
+      const results = fuse.search(searchQuery);
+      setSearchResults(results);
+    }
+  }, [searchQuery, concertList]);
   console.log("concertList", concertList, concertList.bands);
+  console.log("processed", processedSearchResults);
   return (
     <div className="container">
       {/* TODO: may want to use fuzzysearch from  npm install --save react-fuzzy */}
 
-      <input placeholder="Search" type="text"></input> 
+      <input
+        placeholder="Search"
+        type="text"
+        value={searchQuery}
+        onChange={handleSearchInputChange}
+      ></input>
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h4>Concert Recap (List View):</h4>
       <div>
-        {concertList.map((concert, index) => (
-          <>
-            <div
-              className="concertList"
-              key={index}
-              onClick={() => history.push(`/details/${concert.userconcertid}`)}
-            >
-              <ul>
-                <hr/>
-                <li style={{ listStyleType: 'none' }}>{new Date(concert.date).toLocaleDateString()}</li>
-                {/* <li>{concert.bands}</li> */}
-                {concert.bands.map((band, index) => (
-                  <li className="bold" style={{ listStyleType: 'none' }}>{band}</li>
-                ))}
-                <li style={{ listStyleType: 'none' }}>{concert.venue}</li>
-                <li style={{ listStyleType: 'none' }}>{concert.city}, {concert.state}</li>
-                <hr/>
-              </ul>
-            </div>
-            
-          </>
-        ))}
+        {(searchQuery ? processedSearchResults : concertList).map(
+          (concert, index) => (
+            <>
+              <div
+                className="concertList"
+                key={index}
+                onClick={() =>
+                  history.push(`/details/${concert.userconcertid}`)
+                }
+              >
+                <ul>
+                  <hr />
+                  <li style={{ listStyleType: "none" }}>
+                    {new Date(concert.date).toLocaleDateString()}
+                  </li>
+                  {/* <li>{concert.bands}</li> */}
+                  {Array.isArray(concert.bands) &&
+                    concert.bands.map((band, index) => (
+                      <li
+                        className="bold"
+                        style={{ listStyleType: "none" }}
+                        key={index}
+                      >
+                        {band}
+                      </li>
+                    ))}
+                  <li style={{ listStyleType: "none" }} key={index}>
+                    {concert.venue} 
+                  </li>
+                  <li style={{ listStyleType: "none" }} key={index}>
+                    {concert.city}, {concert.state}
+                  </li>
+                  <hr />
+                </ul>
+              </div>
+            </>
+          )
+        )}
       </div>
       <LogOutButton className="btn" />
     </div>

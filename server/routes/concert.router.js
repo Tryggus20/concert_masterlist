@@ -29,33 +29,35 @@ router.get("/:id", (req, res) => {
   const id = req.params.id;
 
   const query = `SELECT
-    users.id AS userId,
-    concerts.date AS date,
-    concerts.venue,
-    concerts.city,
-    concerts.state,
-    json_agg(bands.name) AS bands
+  users.id AS userId,
+  user_concerts.id AS userConcertId, -- Added this line
+  concerts.date AS date,
+  concerts.venue,
+  concerts.city,
+  concerts.state,
+  json_agg(bands.name) AS bands
 FROM
-    users
+  users
 JOIN
-    user_concerts ON users.id = user_concerts.user_id
+  user_concerts ON users.id = user_concerts.user_id
 JOIN
-    concerts ON user_concerts.concert_id = concerts.id
+  concerts ON user_concerts.concert_id = concerts.id
 JOIN
-    band_concerts ON concerts.id = band_concerts.concert_id
+  band_concerts ON concerts.id = band_concerts.concert_id
 JOIN
-    bands ON band_concerts.band_id = bands.id
+  bands ON band_concerts.band_id = bands.id
 WHERE
-    users.id = $1 
-    AND user_concerts.is_deleted = false
+  users.id = $1 
+  AND user_concerts.is_deleted = false
 GROUP BY
-    users.id,
-    concerts.date,
-    concerts.venue,
-    concerts.city,
-    concerts.state
-    ORDER BY
-    concerts.date DESC;
+  users.id,
+  user_concerts.id,  -- Added this line
+  concerts.date,
+  concerts.venue,
+  concerts.city,
+  concerts.state
+ORDER BY
+  concerts.date DESC;
 
   ;`;
   pool
