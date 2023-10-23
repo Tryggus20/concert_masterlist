@@ -27,7 +27,7 @@ function ListView() {
     // trying fuzzy search
     const fuse = new Fuse(concertList, {
       keys: [["bands"], "venue", "city", "date", "state"],
-      threshold: 0.28,
+      threshold: 0.2,
 
     });
     console.log("fuse", fuse, "search Results:", searchResults);

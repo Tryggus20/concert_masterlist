@@ -1,11 +1,11 @@
 import React from "react";
 
-const BandPicture = ({ url, onPictureUrlChange }) => {
+const BandPicture = ({ url, onPictureUrlChange, bandIndex, pictureIndex }) => {
   return (
     <div>
       <input
         value={url}
-        onChange={(e) => onPictureUrlChange(e.target.value)}
+        onChange={(e) => onPictureUrlChange(bandIndex, pictureIndex, e.target.value)}
       ></input>
     </div>
   );

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
-import AddBandPics from "../AddBandPics/EditBandPics";
+import AddBandPics from "../EditBandPics/EditBandPics";
 
 export default function ConcertForm() {
   const dispatch = useDispatch();

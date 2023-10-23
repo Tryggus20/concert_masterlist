@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 import { useParams } from "react-router-dom";
-import AddBandPics from "../AddBandPics/EditBandPics";
+import EditBandPics from "../EditBandPics/EditBandPics";
 
 export default function EditConcert() {
   const dispatch = useDispatch();
@@ -168,7 +168,7 @@ const handleSubmitBands = (event) => {
       {/* START OF EDIT BAND AND PICTURES */}
       <br />
       <BandInput onAddBand={handleAddBand} />
-      <AddBandPics concertData={concertData} />
+      <EditBandPics concertData={concertData} handleSubmitBands={handleSubmitBands} />
       
     </div>
   );
