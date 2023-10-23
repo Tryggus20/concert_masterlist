@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 import { useParams } from "react-router-dom";
-import AddBandPics from "../AddBandPics/AddBandPics";
+import AddBandPics from "../AddBandPics/EditBandPics";
 
 export default function EditConcert() {
   const dispatch = useDispatch();
