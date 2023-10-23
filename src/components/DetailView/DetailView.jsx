@@ -34,9 +34,6 @@ function DetailView() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       <h4>Concert Recap (DetailView):</h4>
-      {/* Display the entire store as JSON TODO: will need to remove eventually*/}
-      <pre>{JSON.stringify(store.concertDetails, null, 2)}</pre>
-
       {/* Details View starts here!!!!!! */}
       {concertDetails.map((concertDetail, index) => (
         <>

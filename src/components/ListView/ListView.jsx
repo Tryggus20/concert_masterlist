@@ -45,7 +45,6 @@ function ListView() {
   console.log("processed", processedSearchResults);
   return (
     <div className="container">
-      {/* TODO: may want to use fuzzysearch from  npm install --save react-fuzzy */}
 
       <input
         placeholder="Search"

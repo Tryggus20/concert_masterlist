@@ -13,6 +13,12 @@ export default function EditConcert() {
     (state) => state.concertDetail.concertDetailReducer[0]
   );
 
+
+  /* TODO:  how things are set up, the band with the lowest id is the headliner. 
+  If a "new band" to the database gets added and the opener is re-used, 
+  the opener will be the headliner. Will need to implement concert position after all
+  may need to use array location (+1) to get that value */
+
   useEffect(() => {
     if (concertData) {
       setDate(concertData.date);
@@ -77,7 +83,7 @@ const handleSubmitBands = (event) => {
       //   bands,
       //   pictures,
       concert_id: concertData.concert_id, // Include the ID for editing
-      userConcertId: id, // TODO: ConcertId is not getting added....
+      userConcertId: id, 
     };
     // Dispatch an "EDIT_CONCERT" action with the updated data
     console.log(

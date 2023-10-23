@@ -44,7 +44,6 @@ function* fetchCardViewSaga(action) {
 
 // DETAILED VIEW
 function* fetchDetailedViewSaga(action) {
-  // TODO: This should be the USER_CONCERTS.ID
   try {
     const response = yield axios({
       method: "GET",
@@ -56,7 +55,6 @@ function* fetchDetailedViewSaga(action) {
   }
 }
 
-// TODO: will need to double check action.payload is just the user_concert.id
 function* deleteConcertSaga(action) {
   try {
     yield axios({
@@ -68,18 +66,17 @@ function* deleteConcertSaga(action) {
     console.log(err, `error in "delete" request`);
   }
 }
-
-// UPDATE CONCERT           TODO: figure out if I need to pass anything
-function* updateConcertSaga() {
-  try {
-    const response = yield axios({
-      method: "PUT",
-      url: "/api/update/:id",
-    });
-  } catch (err) {
-    console.log(err, "error in updateConcertSaga");
-  }
-}
+// // UPDATE CONCERT   TODO: change this to be used for changing bands/pics
+// function* updateConcertSaga() {
+//   try {
+//     const response = yield axios({
+//       method: "PUT",
+//       url: "/api/update/:id",
+//     });
+//   } catch (err) {
+//     console.log(err, "error in updateConcertSaga");
+//   }
+// }
 
 // ADDING NEW CONCERT
 function* addConcertSaga(action) {
@@ -114,7 +111,7 @@ function* concertSaga() {
   yield takeEvery("FETCH_CARD_VIEW", fetchCardViewSaga);
   yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailedViewSaga);
   yield takeEvery("DELETE_CONCERT", deleteConcertSaga);
-  yield takeEvery("UPDATE_CONCERT", updateConcertSaga);
+  // yield takeEvery("UPDATE_CONCERT", updateConcertSaga);
   yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailViewSaga);
   yield takeEvery("ADD_CONCERT", addConcertSaga);
   yield takeEvery("EDIT_CONCERT", editConcertSaga);

@@ -5,8 +5,6 @@ import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 
-// TODO: Limit state to 2 characters~!!!!!
-// TODO: NEED TO INTEGRATE INTO APP AND INTO NAV/ROUTES
 export default function ConcertForm() {
   const dispatch = useDispatch();
   const history = useHistory();
