@@ -9,8 +9,10 @@ export default function EditConcert() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
-  const concertData = useSelector((state) => state.concertDetail.concertDetailReducer[0]);
-  
+  const concertData = useSelector(
+    (state) => state.concertDetail.concertDetailReducer[0]
+  );
+
   useEffect(() => {
     if (concertData) {
       setDate(concertData.date);
@@ -23,11 +25,8 @@ export default function EditConcert() {
     }
   }, [concertData]);
 
-
-console.log("```````````````````````````", concertData);
-console.log("id is:", id);
-  // TODO: make sure this works with the backend edit
-  // TODO: Make sure I am actually sending to the back end and not just changing state.... 
+  console.log("```````````````````````````", concertData);
+  console.log("id is:", id);
 
   const [date, setDate] = useState("");
   const [venue, setVenue] = useState("");
@@ -60,7 +59,11 @@ console.log("id is:", id);
     }
   }, [concertData]);
 
-  console.log(concertData)
+  console.log(concertData);
+const handleSubmitBands = (event) => {
+    event.preventDefault();
+    console.log("clicked a button!");
+}
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -71,13 +74,16 @@ console.log("id is:", id);
       city,
       state: stateAbr,
       comments,
-    //   bands,
-    //   pictures,
+      //   bands,
+      //   pictures,
       concert_id: concertData.concert_id, // Include the ID for editing
-      userConcertId: id // TODO: ConcertId is not getting added....
+      userConcertId: id, // TODO: ConcertId is not getting added....
     };
     // Dispatch an "EDIT_CONCERT" action with the updated data
-    console.log("=+=+=+=+=+=+=+===+=+=+=+=+=+=+===++=+= editedConcertData n Editconcert.jsx", editedConcertData);
+    console.log(
+      "=+=+=+=+=+=+=+===+=+=+=+=+=+=+===++=+= editedConcertData n Editconcert.jsx",
+      editedConcertData
+    );
     dispatch({ type: "EDIT_CONCERT", payload: editedConcertData });
     // Clear inputs and go back to home
     setDate("");
@@ -89,10 +95,12 @@ console.log("id is:", id);
     // setPictures([]);
     history.push("/");
   };
-  
+
   if (!concertData) {
     return (
-        <div><h1>Loading</h1></div>
+      <div>
+        <h1>Loading</h1>
+      </div>
     );
   }
 
@@ -103,7 +111,8 @@ console.log("id is:", id);
         Date:
         <input
           type="date"
-          id="date" value={date}
+          id="date"
+          value={date}
           onChange={(e) => setDate(e.target.value)}
         />
       </label>
@@ -112,7 +121,8 @@ console.log("id is:", id);
         Venue:
         <input
           type="text"
-          id="venue" value={venue}
+          id="venue"
+          value={venue}
           placeholder="Venue"
           onChange={(e) => setVenue(e.target.value)}
         ></input>
@@ -122,7 +132,8 @@ console.log("id is:", id);
         City :
         <input
           type="text"
-          id="city" value={city}
+          id="city"
+          value={city}
           placeholder="City"
           onChange={(e) => setCity(e.target.value)}
         ></input>
@@ -133,7 +144,8 @@ console.log("id is:", id);
         <input
           type="text"
           id="state"
-          maxLength="2" value={stateAbr}
+          maxLength="2"
+          value={stateAbr}
           placeholder="State Abbr."
           onChange={(e) => setStateAbr(e.target.value)}
         ></input>
@@ -142,27 +154,46 @@ console.log("id is:", id);
       <textarea
         rows="3"
         cols="30"
-        placeholder="Comments" value={comments}
+        placeholder="Comments"
+        value={comments}
         onChange={(e) => setComments(e.target.value)}
-        ></textarea>
-      <br />      <button onClick={handleSubmit}>Update Concert Info</button>
-      <hr/>
-         <br />
-             <BandInput onAddBand={handleAddBand} />
-            {concertData.bandpictures.map((band, bandIndex) => (
-              <div key={bandIndex}>
-                <h2>{band.band}</h2>
-                <input value={band.band}></input>
-                {band.pictureUrls && band.pictureUrls.map((url, pictureIndex) => (
-                  <div key={pictureIndex}><input value={url}></input></div>
-                ))}
-                <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />   
-                {/* Set the current band index when adding pictures */}
-                 
-                <button>Update Band and Picture Info</button>
+      ></textarea>
+      <br /> <button onClick={handleSubmit}>Update Concert Info</button>
+      <hr />
+      {/* START OF EDIT BAND AND PICTURES */}
+      <br />
+      {/* <BandInput onAddBand={handleAddBand} />
+      {concertData.bandpictures.map((band, bandIndex) => (
+        <div key={bandIndex}>
+          <h2>{band.band}</h2>
+          <input
+            value={band.band}
+            onChange={(e) => {
+              const updatedBands = [...bands];
+              updatedBands[bandIndex].band = e.target.value;
+              setBands(updatedBands);
+            }}
+          ></input>
+          {band.pictureUrls &&
+            band.pictureUrls.map((url, pictureIndex) => (
+              <div key={pictureIndex}>
+                <input
+                  value={url}
+                  onChange={(e) => {
+                    const updatedBands = [...bands];
+                    updatedBands[bandIndex].pictures[pictureIndex] =
+                      e.target.value;
+                    setBands(updatedBands);
+                  }}
+                ></input>
               </div>
-              ))
-            } 
+            ))}
+          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} /> */}
+          {/* Set the current band index when adding pictures */}
+{/* 
+          <button onClick={handleSubmitBands}>Update Band and Picture Info</button>
+        </div>
+      ))} */}
     </div>
   );
 }

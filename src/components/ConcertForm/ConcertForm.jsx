@@ -64,7 +64,8 @@ const userId = useSelector((state) => state.user.id)
     setBands([]);
     setPictures([]);
     // go back to home after concert has been added
-    // TODO: Re-activate  history.push when done testing routes
+    // and fetch card view to refresh cards
+    dispatch({type: "FETCH_CARD_VIEW", payload: user})
     history.push("/");
   };
   return (
