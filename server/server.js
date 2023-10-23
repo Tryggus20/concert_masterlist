@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const concertRouter = require('./routes/concert.router')
 const editRouter = require('./routes/edit.router')
+const bandRouter = require('./routes/band.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use('/api/users', userRouter);
 app.use('/api/concerts', concertRouter);
 app.use('/api/edit', editRouter);
+app.use('/api/update', bandRouter)
 
 // Serve static files
 app.use(express.static('build'));

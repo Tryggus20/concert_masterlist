@@ -45,16 +45,16 @@ export default function EditConcert() {
   const [bands, setBands] = useState([]);
   const [pictures, setPictures] = useState([]);
 
-  const handleAddBand = (band) => {
-    setBands([...bands, { band, pictures: [] }]);
-  };
-  const handleAddPicture = (bandIndex, url) => {
-    if (bandIndex !== null) {
-      const updatedBands = [...bands];
-      updatedBands[bandIndex].pictures.push(url);
-      setBands(updatedBands);
-    }
-  };
+//   const handleAddBand = (band) => {
+//     setBands([...bands, { band, pictures: [] }]);
+//   };
+//   const handleAddPicture = (bandIndex, url) => {
+//     if (bandIndex !== null) {
+//       const updatedBands = [...bands];
+//       updatedBands[bandIndex].pictures.push(url);
+//       setBands(updatedBands);
+//     }
+//   };
   // Initialize state with concertData when component mounts
   useEffect(() => {
     if (concertData) {

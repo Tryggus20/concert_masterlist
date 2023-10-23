@@ -13,9 +13,9 @@ const Band = ({ band, bandIndex }) => {
  
   return (
     <div>
-      <h2>{band}</h2>
+      <h2>{bandName}</h2>
       <input type="text" value={bandName} onChange={handleNameChange}></input>
-      <button
+      <button disabled
         onClick={() => {
           dispatch({
             type: "EDIT_BAND_NAME",

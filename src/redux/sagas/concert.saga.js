@@ -106,6 +106,20 @@ function* editConcertSaga(action) {
   }
 }
 
+// EditBandNameSaga    TODO: fix this. more info in band.router
+function* editBandNameSaga(action) {
+  console.log("editBandNameSaga", action.payload);
+  try {
+    const response = yield axios ({
+      method: "PUT",
+      url: `/api/update/${action.payload}`, // need to figure out action.payload and what I need
+      data: action.payload // only data coming over is new bandName and array location.
+    });
+  } catch (err) {
+    console.log(err, "error in editBandNameSaga", action.payload);
+  }
+}
+
 function* concertSaga() {
   yield takeEvery("FETCH_LIST_VIEW", fetchListViewSaga);
   yield takeEvery("FETCH_CARD_VIEW", fetchCardViewSaga);
@@ -115,6 +129,7 @@ function* concertSaga() {
   yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailViewSaga);
   yield takeEvery("ADD_CONCERT", addConcertSaga);
   yield takeEvery("EDIT_CONCERT", editConcertSaga);
+  yield takeEvery("EDIT_BAND_NAME", editBandNameSaga)
 }
 
 export default concertSaga;
