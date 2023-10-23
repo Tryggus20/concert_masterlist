@@ -6,6 +6,8 @@ import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 import AddBandPics from "../EditBandPics/EditBandPics";
 
+// TODO: have a button to cancel adding a picture (clear that field)
+
 export default function ConcertForm() {
   const dispatch = useDispatch();
   const history = useHistory();

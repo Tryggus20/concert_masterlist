@@ -68,11 +68,10 @@ export default function EditConcert() {
     }
   }, [concertData]);
 
-  console.log(concertData);
-const handleSubmitBands = (event) => {
-    event.preventDefault();
-    console.log("clicked a button!");
-}
+//   console.log(concertData);
+// const handleSubmitBands = (event) => {
+//     event.preventDefault();
+// }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -167,8 +166,8 @@ const handleSubmitBands = (event) => {
       <hr />
       {/* START OF EDIT BAND AND PICTURES */}
       <br />
-      <BandInput onAddBand={handleAddBand} />
-      <EditBandPics concertData={concertData} handleSubmitBands={handleSubmitBands} />
+      {/* <BandInput onAddBand={handleAddBand} /> */}
+      <EditBandPics concertData={concertData} />
       
     </div>
   );
