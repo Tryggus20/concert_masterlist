@@ -129,6 +129,4 @@ WHERE
 
 
 
--- https://people.com/thmb/hpoiVOw0GmQ56iHW0gnUEmCw0mI=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(791x211:793x213):format(webp)/taylor-swift-gameday-102223-1-64c1a3f1d19041fba406d415154aa4eb.jpg
-
 

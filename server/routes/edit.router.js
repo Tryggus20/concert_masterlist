@@ -2,6 +2,9 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
+// TODO: will need a route for editing band/images.
+// Not sure how I want to tackle it so I do not have a route for it yet
+
 // route is edit/concertId/userId
 router.put("/:user_concert_id", async (req, res) => {
   try {

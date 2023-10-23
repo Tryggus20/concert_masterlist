@@ -4,11 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
+import AddBandPics from "../AddBandPics/AddBandPics";
 
 export default function ConcertForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-
 
   const [date, setDate] = useState("");
   const [venue, setVenue] = useState("");
@@ -20,9 +20,9 @@ export default function ConcertForm() {
   const [bands, setBands] = useState([]);
   const [currentBandIndex, setCurrentBandIndex] = useState(null);
   const [pictures, setPictures] = useState([]);
-const [id, setId] = useState ("");
-const userId = useSelector((state) => state.user.id)
-  
+  const [id, setId] = useState("");
+  const userId = useSelector((state) => state.user.id);
+
   const handleAddBand = (band) => {
     setBands([...bands, { band, pictures: [] }]);
   };
@@ -37,7 +37,7 @@ const userId = useSelector((state) => state.user.id)
   // Submit Form
   const handleSubmit = (event) => {
     event.preventDefault();
-    if ( date === "" || venue=== "" || city === "" ) {
+    if (date === "" || venue === "" || city === "") {
       alert("Please fill in all fields.");
       return; // Do not proceed with submission if a field is empty
     }
@@ -49,7 +49,7 @@ const userId = useSelector((state) => state.user.id)
       comments,
       bands,
       pictures,
-      id: userId
+      id: userId,
     };
     console.log("concertData", concertData);
     dispatch({ type: "ADD_CONCERT", payload: concertData });
@@ -63,7 +63,7 @@ const userId = useSelector((state) => state.user.id)
     setPictures([]);
     // go back to home after concert has been added
     // and fetch card view to refresh cards
-    dispatch({type: "FETCH_CARD_VIEW", payload: user})
+    dispatch({ type: "FETCH_CARD_VIEW", payload: user });
     history.push("/");
   };
   return (
@@ -115,15 +115,13 @@ const userId = useSelector((state) => state.user.id)
         <div key={bandIndex}>
           <h2>{band.band}</h2>
           {band.pictures.map((url, pictureIndex) => (
-            <div key={pictureIndex}>{url}</div>
+            <div key={pictureIndex}><img src={url} style={{maxHeight: '250px', maxWidth: '250px' }}></img></div>
           ))}
           <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />
           {/* Set the current band index when adding pictures */}
         </div>
       ))}
-      {/* COMPONENTIZE ME Image */}
-      {/* <input type="text" id="url" placeholder='Picture URL only' ></input><button>Add Another</button>
-<br/> */}
+  
       <br />
       <textarea
         rows="3"

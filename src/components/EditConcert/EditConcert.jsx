@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 import { useParams } from "react-router-dom";
+import AddBandPics from "../AddBandPics/AddBandPics";
 
 export default function EditConcert() {
   const dispatch = useDispatch();
@@ -18,6 +19,8 @@ export default function EditConcert() {
   If a "new band" to the database gets added and the opener is re-used, 
   the opener will be the headliner. Will need to implement concert position after all
   may need to use array location (+1) to get that value */
+
+  //unable to change values for band and pics currently
 
   useEffect(() => {
     if (concertData) {
@@ -86,10 +89,6 @@ const handleSubmitBands = (event) => {
       userConcertId: id, 
     };
     // Dispatch an "EDIT_CONCERT" action with the updated data
-    console.log(
-      "=+=+=+=+=+=+=+===+=+=+=+=+=+=+===++=+= editedConcertData n Editconcert.jsx",
-      editedConcertData
-    );
     dispatch({ type: "EDIT_CONCERT", payload: editedConcertData });
     // Clear inputs and go back to home
     setDate("");
@@ -168,38 +167,9 @@ const handleSubmitBands = (event) => {
       <hr />
       {/* START OF EDIT BAND AND PICTURES */}
       <br />
-      {/* <BandInput onAddBand={handleAddBand} />
-      {concertData.bandpictures.map((band, bandIndex) => (
-        <div key={bandIndex}>
-          <h2>{band.band}</h2>
-          <input
-            value={band.band}
-            onChange={(e) => {
-              const updatedBands = [...bands];
-              updatedBands[bandIndex].band = e.target.value;
-              setBands(updatedBands);
-            }}
-          ></input>
-          {band.pictureUrls &&
-            band.pictureUrls.map((url, pictureIndex) => (
-              <div key={pictureIndex}>
-                <input
-                  value={url}
-                  onChange={(e) => {
-                    const updatedBands = [...bands];
-                    updatedBands[bandIndex].pictures[pictureIndex] =
-                      e.target.value;
-                    setBands(updatedBands);
-                  }}
-                ></input>
-              </div>
-            ))}
-          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} /> */}
-          {/* Set the current band index when adding pictures */}
-{/* 
-          <button onClick={handleSubmitBands}>Update Band and Picture Info</button>
-        </div>
-      ))} */}
+      <BandInput onAddBand={handleAddBand} />
+      <AddBandPics concertData={concertData} />
+      
     </div>
   );
 }
