@@ -49,6 +49,9 @@ typings/
 # Optional npm cache directory
 .npm
 
+# dotenv environment variables file
+.env
+
 # Optional eslint cache
 .eslintcache
 
