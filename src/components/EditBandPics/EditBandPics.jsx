@@ -12,7 +12,7 @@ const dispatch = useDispatch()
       // console.log("Updated Bands Data:", updatedBands);
     let bandConcertId = concertData.concertData.band_concert_id
 console.log("bandConcertId", bandConcertId);
-
+console.log("concert data a EditBandPics: ", concertData);
     // const handleSubmitBands = (event) => {
     //   event.preventDefault();
     //   console.log("clicked a button!", updatedBands);
@@ -56,7 +56,7 @@ console.log("bandConcertId", bandConcertId);
                 bandIndex={bandIndex}
                 bandConcertId={bandConcertId}
               />
-              {/* {band.pictureUrls &&
+              {band.pictureUrls &&
                 band.pictureUrls.map((url, pictureIndex) => (
                   <BandPicture
                     key={pictureIndex}
@@ -65,7 +65,7 @@ console.log("bandConcertId", bandConcertId);
                     bandIndex={bandIndex}
                     pictureIndex={pictureIndex}
                   />
-                ))} */}
+                ))}
               {/* <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} /> */}
               {/* <button onClick={handleSubmitBands}>Update Band Name</button> */}
             </div>
