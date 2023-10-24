@@ -19,9 +19,6 @@ function DetailView() {
     console.log("detailView store", concertDetails);
     console.log("detail view city", concertDetails.city);
   }, []);
-  // concertDetails is an ARRAY of 1 object
-  // detailView.store bandPictures is an array of objects has bandId, band, and pictureUrls array.
-  // detailView.store bands has an array of bands
 
   const handleDelete = (event) => {
     event.preventDefault();
@@ -42,13 +39,30 @@ function DetailView() {
 
           {concertDetail.bandpictures?.map((bandpictures, index) => (
             <>
+              <script></script>
               <p className="bold">{bandpictures.band}</p>
-               {bandpictures.pictureUrls?.map((pictures, index) => (
+              {bandpictures.pictureUrls?.map((pictures, index) => (
                 <>
-                  <img src={pictures} alt="Image not found" style={{ maxHeight: '800px', maxWidth: '800px' }}/>
+                  <img
+                    src={pictures}
+                    alt="Image not found"
+                    style={{ maxHeight: "800px", maxWidth: "800px" }}
+                  />
                 </>
-              ))} 
-            <hr/>
+              ))}
+              {/* Will need to componentize spotify player. pass along bandName and do a 
+              GET search for that artist, returning first result to get artist.id.
+               then another GET request for artist top song or top 3 songs  */}
+              <iframe
+                src="https://open.spotify.com/embed/artist/7w9jdhcgHNdiPeNPUoFSlx?si=NNuVFC3GRVKKWSnATYK-CQ"
+                width="300"
+                height="380"
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+              ></iframe>
+
+              <hr />
             </>
           ))}
           <p>{concertDetail.venue}</p>
@@ -74,5 +88,4 @@ function DetailView() {
   );
 }
 
-// this allows us to use <App /> in index.js
 export default DetailView;
