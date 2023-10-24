@@ -1,8 +1,13 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
+dotenv.config()
 const app = express();
+
+const spotify_client_id = process.env.SPOTIFY_CLIENT_ID
+const spotify_client_secret = process.env.SPOTIFY_CLIENT_SECRET
 
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
@@ -41,3 +46,9 @@ app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
 
+
+/* 
+TODO: Add new router to handle spotify requests
+
+
+*/

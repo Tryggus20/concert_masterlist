@@ -112,9 +112,10 @@ function* editBandNameSaga(action) {
   try {
     const response = yield axios ({
       method: "PUT",
-      url: `/api/update/${action.payload}`, // need to figure out action.payload and what I need
-      data: action.payload // only data coming over is new bandName and array location.
+      url: `/api/update/`, 
+      data: action.payload 
     });
+    console.log("action payload for editband name", action.payload);
   } catch (err) {
     console.log(err, "error in editBandNameSaga", action.payload);
   }
