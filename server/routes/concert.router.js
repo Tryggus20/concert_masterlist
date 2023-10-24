@@ -250,6 +250,7 @@ router.get("/detail/:id", (req, res) => {
       concerts.state,
       ARRAY_AGG(DISTINCT bands.name) AS bands,
       ARRAY_AGG(json_build_object('band_id', bp.band_id, 'band', bp.band_name, 'pictureUrls', bp.pictureUrls)) AS bandPictures,
+      band_concerts.id AS band_concert_id, 
       user_concerts.comments AS comments
   FROM
       users
@@ -272,7 +273,8 @@ router.get("/detail/:id", (req, res) => {
       concerts.city,
       concerts.state,
       concerts.id,
-      user_concerts.comments;`;
+      user_concerts.comments,
+      band_concerts.id;`;
 
   pool
     .query(query, [id])
@@ -286,6 +288,6 @@ router.get("/detail/:id", (req, res) => {
       );
       res.sendStatus(500);
     });
-}); // end of detail GET for a specific concert and user.
+}); // end of detail GET for a Detailed View of a specific concert and user.
 
 module.exports = router;

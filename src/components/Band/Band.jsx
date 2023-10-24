@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
-const Band = ({ band, bandIndex }) => {
-  console.log("info in band.jsx", band, bandIndex, "band:", band);
+
+const Band = ({ band, bandIndex, bandConcertId }) => {
+  console.log("info in band.jsx", band, bandIndex, "bandConcertId:", bandConcertId);
   const dispatch = useDispatch();
   const [bandName, setBandName] = useState(band);
+  const { userConcertId } = useParams();
+
 
   const handleNameChange = (e) => {
     const newName = e.target.value;
     setBandName(newName);
   };
- 
+ // TODO: need to get band_concerts.id to this page to chang the band.id
   return (
     <div>
       <h2>{bandName}</h2>
       <input type="text" value={bandName} onChange={handleNameChange}></input>
-      <button disabled
+      <button 
         onClick={() => {
           dispatch({
             type: "EDIT_BAND_NAME",
-            payload: { bandIndex, newName: bandName },
+            payload: { bandIndex, newName: bandName, bandConcertId },
           });
         }}
       >

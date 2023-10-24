@@ -10,8 +10,8 @@ export default function EditBandPics( concertData) {
 const dispatch = useDispatch()
     console.log("editBandPics concertData:",concertData.concertData);
       // console.log("Updated Bands Data:", updatedBands);
-    
-
+    let bandConcertId = concertData.concertData.band_concert_id
+console.log("bandConcertId", bandConcertId);
 
     // const handleSubmitBands = (event) => {
     //   event.preventDefault();
@@ -19,7 +19,7 @@ const dispatch = useDispatch()
     //   dispatch({ type: "EDIT_BAND", payload: newName });
     // }
     
-      const handleBandNameChange = (bandIndex, newName) => {
+      const handleBandNameChange = (bandIndex, newName, bandConcertId) => {
         const updatedBands = [...bands];
         updatedBands[bandIndex].band = newName;
         setBands(updatedBands);
@@ -54,6 +54,7 @@ const dispatch = useDispatch()
                 band={band}
                 onBandNameChange={handleBandNameChange}
                 bandIndex={bandIndex}
+                bandConcertId={bandConcertId}
               />
               {/* {band.pictureUrls &&
                 band.pictureUrls.map((url, pictureIndex) => (
