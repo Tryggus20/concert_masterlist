@@ -2,33 +2,42 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-
-const Band = ({ band, bandIndex, bandConcertId }) => {
-  console.log("info in band.jsx", band, bandIndex, "bandConcertId:", bandConcertId);
+const Band = ({ concertData }) => {
   const dispatch = useDispatch();
-  const [bandName, setBandName] = useState(band);
-  const { userConcertId } = useParams();
-
-
+  const [bandName, setBandName] = useState([concertData.bands]);
+  // const { userConcertId } = useParams();
+  console.log("concertData in band:", concertData);
+  console.log("bandConcertId please work:", concertData.band_concert_id);
+let bandConcertId= concertData.band_concert_id
   const handleNameChange = (e) => {
     const newName = e.target.value;
     setBandName(newName);
   };
   return (
-    <div>
-      <h2>{bandName}</h2>
-      <input type="text" value={bandName} onChange={handleNameChange}></input>
-      <button 
-        onClick={() => {
-          dispatch({
-            type: "EDIT_BAND_NAME",
-            payload: { bandIndex, newName: bandName, bandConcertId },
-          });
-        }}
-      >
-        Update Band Name
-      </button>
-    </div>
+    <>
+      {concertData.bands.map((band, bandIndex) => (
+        <div key={bandIndex}>
+          <div>
+            <h2>{bandName}</h2>
+            <input
+              type="text"
+              value={bandName}
+              onChange={handleNameChange}
+            ></input>
+            <button
+              onClick={() => {
+                dispatch({
+                  type: "EDIT_BAND_NAME",
+                  payload: { bandIndex, newName: bandName, bandConcertId },
+                });
+              }}
+            >
+              Update Band Name
+            </button>
+          </div>
+        </div>
+      ))}{" "}
+    </>
   );
 };
 
