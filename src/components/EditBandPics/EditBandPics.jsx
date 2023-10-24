@@ -6,11 +6,12 @@ import { useDispatch } from "react-redux";
 
 
 export default function EditBandPics( concertData) {
-    const [bands, setBands] = useState(concertData.bandpictures);
+  console.log("concertData", concertData.entireConcertData);
+    const [bands, setBands] = useState(concertData.entireConcertData.bandpictures);
 const dispatch = useDispatch()
-    console.log("editBandPics concertData:",concertData.concertData);
+    console.log("editBandPics concertData:",concertData.entireConcertData);
       // console.log("Updated Bands Data:", updatedBands);
-    let bandConcertId = concertData.concertData.band_concert_id
+    let bandConcertId = concertData.entireConcertData.band_concert_id
 console.log("bandConcertId", bandConcertId);
 console.log("concert data a EditBandPics: ", concertData);
     // const handleSubmitBands = (event) => {
@@ -19,13 +20,14 @@ console.log("concert data a EditBandPics: ", concertData);
     //   dispatch({ type: "EDIT_BAND", payload: newName });
     // }
     
-      const handleBandNameChange = (bandIndex, newName, bandConcertId) => {
-        const updatedBands = [...bands];
-        updatedBands[bandIndex].band = newName;
-        setBands(updatedBands);
-        console.log("New band name:", bands);
-      };
-    
+    const handleBandNameChange = (bandIndex, newName) => {
+      const updatedBands = [...bands];
+      updatedBands[bandIndex].band = newName; // Assuming 'band' is the name property
+      setBands(updatedBands);
+  };
+  // TODO: Working on editing all band names in one  
+
+
       // const handlePictureUrlChange = (bandIndex, pictureIndex, newUrl) => {
       //   const updatedBands = [...bands];
       //   updatedBands[bandIndex].pictures[pictureIndex] = newUrl;
@@ -33,10 +35,10 @@ console.log("concert data a EditBandPics: ", concertData);
       // };
 
       useEffect(() => {
-        if (concertData.concertData.bands) {
-          setBands([...concertData.concertData.bands]);
+        if (concertData.entireConcertData.bands) {
+          setBands([...concertData.entireConcertData.bands]);
         }
-      }, [concertData.concertData.bands]);
+      }, [concertData.entireConcertData.bands]);
     
       // const handleAddPicture = (bandIndex, url) => {
       //   if (bandIndex !== null) {
@@ -48,15 +50,16 @@ console.log("concert data a EditBandPics: ", concertData);
 
       return (
         <div>
-          {concertData.concertData.bands.map((band, bandIndex) => (
+          {concertData.entireConcertData.bands.map((band, bandIndex) => (
             <div key={bandIndex}>
-              <Band
+             <> <Band
                 band={band}
                 onBandNameChange={handleBandNameChange}
                 bandIndex={bandIndex}
                 bandConcertId={bandConcertId}
-              />
-              {band.pictureUrls &&
+              /> 
+</>
+              {/* {band.pictureUrls &&
                 band.pictureUrls.map((url, pictureIndex) => (
                   <BandPicture
                     key={pictureIndex}
@@ -65,7 +68,7 @@ console.log("concert data a EditBandPics: ", concertData);
                     bandIndex={bandIndex}
                     pictureIndex={pictureIndex}
                   />
-                ))}
+                ))} */}
               {/* <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} /> */}
               {/* <button onClick={handleSubmitBands}>Update Band Name</button> */}
             </div>

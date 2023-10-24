@@ -14,7 +14,6 @@ const Band = ({ band, bandIndex, bandConcertId }) => {
     const newName = e.target.value;
     setBandName(newName);
   };
- // TODO: need to get band_concerts.id to this page to chang the band.id
   return (
     <div>
       <h2>{bandName}</h2>

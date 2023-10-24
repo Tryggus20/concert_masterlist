@@ -169,7 +169,7 @@ export default function EditConcert() {
       {/* START OF EDIT BAND AND PICTURES */}
       <br />
       {/* <BandInput onAddBand={handleAddBand} /> */}
-      <EditBandPics concertData={concertData} />
+      <EditBandPics entireConcertData={concertData} />
       <div>
         {entireConcertDetail &&
           entireConcertDetail.length > 0 &&
