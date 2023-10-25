@@ -111,19 +111,17 @@ function* editBandNameSaga(action) {
   }
 }
 function* getArtistSpotifyIdSaga(action) {
+  console.log("getArtistSpotifyIdSaga", action.payload);
   try {
-      const responses = yield all(action.payload.bands.map(band => {
-          return call(axios, {
-              method: "GET",
-              url: `/api/spotify/search-artist/${band.artistName}`,
-          });
-      }));
-
-      for(let response of responses) {
-          yield put({ type: "SET_SPOTIFY_DATA", payload: response.data });
-      }
-  } catch (err) {
-      console.log(err, "error in spotify getArtistSpotifyId");
+    const response = yield axios({
+      method: "GET",
+      url: `/api/spotify/search-artist/${action.payload}`, 
+    });
+    yield put({ 
+      type: "SET_SPOTIFY_DATA", 
+      payload: { bandName: action.payload, artistId: response.data } 
+    });  } catch (err) {
+    console.log(err, "error in spotify getArtistSpotifyId");
   }
 }
 

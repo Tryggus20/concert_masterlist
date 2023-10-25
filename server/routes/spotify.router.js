@@ -24,6 +24,7 @@ async function getAppToken() {
       });
       try {
         const response = await axios.post('https://accounts.spotify.com/api/token', data, { headers });
+        console.log("token: ", response.data.access_token);
         return response.data.access_token;
       } catch (error) {
         console.error('Error fetching Spotify token:', error.response ? error.response.data : error.message);
@@ -34,7 +35,6 @@ async function getAppToken() {
     router.get("/search-artist/:artistName", async (req, res) => {
         try {
           const token = await getAppToken();
-          console.log("artistName:-+-+-+", req.params);
           const headers = {
             Authorization: `Bearer ${token}`,
           };
