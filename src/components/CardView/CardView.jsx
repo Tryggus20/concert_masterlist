@@ -26,11 +26,12 @@ function CardView() {
                {/* map over concertCard here  */}
           {concertCard.map((concert, index) => (
             <div 
-              className="concert-card card-border card-content"
+              className="concert-card card-border card-content card"
               key={index}
               onClick={() => history.push(`/details/${concert.userconcertid}`)}
             >
               <div >
+                <br />
                 <p>Date: {new Date(concert.date).toLocaleDateString()}</p>
               </div>
               <div>
@@ -41,19 +42,16 @@ function CardView() {
               </div>
               <div>
                 {concert.bands.map((band, index) => (
-                  <p key={index}>{band}</p>
-                ))}
+                  <p className="bold" key={index}>{band}</p>
+                  ))}
               </div>
               <div>
-                <p>Venue: {concert.venue}</p>
-                <p>City: {concert.city}</p>
-                <p>State: {concert.state}</p>
+                <p> {concert.venue} in {concert.city}, {concert.state}</p>
               </div>
             </div>
           ))}
         </section>
       </div>
-      <LogOutButton className="btn" />
     </div>
   );
 }

@@ -152,8 +152,7 @@ export default function EditConcert() {
           entireConcertDetail.length > 0 &&
           entireConcertDetail.map((band, index) => (
             <div key={band.id}>
-              {/* Render band details TODO: delete this */}
-              <h2>{band.bands}</h2> {/* TODO: delete this */}
+              <h2>{band.bands}</h2> 
             </div>
           ))}
       </div>

@@ -119,7 +119,7 @@ export default function ConcertForm() {
         <div key={bandIndex}>
           <h2>{band.band}</h2>
           {band.pictures.map((url, pictureIndex) => (
-            <div key={pictureIndex}><img src={url} style={{maxHeight: '250px', maxWidth: '250px' }}></img></div>
+            <div key={pictureIndex}><img src={url} style={{maxHeight: '250px', maxWidth: '250px' }}></img> <button> Remove</button></div>
           ))}
           <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />
           {/* Set the current band index when adding pictures */}

@@ -5,7 +5,7 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
 }
 
@@ -106,14 +106,13 @@ Form Treatment
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }
 
-input, textarea {
-
+input,
+textarea {
   margin: 5px;
   margin-bottom: 10px;
 }
 .inputs {
   text-align: center;
-
 }
 .bold {
   font-weight: bold;
@@ -125,3 +124,82 @@ input, textarea {
 .about {
   text-align: center;
 }
+
+.listView {
+  transition: all 0.4s ease;
+}
+.listView:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+.card {
+  /* background: #333; */
+  /* border: 1px solid #dd2476; */
+  /* color: rgba(250, 250, 250, 0.8); */
+  margin: 2 1rem;
+  padding: 2rem;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+}
+
+.minipic {
+  height: 80px;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+  
+}
+.minipic:hover {
+  
+  transform: scale(1.1);
+}
+/* _-_-_-_-_-_-_-_-_ BOOTSTRAP FUN _-_-_-_-_-_-_-_-_*/
+
+/* :root {
+  --gradient: linear-gradient(to left top, #dd2476 10%, #ff512f 90%) !important;
+  --background-color: #333;
+}
+
+body {
+  background: #111 !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center; 
+  min-height: 100vh; 
+  margin: 0;
+}
+
+.card {
+  background: #333;
+  border: 1px solid #dd2476;
+  color: rgba(250, 250, 250, 0.8);
+  margin: 2 1rem; 
+  padding: 2rem;
+  transition: transform 0.4s ease;
+}
+.card:hover {
+  transform: scale(1.1);
+}
+.btn {
+  border: 5px solid;
+  border-image-slice: 1;
+  background: var(--gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  border-image-source: var(--gradient) !important;
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
+
+.btn:hover,
+.btn:focus {
+  background: var(--gradient) !important;
+  -webkit-background-clip: none !important;
+  -webkit-text-fill-color: #fff !important;
+  border: 5px solid #fff !important;
+  box-shadow: #222 1px 0 10px;
+  text-decoration: underline;
+} */

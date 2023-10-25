@@ -44,7 +44,8 @@ function DetailBand( concertDetail ) {
                   src={pictures}
                   onClick={() => handleImageClick(pictures)}
                   alt="Error loading image"
-                  style={{ maxHeight: "80px", maxWidth: "80px" }}
+                  style={{ height: "80px" }}
+                  className="minipic"
                 />
               </>
             ))}

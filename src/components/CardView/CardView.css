@@ -9,7 +9,7 @@
   
   .card-content {
     width: 320px; /* Adjust the width to fit the desired content area width */
-    height: 470px; /* Adjust the height to fit the desired content area height */
+    height: 500px; /* Adjust the height to fit the desired content area height */
     overflow: hidden; /* Hide overflow content if it exceeds the specified size */
   }
   

@@ -8,7 +8,6 @@ function ListView() {
   const dispatch = useDispatch();
   // Selector to get info from store
   const user = useSelector((store) => store.user);
-  const store = useSelector((store) => store);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const concertList = useSelector(
@@ -41,22 +40,19 @@ function ListView() {
   }, [searchQuery, concertList]);
   return (
     <div className="container">
-
+<h1>Concert List</h1>
       <input
         placeholder="Search"
         type="text"
         value={searchQuery}
         onChange={handleSearchInputChange}
       ></input>
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <h4>Concert Recap (List View):</h4>
       <div>
         {(searchQuery ? processedSearchResults : concertList).map(
           (concert, index) => (
             <>
               <div
-                className="concertList"
+                className="concertList listView"
                 key={index}
                 onClick={() =>
                   history.push(`/details/${concert.userconcertid}`)
@@ -67,7 +63,6 @@ function ListView() {
                   <li style={{ listStyleType: "none" }}>
                     {new Date(concert.date).toLocaleDateString()}
                   </li>
-                  {/* <li>{concert.bands}</li> */}
                   {Array.isArray(concert.bands) &&
                     concert.bands.map((band, index) => (
                       <li
@@ -91,10 +86,8 @@ function ListView() {
           )
         )}
       </div>
-      <LogOutButton className="btn" />
     </div>
   );
 }
 
-// this allows us to use <App /> in index.js
 export default ListView;
