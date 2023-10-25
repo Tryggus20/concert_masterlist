@@ -5,14 +5,10 @@ import { useHistory, useParams } from "react-router-dom";
 
 
 export default function SpotifyPlayer({band}){
-    console.log(band)
     const artistId = useSelector(store => store.spotifyReducer.spotifyReducer[band]?.artistId);
-    console.log(artistId)
     const dispatch = useDispatch();
     useEffect(() => {
-        console.log('spotify band:', band);
         dispatch({ type: "GET_ARTIST_SPOTIFY_ID", payload: band });
-        console.log("artistID for spotify", artistId);
     }, [dispatch, band])
 
     return(

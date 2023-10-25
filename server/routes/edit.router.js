@@ -22,7 +22,6 @@ router.put("/:user_concert_id", async (req, res) => {
       WHERE id = $5;`, [venue, city, state, date, concert_id]
     );
 
-    console.log(userConcertId, venue, city, state, date, comments, concert_id)
 
     // Update the comments in user_concerts table
     const query2 =  `

@@ -24,7 +24,6 @@ async function getAppToken() {
       });
       try {
         const response = await axios.post('https://accounts.spotify.com/api/token', data, { headers });
-        console.log("token: ", response.data.access_token);
         return response.data.access_token;
       } catch (error) {
         console.error('Error fetching Spotify token:', error.response ? error.response.data : error.message);
@@ -43,12 +42,10 @@ async function getAppToken() {
             `https://api.spotify.com/v1/search?q=${encodeURIComponent(req.params.artistName)}&type=artist&limit=1`,
             { headers }
           );
-          console.log('Spotify Response:', artistResponse);
 
           if (artistResponse.data.artists.items.length) {
             const artistId = artistResponse.data.artists.items[0].id;
             res.json({ artistId });
-            console.log("artistId",artistId);
           } else {
             res.status(404).send("Artist not found");
           }

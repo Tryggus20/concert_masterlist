@@ -37,7 +37,6 @@ function* fetchCardViewSaga(action) {
     });
     yield put({ type: "SET_CARD_VIEW", payload: response.data });
   } catch (err) {
-    // console.log("fetchCardViewSaga error", user);
     console.log(err, "error in fetchCardViewSaga");
   }
 }
@@ -84,7 +83,6 @@ function* addConcertSaga(action) {
 
 // Editing Concert
 function* editConcertSaga(action) {
-  console.log("editConcertSaga action payload:", action.payload.concertId);
   try {
     const response = yield axios({
       method: "PUT",
@@ -96,9 +94,7 @@ function* editConcertSaga(action) {
   }
 }
 
-// EditBandNameSaga    TODO: fix this. more info in band.router
 function* editBandNameSaga(action) {
-  console.log("editBandNameSaga", action.payload);
   try {
     const response = yield axios({
       method: "PUT",
@@ -111,7 +107,6 @@ function* editBandNameSaga(action) {
   }
 }
 function* getArtistSpotifyIdSaga(action) {
-  console.log("getArtistSpotifyIdSaga", action.payload);
   try {
     const response = yield axios({
       method: "GET",

@@ -1,7 +1,6 @@
 import React from "react";
 
 const BandPicture = ({ url, onPictureUrlChange, bandIndex, pictureIndex }) => {
-    console.log("In BandPicture", url, bandIndex, pictureIndex);
   return (
     <div>
         <img src={url}></img>

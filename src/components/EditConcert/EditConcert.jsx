@@ -16,13 +16,10 @@ export default function EditConcert() {
   const entireConcertDetail = useSelector(
     (state) => state.concertDetail.concertDetailReducer
   );
-  console.log("entireconceertdetail", entireConcertDetail);
   /* TODO:  how things are set up, the band with the lowest id is the headliner. 
   If a "new band" to the database gets added and the opener is re-used, 
   the opener will be the headliner. Will need to implement concert position after all
   may need to use array location (+1) to get that value */
-
-  //unable to change values for band and pics currently
 
   useEffect(() => {
     if (concertData) {
@@ -36,9 +33,6 @@ export default function EditConcert() {
     }
   }, [concertData]);
 
-  console.log("```````````````````````````", concertData);
-  console.log("id is:", id);
-
   const [date, setDate] = useState("");
   const [venue, setVenue] = useState("");
   const [city, setCity] = useState("");
@@ -50,14 +44,7 @@ export default function EditConcert() {
   const handleAddBand = (band) => {
     setBands([...bands, { band, pictures: [] }]);
   };
-  //   const handleAddPicture = (bandIndex, url) => {
-  //     if (bandIndex !== null) {
-  //       const updatedBands = [...bands];
-  //       updatedBands[bandIndex].pictures.push(url);
-  //       setBands(updatedBands);
-  //     }
-  //   };
-  // Initialize state with concertData when component mounts
+  
   useEffect(() => {
     if (concertData) {
       setDate(concertData.date);
@@ -70,22 +57,15 @@ export default function EditConcert() {
     }
   }, [concertData]);
 
-  //   console.log(concertData);
-  // const handleSubmitBands = (event) => {
-  //     event.preventDefault();
-  // }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Implement logic to edit the concert using the updated data
     const editedConcertData = {
       date,
       venue,
       city,
       state: stateAbr,
       comments,
-      //   bands,
-      //   pictures,
       concert_id: concertData.concert_id, // Include the ID for editing
       userConcertId: id,
     };
@@ -97,8 +77,6 @@ export default function EditConcert() {
     setCity("");
     setStateAbr("");
     setComments("");
-    // setBands([]);
-    // setPictures([]);
     history.push("/");
   };
 
@@ -168,7 +146,6 @@ export default function EditConcert() {
       <hr />
       {/* START OF EDIT BAND AND PICTURES */}
       <br />
-      {/* <BandInput onAddBand={handleAddBand} /> */}
       <EditBandPics entireConcertDetail={entireConcertDetail} />
       <div>
         {entireConcertDetail &&
@@ -176,8 +153,7 @@ export default function EditConcert() {
           entireConcertDetail.map((band, index) => (
             <div key={band.id}>
               {/* Render band details TODO: delete this */}
-              <h2>{band.bands}</h2>{" "}
-              {/* TODO: delete this */}
+              <h2>{band.bands}</h2> {/* TODO: delete this */}
             </div>
           ))}
       </div>

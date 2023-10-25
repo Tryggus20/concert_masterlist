@@ -17,7 +17,6 @@ function ListView() {
   const processedSearchResults = searchResults.map((result) => result.item);
 
   useEffect(() => {
-    console.log("userID:", user);
     dispatch({ type: "FETCH_LIST_VIEW", payload: user });
   }, []);
   const handleSearchInputChange = (event) => {
@@ -30,7 +29,6 @@ function ListView() {
       threshold: 0.2,
 
     });
-    console.log("fuse", fuse, "search Results:", searchResults);
     //end of fuzzy search
     if (!searchQuery) {
       // If the search query is empty, show all concerts
@@ -41,8 +39,6 @@ function ListView() {
       setSearchResults(results);
     }
   }, [searchQuery, concertList]);
-  console.log("concertList", concertList, concertList.bands);
-  console.log("processed", processedSearchResults);
   return (
     <div className="container">
 

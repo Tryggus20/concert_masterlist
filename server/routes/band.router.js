@@ -3,7 +3,6 @@ const pool = require("../modules/pool");
 const router = express.Router();
 
 router.put("/", async (req, res) => {
-console.log("req.body: ", req.body);
     try {
         const { bandIndex, newName, bandConcertId } = req.body;
 

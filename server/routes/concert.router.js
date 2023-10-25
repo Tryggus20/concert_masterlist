@@ -206,7 +206,6 @@ router.post("/add-concert/:id", async (req, res) => {
     }
 
     // Insert the comment and seat_location into user_concerts table
-    console.log("000000000000000000", userId, concertId, comments);
     await pool.query(
       "INSERT INTO user_concerts (user_id, concert_id, comments) VALUES ($1, $2, $3)",
       [userId, concertId, comments]
