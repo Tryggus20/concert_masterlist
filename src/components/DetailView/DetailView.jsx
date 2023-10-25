@@ -3,6 +3,7 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import SpotifyPlayer from "../SpotifyPlayer/SpotifyPlayer";
+import DetailBand from "../DetailBand/DetailBand";
 
 function DetailView() {
   const id = useParams().id;
@@ -10,7 +11,6 @@ function DetailView() {
   const dispatch = useDispatch();
   // Selector to get info from store
   const user = useSelector((store) => store.user);
-  const [featuredPic, setFeaturedPic] = useState("");
   const concertDetails = useSelector(
     (store) => store.concertDetail.concertDetailReducer
   );
@@ -21,12 +21,6 @@ function DetailView() {
     dispatch({ type: "FETCH_DETAIL_VIEW", payload: { id } });
   }, []);
 
-  useEffect(() => {
-    setFeaturedPic(concertDetails[0]?.bandpictures[0].pictureUrls[0]);
-  }, [concertDetails]);
-  const handleImageClick = (imageUrl) => {
-    setFeaturedPic(imageUrl);
-};
   const handleDelete = (event) => {
     event.preventDefault();
     dispatch({ type: "DELETE_CONCERT", payload: { id } });
@@ -41,12 +35,9 @@ function DetailView() {
   }
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <h4>Concert Recap (DetailView):</h4>
       <p>{new Date(concertDetails[0]?.date).toLocaleDateString()}</p>
 
-      <p className="bold">{concertDetails[0].venue}</p>
+      <h3 className="bold">{concertDetails[0].venue}</h3>
       <p>
         {" "}
         {concertDetails[0].city}, {concertDetails[0].state}
@@ -54,37 +45,9 @@ function DetailView() {
       <hr />
       {/* Details View starts here!!!!!! */}
       {concertDetails.map((concertDetail, index) => (
-        <>
-          {concertDetail.bandpictures?.map((bandpictures, index) => (
-            <>
-              <script></script>
-              <p className="bold">{bandpictures.band}</p>
-              <img
-                src={featuredPic}
-                alt="Large Image"
-                style={{ maxHeight: "800px", maxWidth: "800px" }}
-              ></img>
-              <SpotifyPlayer band={bandpictures.band} />
-              <br />
-              {bandpictures.pictureUrls?.map((pictures, index) => (
-                <>
-                  <img
-                    src={pictures}
-                    onClick={() => handleImageClick(pictures)}                    alt="Error loading image"
-                    style={{ maxHeight: "80px", maxWidth: "80px" }}
-                  />
-                </>
-              ))}
-              {/* Will need to componentize spotify player. pass along bandName and do a 
-              GET search for that artist, returning first result to get artist.id.
-               then another GET request for artist top song or top 3 songs  */}
 
-              <hr />
-            </>
-          ))}
-        </>
+      <DetailBand concertDetails={concertDetail} />
       ))}
-
       {/* Details View ends here !!!!!! */}
       <button onClick={() => history.push(`/edit/${id}`)}>edit</button>
       <br />
