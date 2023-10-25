@@ -1,4 +1,4 @@
-import { takeEvery, put } from "redux-saga/effects";
+import { takeEvery, put, all, call } from "redux-saga/effects";
 import axios from "axios";
 
 // Detail VIEW
@@ -66,17 +66,7 @@ function* deleteConcertSaga(action) {
     console.log(err, `error in "delete" request`);
   }
 }
-// // UPDATE CONCERT   TODO: change this to be used for changing bands/pics
-// function* updateConcertSaga() {
-//   try {
-//     const response = yield axios({
-//       method: "PUT",
-//       url: "/api/update/:id",
-//     });
-//   } catch (err) {
-//     console.log(err, "error in updateConcertSaga");
-//   }
-// }
+
 
 // ADDING NEW CONCERT
 function* addConcertSaga(action) {
@@ -99,7 +89,7 @@ function* editConcertSaga(action) {
     const response = yield axios({
       method: "PUT",
       url: `/api/edit/${action.payload.userConcertId}`,
-      data: action.payload
+      data: action.payload,
     });
   } catch (err) {
     console.log(err, "error in editConcertSaga", action.payload);
@@ -110,14 +100,30 @@ function* editConcertSaga(action) {
 function* editBandNameSaga(action) {
   console.log("editBandNameSaga", action.payload);
   try {
-    const response = yield axios ({
+    const response = yield axios({
       method: "PUT",
-      url: `/api/update/`, 
-      data: action.payload 
+      url: `/api/update/`,
+      data: action.payload,
     });
     console.log("action payload for editband name", action.payload);
   } catch (err) {
     console.log(err, "error in editBandNameSaga", action.payload);
+  }
+}
+function* getArtistSpotifyIdSaga(action) {
+  try {
+      const responses = yield all(action.payload.bands.map(band => {
+          return call(axios, {
+              method: "GET",
+              url: `/api/spotify/search-artist/${band.artistName}`,
+          });
+      }));
+
+      for(let response of responses) {
+          yield put({ type: "SET_SPOTIFY_DATA", payload: response.data });
+      }
+  } catch (err) {
+      console.log(err, "error in spotify getArtistSpotifyId");
   }
 }
 
@@ -130,7 +136,8 @@ function* concertSaga() {
   yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailViewSaga);
   yield takeEvery("ADD_CONCERT", addConcertSaga);
   yield takeEvery("EDIT_CONCERT", editConcertSaga);
-  yield takeEvery("EDIT_BAND_NAME", editBandNameSaga)
+  yield takeEvery("EDIT_BAND_NAME", editBandNameSaga);
+  yield takeEvery("GET_ARTIST_SPOTIFY_ID", getArtistSpotifyIdSaga);
 }
 
 export default concertSaga;

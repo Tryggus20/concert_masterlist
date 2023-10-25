@@ -17,6 +17,7 @@ const userRouter = require('./routes/user.router');
 const concertRouter = require('./routes/concert.router')
 const editRouter = require('./routes/edit.router')
 const bandRouter = require('./routes/band.router')
+const spotifyRouter = require('./routes/spotify.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -33,7 +34,8 @@ app.use(passport.session());
 app.use('/api/users', userRouter);
 app.use('/api/concerts', concertRouter);
 app.use('/api/edit', editRouter);
-app.use('/api/update', bandRouter)
+app.use('/api/update', bandRouter);
+app.use('/api/spotify/', spotifyRouter);
 
 // Serve static files
 app.use(express.static('build'));

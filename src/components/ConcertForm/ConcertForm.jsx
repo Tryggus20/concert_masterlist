@@ -7,6 +7,8 @@ import PictureInput from "../PictureInput/PictureInput";
 import AddBandPics from "../EditBandPics/EditBandPics";
 
 // TODO: have a button to cancel adding a picture (clear that field)
+// TODO: have spotify add a picture for new band being added if no picture is uploaded
+
 
 export default function ConcertForm() {
   const dispatch = useDispatch();
