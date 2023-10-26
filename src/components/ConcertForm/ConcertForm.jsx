@@ -41,7 +41,11 @@ export default function ConcertForm() {
   // Submit Form
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (date === "" || venue === "" || city === "") {
+    if (!date || !isValidDate(date)) {
+      alert("Please select a valid date in the format mm/dd/yy.");
+      return;
+    }
+    if ( venue === "" || city === "") {
       alert("Please fill in all fields.");
       return; // Do not proceed with submission if a field is empty
     }
@@ -67,7 +71,7 @@ export default function ConcertForm() {
     setPictures([]);
     // go back to home after concert has been added
     // and fetch card view to refresh cards
-    dispatch({ type: "FETCH_CARD_VIEW", payload: user });
+    dispatch({ type: "FETCH_CARD_VIEW" });
     history.push("/");
   };
   return (
