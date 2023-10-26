@@ -5,6 +5,7 @@ import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 import { useParams } from "react-router-dom";
 import EditBandPics from "../EditBandPics/EditBandPics";
+import Swal from "sweetalert2";
 
 export default function EditConcert() {
   const dispatch = useDispatch();
@@ -41,9 +42,9 @@ export default function EditConcert() {
   const [bands, setBands] = useState([]);
   const [pictures, setPictures] = useState([]);
 
-  const handleAddBand = (band) => {
-    setBands([...bands, { band, pictures: [] }]);
-  };
+  // const handleAddBand = (band) => {
+  //   setBands([...bands, { band, pictures: [] }]);
+  // };
   
   useEffect(() => {
     if (concertData) {
@@ -60,24 +61,42 @@ export default function EditConcert() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const editedConcertData = {
-      date,
-      venue,
-      city,
-      state: stateAbr,
-      comments,
-      concert_id: concertData.concert_id, // Include the ID for editing
-      userConcertId: id,
-    };
-    // Dispatch an "EDIT_CONCERT" action with the updated data
-    dispatch({ type: "EDIT_CONCERT", payload: editedConcertData });
-    // Clear inputs and go back to home
-    setDate("");
-    setVenue("");
-    setCity("");
-    setStateAbr("");
-    setComments("");
-    history.push("/");
+    //Sweet Alert
+    Swal.fire({
+      title: 'Submit?',
+      text: "You will be redirected!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, continue!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const editedConcertData = {
+          date,
+          venue,
+          city,
+          state: stateAbr,
+          comments,
+          concert_id: concertData.concert_id, // Include the ID for editing
+          userConcertId: id,
+        };
+        // Dispatch an "EDIT_CONCERT" action with the updated data
+        dispatch({ type: "EDIT_CONCERT", payload: editedConcertData });
+        // Clear inputs and go back to home
+        setDate("");
+        setVenue("");
+        setCity("");
+        setStateAbr("");
+        setComments("");
+        history.push("/");
+        Swal.fire(
+          'Updated!',
+          'Your concert has been updated.',
+          'success'
+        )
+      }
+    })
   };
 
   if (!concertData) {

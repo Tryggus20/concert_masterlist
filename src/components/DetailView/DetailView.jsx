@@ -67,8 +67,8 @@ function DetailView() {
       ))}
       {/* Details View ends here !!!!!! */}
       <p>
-      <button onClick={() => history.push(`/edit/${id}`)}>edit</button>
-      <button onClick={handleDelete}>Delete Concert</button>  </p>
+      <button onClick={() => history.push(`/edit/${id}`)}>edit</button>  {""}
+       <button onClick={handleDelete}>Delete Concert</button>  </p>
       <br />
       <br />
       <br />
