@@ -7,6 +7,7 @@ import DetailBand from "../DetailBand/DetailBand";
 const Swal = require('sweetalert2')
 
 
+
 function DetailView() {
   const id = useParams().id;
   const history = useHistory();
@@ -22,6 +23,8 @@ function DetailView() {
   useEffect(() => {
     dispatch({ type: "FETCH_DETAIL_VIEW", payload: { id } });
   }, []);
+
+  
 
   const handleDelete = (event) => {
     event.preventDefault();

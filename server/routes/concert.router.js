@@ -87,13 +87,13 @@ router.get("/card/:id", (req, res) => {
         band_concerts.concert_id
 )
 SELECT
-    user_concerts.id AS userConcertId, -- Include the user_concerts.id
+    user_concerts.id AS userConcertId, 
     users.id AS userId,
     concerts.date AS date,
     concerts.venue,
     concerts.city,
     concerts.state,
-    ARRAY_AGG( bands.name) AS bands,
+    ARRAY_AGG( bands.name ORDER BY band_concerts.id) AS bands,
     pictures.url AS pictureUrl
 FROM
     users
@@ -113,7 +113,7 @@ WHERE
     users.id = $1
     AND user_concerts.is_deleted = false
 GROUP BY
-    user_concerts.id, -- Group by user_concerts.id
+    user_concerts.id, 
     users.id,
     concerts.date,
     concerts.venue,
@@ -121,6 +121,7 @@ GROUP BY
     concerts.state,
     pictures.url
     ORDER BY
+    
     concerts.date DESC;
 `;
 

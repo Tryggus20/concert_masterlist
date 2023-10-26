@@ -16,7 +16,6 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import AboutPage from "../AboutPage/AboutPage";
 import CardView from "../CardView/CardView";
 import ListView from "../ListView/ListView";
-import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import DetailView from "../DetailView/DetailView";
@@ -132,8 +131,8 @@ function App() {
               // redirect them to the /user page
               <Redirect to="/users" />
             ) : (
-              // Otherwise, show the Landing page
-              <LandingPage />
+              // Otherwise, show the Login page
+              <LoginPage />
             )}
           </Route>
 

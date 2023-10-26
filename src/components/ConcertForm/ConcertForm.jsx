@@ -76,7 +76,7 @@ export default function ConcertForm() {
   };
   return (
     <div className="inputs">
-      <h1>Add A New Concert!</h1>
+      <h1>Add A New Concert</h1>
       <label>
         Date:
         <input

@@ -40,7 +40,7 @@ function ListView() {
   }, [searchQuery, concertList]);
   return (
     <div className="container">
-<h1>Concert List</h1>
+<h1>List View</h1>
       <input
         placeholder="Search"
         type="text"
