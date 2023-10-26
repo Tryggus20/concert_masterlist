@@ -67,6 +67,7 @@ button {
   color: white;
 }
 
+
 .btn_asLink:hover {
   background-color: transparent;
   border-color: #dd2476;
@@ -307,6 +308,12 @@ body {
 .login, .register {
   border: 1px solid #dd2476;
 
+}
+@media (max-width: 728px) {
+  body {
+    background-color: #333;
+    background-image: none;
+  }
 }
 /* 
 button {
