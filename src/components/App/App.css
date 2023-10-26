@@ -8,6 +8,9 @@ body {
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
   font-family: "Comic Sans MS";
   margin: 0px;
+  /* background-image: url(../../../public/banner.webp);
+  background-size: cover; */
+/* color: #efefef; */
 }
 
 /* img {
@@ -88,6 +91,9 @@ Alert
 /* --------------------------------------------------------------------------------
 Form Treatment
 -------------------------------------------------------------------------------- */
+/* .loginPage, .registerPage {
+  background-image: url(../../../public/banner.webp);
+} */
 
 .formPanel {
   box-sizing: border-box;
@@ -221,14 +227,15 @@ textarea {
 
 /* _-_-_-_-_-_-_-_-_ BOOTSTRAP FUN _-_-_-_-_-_-_-_-_*/
 
-/* :root {
+
+/* 
+:root {
   --gradient: linear-gradient(to left top, #dd2476 10%, #ff512f 90%) !important;
   --background-color: #333;
 }
 
-body {
-  background: #111 !important;
-  display: flex !important;
+ body {
+  background: #111 ;
   justify-content: center;
   align-items: center; 
   min-height: 100vh; 
@@ -238,31 +245,34 @@ body {
 .card {
   background: #333;
   border: 1px solid #dd2476;
+  box-shadow: 0 2px 4px rgba(232, 225, 225, 0.1);
+
   color: rgba(250, 250, 250, 0.8);
   margin: 2 1rem; 
-  padding: 2rem;
   transition: transform 0.4s ease;
+  cursor: pointer;
 }
 .card:hover {
   transform: scale(1.1);
 }
-.btn {
+button {
   border: 5px solid;
   border-image-slice: 1;
-  background: var(--gradient) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  border-image-source: var(--gradient) !important;
+  background: var(--gradient) ;
+  -webkit-background-clip: text ;
+  -webkit-text-fill-color: transparent ;
+  border-image-source: var(--gradient);
   text-decoration: none;
   transition: all 0.4s ease;
 }
 
-.btn:hover,
-.btn:focus {
+button:hover,
+button:focus {
   background: var(--gradient) !important;
   -webkit-background-clip: none !important;
   -webkit-text-fill-color: #fff !important;
   border: 5px solid #fff !important;
   box-shadow: #222 1px 0 10px;
   text-decoration: underline;
-} */
+} 
+ */

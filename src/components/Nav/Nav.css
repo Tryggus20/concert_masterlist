@@ -3,9 +3,10 @@
   justify-content: space-between;
   align-items: center;
 
-  margin: 0 0 30px;
-  background-color: #00acb0;
+  margin: 0 0 0px;
+  /* background-color: #00acb0; */
   overflow: hidden;
+  background-image: url(../../../public/banner.webp);
 }
 
 .nav a {
@@ -23,7 +24,7 @@
 .navLink {
   display: inline-block;
   color: #f2f2f2;
-  background-color: #00acb0;
+  /* background-color: #00acb0; */
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -32,9 +33,9 @@
 
   border: none;
   cursor: pointer;
-  outline: 0; 
+  /* outline: 0;  */
 } 
 
-.navLink:hover {
+/* .navLink:hover {
   background-color: #008183;
-}
+} */
