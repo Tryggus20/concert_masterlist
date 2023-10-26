@@ -9,6 +9,7 @@
   background-image: url(../../../public/bannertop.jpeg);
 }
 
+
 .nav a {
   text-decoration: none;
 }
@@ -18,9 +19,17 @@
   font-weight: 700;
   color: #f2f2f2;
   padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin: 0;
 }
 
+.nav-title:hover {
+  border-radius: 5px; 
+  box-shadow:  0 0 10px 5px rgba(255, 255, 255, 0.5); 
+
+}
 .navLink {
   display: inline-block;
   color: #f2f2f2;
@@ -29,6 +38,7 @@
   padding: 24px 10px;
   text-decoration: none;
   font-size: 15px;
+  
 
 
   border: none;
@@ -36,6 +46,7 @@
   /* outline: 0;  */
 } 
 
-/* .navLink:hover {
-  background-color: #008183;
-} */
+.navLink:hover {
+  box-shadow:  0 0 10px 5px rgba(255, 255, 255, 0.5); 
+  border-radius: 20px; }
+
