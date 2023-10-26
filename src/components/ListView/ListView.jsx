@@ -26,7 +26,6 @@ function ListView() {
     const fuse = new Fuse(concertList, {
       keys: [["bands"], "venue", "city", "date", "state"],
       threshold: 0.2,
-
     });
     //end of fuzzy search
     if (!searchQuery) {
@@ -40,7 +39,7 @@ function ListView() {
   }, [searchQuery, concertList]);
   return (
     <div className="container listViewContainer">
-<h1>List View</h1>
+      <h1>List View</h1>
       <input
         placeholder="Search"
         type="text"
@@ -73,10 +72,18 @@ function ListView() {
                         {band}
                       </li>
                     ))}
-                  <li style={{ listStyleType: "none" }} key={index}>
-                    {concert.venue} 
+                  <li
+                    className="liLocation"
+                    style={{ listStyleType: "none" }}
+                    key={index}
+                  >
+                    -{concert.venue}
                   </li>
-                  <li style={{ listStyleType: "none" }} key={index}>
+                  <li
+                    className="liLocation"
+                    style={{ listStyleType: "none" }}
+                    key={index}
+                  >
                     {concert.city}, {concert.state}
                   </li>
                   <hr />

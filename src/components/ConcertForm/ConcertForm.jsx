@@ -75,7 +75,7 @@ export default function ConcertForm() {
     history.push("/");
   };
   return (
-    <div className="inputs">
+    <div className="inputs concertForm">
       <h1>Add A New Concert</h1>
       <label>
         Date:
@@ -140,6 +140,7 @@ export default function ConcertForm() {
       <br />
       <br />
       <button onClick={handleSubmit}>Submit</button>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     </div>
   );
 }

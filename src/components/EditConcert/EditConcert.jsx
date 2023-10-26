@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import BandInput from "../BandInput/BandInput";
-import PictureInput from "../PictureInput/PictureInput";
 import { useParams } from "react-router-dom";
 import EditBandPics from "../EditBandPics/EditBandPics";
 import Swal from "sweetalert2";
@@ -60,6 +58,7 @@ export default function EditConcert() {
 
   const handleCancel = (event) => {
     event.preventDefault();
+    dispatch({ type: "FETCH_CARD_VIEW" });
     history.push(`/home`)
   }
 
@@ -112,7 +111,7 @@ export default function EditConcert() {
   }
 
   return (
-    <div className="inputs">
+    <div className="inputs editForm">
       <h1>Edit Concert</h1>
       <label>
         Date:
@@ -180,6 +179,8 @@ export default function EditConcert() {
           ))}
       </div>
       <button onClick={handleCancel}>Cancel</button>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
     </div>
   );
 }

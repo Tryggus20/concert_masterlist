@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-
+import Footer from './components/Footer/Footer';
 import store from './redux/store';
 
 import App from './components/App/App';
@@ -12,6 +12,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <App />
+      <Footer />
     </Provider>
   </React.StrictMode>
 );
