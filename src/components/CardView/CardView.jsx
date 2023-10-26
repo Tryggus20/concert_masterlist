@@ -18,9 +18,7 @@ function CardView() {
   
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <h4>Concert Recap (CardView):</h4>
+      <h1>Card View</h1>
       <div>
         <section className="concertCard">
                {/* map over concertCard here  */}
@@ -32,21 +30,21 @@ function CardView() {
             >
               <div >
                 <br />
-                <p>Date: {new Date(concert.date).toLocaleDateString()}</p>
+                <p className="date">Date: {new Date(concert.date).toLocaleDateString()}</p>
               </div>
-              <div>
-                <img style={{ maxHeight: '250px', maxWidth: '250px' }}
+              <div className="cardImgHolder">
+                <img className="cardImg" 
                   src={concert.pictureurl || "https://cdn.pixabay.com/photo/2018/05/10/11/34/concert-3387324_1280.jpg"}  // ADD image here!!!!!!
                   alt="Concert"
                 />
               </div>
               <div>
                 {concert.bands.map((band, index) => (
-                  <p className="bold" key={index}>{band}</p>
+                  <p className="bold band" key={index}>{band}</p>
                   ))}
               </div>
               <div>
-                <p> {concert.venue} in {concert.city}, {concert.state}</p>
+                <p className="venue"> {concert.venue} in {concert.city}, {concert.state}</p>
               </div>
             </div>
           ))}

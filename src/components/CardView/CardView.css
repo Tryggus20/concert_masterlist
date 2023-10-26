@@ -1,15 +1,1 @@
-  .card-border {
-    border: 2px solid #000; 
-    padding: 10px; /* Add padding for spacing between the border and content */
-    margin: 10px; /* Add margin for spacing between cards */
-    width: calc(33.33% - 20px); /* Calculate the width for three cards in a row */
-    display: inline-block; /* Display cards inline */
-    box-sizing: border-box; /* Include padding and border in the width calculation */
-  }
-  
-  .card-content {
-    width: 320px; /* Adjust the width to fit the desired content area width */
-    height: 500px; /* Adjust the height to fit the desired content area height */
-    overflow: hidden; /* Hide overflow content if it exceeds the specified size */
-  }
-  
+

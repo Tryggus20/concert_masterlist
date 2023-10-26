@@ -41,7 +41,7 @@ export default function ConcertForm() {
   // Submit Form
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!date || !isValidDate(date)) {
+    if (!date || date === "mm/dd/yy") {
       alert("Please select a valid date in the format mm/dd/yy.");
       return;
     }

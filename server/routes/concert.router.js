@@ -93,7 +93,7 @@ SELECT
     concerts.venue,
     concerts.city,
     concerts.state,
-    ARRAY_AGG(DISTINCT bands.name) AS bands,
+    ARRAY_AGG( bands.name) AS bands,
     pictures.url AS pictureUrl
 FROM
     users
