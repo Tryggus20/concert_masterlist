@@ -58,6 +58,10 @@ export default function EditConcert() {
     }
   }, [concertData]);
 
+  const handleCancel = (event) => {
+    event.preventDefault();
+    history.push(`/home`)
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -175,6 +179,7 @@ export default function EditConcert() {
             </div>
           ))}
       </div>
+      <button onClick={handleCancel}>Cancel</button>
     </div>
   );
 }
