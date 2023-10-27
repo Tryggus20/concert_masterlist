@@ -3,16 +3,24 @@ body,
 #react-root {
   height: 100%;
 } */
-
+input {
+  background-color: white;
+}
 body {
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
-  font-family: "Comic Sans MS";
+  font-family: "Sans-serif", "Arial";
   margin: 0px;
-  background-image: url(../../../public/banner.jpeg);
+  background-color: #333;
+  /* background-image: url(../../../public/banner.jpeg);
   background-size: 100% auto;
-  background-repeat: repeat-y;
+  background-repeat: repeat-y; */
 
   /* color: #efefef; */
+}
+body {
+  background-image: url(../../../public/banner.jpeg);
+  background-size: 100% auto;
+  background-attachment: fixed;
 }
 
 /* img {
@@ -67,13 +75,12 @@ button {
   color: white;
 }
 
-
 .btn_asLink:hover {
   background-color: transparent;
   border-color: #dd2476;
   color: #dd2476;
 }
-button{
+button {
   border-color: #dd2476;
   background-color: rgba(51, 51, 51, 1);
   color: white;
@@ -82,7 +89,7 @@ button{
 button:hover {
   border-color: #dd2476;
   background-color: white;
-  color: rgba(51,51,51,1);
+  color: rgba(51, 51, 51, 1);
 }
 /* --------------------------------------------------------------------------------
 Alert
@@ -118,11 +125,22 @@ Form Treatment
 }
 
 .listViewContainer {
-  margin-left: 25px;
+  /* margin-left: 0px; */
+  align-items: center;
 }
+.listSearch {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100px;
+}
+.searchHolder {
+  display: flex;
+  justify-content: center;
+}
+
 input,
 textarea {
-  margin: 5px;
+  /* margin: 5px; */
   margin-bottom: 10px;
 }
 .inputs {
@@ -132,28 +150,55 @@ textarea {
   font-weight: bold;
 }
 
-.concertList {
-  max-width: 50%;
-}
 .about {
   text-align: center;
 }
-
+.indentBand {
+  padding-left: 15px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.indentHeader {
+  padding-left: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.listHeader {
+  text-align: center;
+  /* background: rgba(51, 51, 51, 0.70); */
+  align-items: center;
+}
 .listView {
   transition: all 0.4s ease;
-  background: rgba(51, 51, 51, 0.1);
+  background: rgba(51, 51, 51, 0.75);
+  padding-left: 0px;
+  max-width: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 
 }
-.listView:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
+ul {
+  padding: 0px;
+}
+
+.listViewContainer {
+  /* display: flex; */
+  display: inline;
+  margin-right: auto;
+  margin-left: auto;
+
+  /* padding: 0; */
+  /* margin: 0; */
+}
+.listView:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .card:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 5px rgba(255, 255, 255, 2);
 }
 .card {
   /* background: #333; */
@@ -168,7 +213,9 @@ textarea {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-
+.cardLabels {
+  margin-left: 5px;
+}
 .minipic {
   height: 80px;
   transition: transform 0.4s ease;
@@ -187,7 +234,7 @@ textarea {
 }
 .card-content {
   width: 320px; /* Adjust the width to fit the desired content area width */
-  height: 500px; /* Adjust the height to fit the desired content area height */
+  height: 530px; /* Adjust the height to fit the desired content area height */
   overflow: hidden; /* Hide overflow content if it exceeds the specified size */
 }
 .date {
@@ -220,7 +267,7 @@ textarea {
 }
 input,
 textarea {
-  border: 1.5px solid #ff0000; /* Red border */
+  border: 1.5px solid #ff0000;
 }
 hr {
   height: 1px;
@@ -238,6 +285,7 @@ footer {
 label {
   color: white;
 }
+
 /* ImageModal.css */
 .image-modal {
   display: flex;
@@ -261,7 +309,7 @@ label {
 
 .modal-content img {
   max-width: 100%;
-  max-height: 90vh; /* Limit the height for smaller screens */
+  max-height: 90vh;
 }
 
 /* _-_-_-_-_-_-_-_-_ BOOTSTRAP FUN _-_-_-_-_-_-_-_-_*/
@@ -273,6 +321,10 @@ h4,
 p,
 ul {
   color: white !important;
+}
+h1,
+h2 {
+  text-align: center;
 }
 
 :root {
@@ -293,47 +345,78 @@ body {
   margin: 2 1rem;
   transition: transform 0.4s ease;
   cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
 }
 
-.concertForm, .editForm {
+.listView {
+  margin-left: auto;
+  margin-right: auto;
+}
+.concertForm,
+.editForm {
   background: rgba(51, 51, 51, 0.55);
   border: 1px solid #dd2476;
   margin: 0 auto;
   max-width: 33%;
 }
-
-.login, .about, .register {
-  background: rgba(51, 51, 51, 0.55);
+li {
+  display: flex;
 }
-.login, .register {
+.login,
+.about,
+.register {
+  background: rgba(51, 51, 51, 0.65);
+}
+.login,
+.register {
   border: 1px solid #dd2476;
-
 }
+
 @media (max-width: 728px) {
   body {
     background-color: #333;
     background-image: none;
   }
 }
-/* 
-button {
-  border: 5px solid;
-  border-image-slice: 1;
-  background: var(--gradient) ;
-  -webkit-background-clip: text ;
-  -webkit-text-fill-color: transparent ;
-  border-image-source: var(--gradient);
-  text-decoration: none;
-  transition: all 0.4s ease;
+
+.spotifyPlayer{
+display: flex;
+}
+.detailContainer{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  background-color: rgba(44, 44, 44, .6);
+  margin: 1.74rem;
+  padding: 1.75rem;
+  border-radius: 10px;
+}
+.detailVenue{
+  text-align: center;
+  background-color: rgba(44, 44, 44, .6);
+ padding-top: 0px;
+ padding-bottom: 0px;
+ margin-bottom: 3px;
 }
 
-button:hover,
-button:focus {
-  background: var(--gradient) !important;
-  -webkit-background-clip: none !important;
-  -webkit-text-fill-color: #fff !important;
-  border: 5px solid #fff !important;
-  box-shadow: #222 1px 0 10px;
-  text-decoration: underline;
-} 
-  */
+h3.bold {
+  margin: 0
+}
+
+.image-container {
+  display: flex;
+  width: fit-content;
+}
+
+/* .image-container{
+margin-left: -140px;
+margin-top: 50px
+} */
+
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

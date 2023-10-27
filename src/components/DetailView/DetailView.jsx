@@ -49,22 +49,26 @@ function DetailView() {
       </div>
     );
   }
+
+  console.log(concertDetails)
   return (
-    <div className="container">
-      <h1>Details</h1>
+    <div>
+      <div>
+      <h1>Concert Recap</h1>
+      <div className="detailVenue">
       <p>{new Date(concertDetails[0]?.date).toLocaleDateString()}</p>
 
-      <h3 className="bold">{concertDetails[0].venue}</h3>
-      <p>
-        {" "}
-        {concertDetails[0].city}, {concertDetails[0].state}
-      </p>
+      <p className="">{concertDetails[0].venue} in  {concertDetails[0].city}, {concertDetails[0].state}</p>
+      </div>
       <hr />
+      </div>
       {/* Details View starts here!!!!!! */}
-      {concertDetails.map((concertDetail, index) => (
+      <div className="container">
+      {concertDetails.map((item, index) => (
 
-      <DetailBand concertDetails={concertDetail} />
-      ))}
+<DetailBand bandpictures={item.bandpictures} />
+))}
+      </div>
       {/* Details View ends here !!!!!! */}
       <p>
       <button onClick={() => history.push(`/edit/${id}`)}>edit</button>  {""}

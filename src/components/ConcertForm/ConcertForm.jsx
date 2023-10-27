@@ -140,7 +140,7 @@ export default function ConcertForm() {
       <br />
       <br />
       <button onClick={handleSubmit}>Submit</button>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br /><br /><br />
     </div>
   );
 }

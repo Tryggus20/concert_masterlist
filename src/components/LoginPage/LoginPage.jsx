@@ -22,7 +22,7 @@ function LoginPage() {
         </button>
       </center>
       <AboutPage />
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <br /><br /><br /><br /><br />
     </div>
   );
 }

@@ -12,14 +12,14 @@ export default function SpotifyPlayer({band}){
     }, [dispatch, band])
 
     return(
-    <>  <iframe
+    <div className="spotifyPlayer">  <iframe 
         src={`https://open.spotify.com/embed/artist/${artistId}`}
         width="350"
-        height="360"
+        height="350"
         frameBorder="0"
         allowtransparency="true"
         allow="encrypted-media"
-        ></iframe></>)
+        ></iframe></div>)
 }
 
 
