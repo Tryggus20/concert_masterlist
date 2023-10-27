@@ -54,14 +54,12 @@ function DetailView() {
   return (
     <div>
       <div>
-      <h1>Details</h1>
+      <h1>Concert Recap</h1>
+      <div className="detailVenue">
       <p>{new Date(concertDetails[0]?.date).toLocaleDateString()}</p>
 
-      <h3 className="bold">{concertDetails[0].venue}</h3>
-      <p>
-        {" "}
-        {concertDetails[0].city}, {concertDetails[0].state}
-      </p>
+      <p className="">{concertDetails[0].venue} in  {concertDetails[0].city}, {concertDetails[0].state}</p>
+      </div>
       <hr />
       </div>
       {/* Details View starts here!!!!!! */}
