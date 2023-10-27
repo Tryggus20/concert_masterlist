@@ -20,7 +20,8 @@ body {
 body {
   background-image: url(../../../public/banner.jpeg);
   background-size: 100% auto;
-  Background-attachment: fixed}
+  background-attachment: fixed;
+}
 
 /* img {
   display: inline-block;
@@ -124,18 +125,17 @@ Form Treatment
 }
 
 .listViewContainer {
-  margin-left: 0px;
+  /* margin-left: 0px; */
   align-items: center;
-  
 }
 .listSearch {
-margin-left: auto;
-margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
   width: 100px;
 }
 .searchHolder {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 input,
@@ -153,26 +153,30 @@ textarea {
 .about {
   text-align: center;
 }
-
+.indentBand {
+  padding-left: 15px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.indentHeader {
+  padding-left: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
 .listHeader {
-text-align: center;
-background: rgba(51, 51, 51, 0.70);
-align-items: center;
+  text-align: center;
+  /* background: rgba(51, 51, 51, 0.70); */
+  align-items: center;
 }
 .listView {
   transition: all 0.4s ease;
   background: rgba(51, 51, 51, 0.85);
-  padding-left: 30px;
+  padding-left: 0px;
   max-width: 50%;
 }
 
-ul, li {
-margin: 0;
-padding: 0;
-list-style-position: inside;
-list-style: none;
-list-style-type: none;
-
+ul {
+  padding: 0px;
 }
 
 .listViewContainer {
@@ -180,7 +184,8 @@ list-style-type: none;
   display: inline;
   margin-right: auto;
   margin-left: auto;
-
+  /* padding: 0; */
+  /* margin: 0; */
 }
 .listView:hover {
   transform: scale(1.05);
@@ -259,7 +264,7 @@ list-style-type: none;
 }
 input,
 textarea {
-  border: 1.5px solid #ff0000; 
+  border: 1.5px solid #ff0000;
 }
 hr {
   height: 1px;
@@ -301,7 +306,7 @@ label {
 
 .modal-content img {
   max-width: 100%;
-  max-height: 90vh; 
+  max-height: 90vh;
 }
 
 /* _-_-_-_-_-_-_-_-_ BOOTSTRAP FUN _-_-_-_-_-_-_-_-_*/
@@ -314,7 +319,8 @@ p,
 ul {
   color: white !important;
 }
-h1, h2 {
+h1,
+h2 {
   text-align: center;
 }
 
@@ -340,8 +346,8 @@ body {
   border-radius: 10px;
 }
 
-.listView{
-  margin-left: auto ;
+.listView {
+  margin-left: auto;
   margin-right: auto;
 }
 .concertForm,
@@ -371,3 +377,36 @@ li {
   }
 }
 
+.spotifyPlayer{
+display: flex;
+}
+.detailContainer{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  background-color: rgba(44, 44, 44, .6);
+  margin: 2rem;
+  padding: 2.5rem;
+  border-radius: 10px;
+}
+
+h3.bold {
+  margin: 0
+}
+
+.image-container {
+  display: flex;
+  width: fit-content;
+}
+
+/* .image-container{
+margin-left: -140px;
+margin-top: 50px
+} */
+
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

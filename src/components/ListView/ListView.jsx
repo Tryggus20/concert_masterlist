@@ -38,15 +38,17 @@ function ListView() {
     }
   }, [searchQuery, concertList]);
   return (
-    <div className="container listViewContainer">
+    <div className=" listViewContainer">
       <h1 className="listHeader">List View</h1>
       <div className="searchHolder">
-      <input className="listSearch"
-        placeholder="Search"
-        type="text"
-        value={searchQuery}
-        onChange={handleSearchInputChange}
-      ></input></div>
+        <input
+          className="listSearch"
+          placeholder="Search"
+          type="text"
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+        ></input>
+      </div>
       <div>
         {(searchQuery ? processedSearchResults : concertList).map(
           (concert, index) => (
@@ -60,25 +62,27 @@ function ListView() {
               >
                 <ul>
                   <hr />
-                  <li style={{ listStyleType: "none" }}>
+                  <li className="indentHeader" style={{ listStyleType: "none" }}>
                     {new Date(concert.date).toLocaleDateString()}
-                  </li><li>Bands:</li>
+                  </li>
+                  <li className="bold indentHeader">Bands:</li>
                   {Array.isArray(concert.bands) &&
                     concert.bands.map((band, index) => (
                       <li
-                        className="bold"
+                        className="indentBand"
                         style={{ listStyleType: "none" }}
                         key={index}
                       >
                         {band}
                       </li>
                     ))}
+                  <li className="bold indentHeader">Location:</li>
                   <li
-                    className="liLocation"
+                    className="liLocation indentBand"
                     style={{ listStyleType: "none" }}
                     key={index}
                   >
-                    At: {concert.venue} in  {concert.city}, {concert.state}
+                    {concert.venue} in {concert.city}, {concert.state}
                   </li>
                   {/* <li
                     className="liLocation"
@@ -94,7 +98,25 @@ function ListView() {
           )
         )}
       </div>
-      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 }

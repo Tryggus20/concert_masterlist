@@ -38,13 +38,13 @@ function CardView() {
                 />
               </div>
               <div>
-                <p className="cardLabels">Bands:</p>
+                <p className="cardLabels bold">Bands:</p>
                 {concert.bands.map((band, index) => (
-                  <p className="bold band" key={index}>{band}</p>
+                  <p className=" band" key={index}>{band}</p>
                   ))}
               </div>
               <div>
-                <p className="cardLabels">Location:</p>
+                <p className="cardLabels bold">Location:</p>
                 <p className="venue"> {concert.venue} in {concert.city}, {concert.state}</p>
               </div>
             </div>

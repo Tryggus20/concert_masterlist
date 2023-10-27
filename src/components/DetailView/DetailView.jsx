@@ -49,8 +49,11 @@ function DetailView() {
       </div>
     );
   }
+
+  console.log(concertDetails)
   return (
-    <div className="container">
+    <div>
+      <div>
       <h1>Details</h1>
       <p>{new Date(concertDetails[0]?.date).toLocaleDateString()}</p>
 
@@ -60,11 +63,14 @@ function DetailView() {
         {concertDetails[0].city}, {concertDetails[0].state}
       </p>
       <hr />
+      </div>
       {/* Details View starts here!!!!!! */}
-      {concertDetails.map((concertDetail, index) => (
+      <div className="container">
+      {concertDetails.map((item, index) => (
 
-      <DetailBand concertDetails={concertDetail} />
-      ))}
+<DetailBand bandpictures={item.bandpictures} />
+))}
+      </div>
       {/* Details View ends here !!!!!! */}
       <p>
       <button onClick={() => history.push(`/edit/${id}`)}>edit</button>  {""}
