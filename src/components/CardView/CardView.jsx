@@ -29,8 +29,7 @@ function CardView() {
               onClick={() => history.push(`/details/${concert.userconcertid}`)}
             >
               <div >
-                <br />
-                <p className="date">Date: {new Date(concert.date).toLocaleDateString()}</p>
+                <p className="cardLabels">Date: {new Date(concert.date).toLocaleDateString()}</p>
               </div>
               <div className="cardImgHolder">
                 <img className="cardImg" 
@@ -39,11 +38,13 @@ function CardView() {
                 />
               </div>
               <div>
+                <p className="cardLabels">Bands:</p>
                 {concert.bands.map((band, index) => (
                   <p className="bold band" key={index}>{band}</p>
                   ))}
               </div>
               <div>
+                <p className="cardLabels">Location:</p>
                 <p className="venue"> {concert.venue} in {concert.city}, {concert.state}</p>
               </div>
             </div>

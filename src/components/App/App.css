@@ -8,7 +8,7 @@ input {
 }
 body {
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
-  font-family: "Roboto";
+  font-family: "Sans-serif", "Arial";
   margin: 0px;
   background-color: #333;
   /* background-image: url(../../../public/banner.jpeg);
@@ -17,11 +17,10 @@ body {
 
   /* color: #efefef; */
 }
-body.login, body.register {
+body {
   background-image: url(../../../public/banner.jpeg);
   background-size: 100% auto;
-  background-repeat: repeat-y;
-}
+  Background-attachment: fixed}
 
 /* img {
   display: inline-block;
@@ -125,12 +124,23 @@ Form Treatment
 }
 
 .listViewContainer {
-  margin-left: 40px;
+  margin-left: 0px;
   align-items: center;
+  
 }
+.listSearch {
+margin-left: auto;
+margin-right: auto;
+  width: 100px;
+}
+.searchHolder {
+display: flex;
+justify-content: center;
+}
+
 input,
 textarea {
-  margin: 5px;
+  /* margin: 5px; */
   margin-bottom: 10px;
 }
 .inputs {
@@ -143,20 +153,26 @@ textarea {
 .about {
   text-align: center;
 }
-.searchHolder{
-padding-left: 529px; 
- }
+
 .listHeader {
 text-align: center;
-background: rgba(51, 51, 51, 0.55);
+background: rgba(51, 51, 51, 0.70);
 align-items: center;
 }
 .listView {
   transition: all 0.4s ease;
-  background: rgba(51, 51, 51, 0.3);
+  background: rgba(51, 51, 51, 0.85);
   padding-left: 30px;
   max-width: 50%;
-  
+}
+
+ul, li {
+margin: 0;
+padding: 0;
+list-style-position: inside;
+list-style: none;
+list-style-type: none;
+
 }
 
 .listViewContainer {
@@ -189,7 +205,9 @@ align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-
+.cardLabels {
+  margin-left: 5px;
+}
 .minipic {
   height: 80px;
   transition: transform 0.4s ease;
@@ -208,7 +226,7 @@ align-items: center;
 }
 .card-content {
   width: 320px; /* Adjust the width to fit the desired content area width */
-  height: 500px; /* Adjust the height to fit the desired content area height */
+  height: 530px; /* Adjust the height to fit the desired content area height */
   overflow: hidden; /* Hide overflow content if it exceeds the specified size */
 }
 .date {
@@ -241,7 +259,7 @@ align-items: center;
 }
 input,
 textarea {
-  border: 1.5px solid #ff0000; /* Red border */
+  border: 1.5px solid #ff0000; 
 }
 hr {
   height: 1px;
@@ -259,6 +277,7 @@ footer {
 label {
   color: white;
 }
+
 /* ImageModal.css */
 .image-modal {
   display: flex;
@@ -282,7 +301,7 @@ label {
 
 .modal-content img {
   max-width: 100%;
-  max-height: 90vh; /* Limit the height for smaller screens */
+  max-height: 90vh; 
 }
 
 /* _-_-_-_-_-_-_-_-_ BOOTSTRAP FUN _-_-_-_-_-_-_-_-_*/
@@ -294,6 +313,9 @@ h4,
 p,
 ul {
   color: white !important;
+}
+h1, h2 {
+  text-align: center;
 }
 
 :root {
@@ -335,7 +357,7 @@ li {
 .login,
 .about,
 .register {
-  background: rgba(51, 51, 51, 0.55);
+  background: rgba(51, 51, 51, 0.65);
 }
 .login,
 .register {
@@ -349,25 +371,3 @@ li {
   }
 }
 
-/* 
-button {
-  border: 5px solid;
-  border-image-slice: 1;
-  background: var(--gradient) ;
-  -webkit-background-clip: text ;
-  -webkit-text-fill-color: transparent ;
-  border-image-source: var(--gradient);
-  text-decoration: none;
-  transition: all 0.4s ease;
-}
-
-button:hover,
-button:focus {
-  background: var(--gradient) !important;
-  -webkit-background-clip: none !important;
-  -webkit-text-fill-color: #fff !important;
-  border: 5px solid #fff !important;
-  box-shadow: #222 1px 0 10px;
-  text-decoration: underline;
-} 
-  */

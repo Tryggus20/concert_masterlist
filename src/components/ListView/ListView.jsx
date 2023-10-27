@@ -62,7 +62,7 @@ function ListView() {
                   <hr />
                   <li style={{ listStyleType: "none" }}>
                     {new Date(concert.date).toLocaleDateString()}
-                  </li>
+                  </li><li>Bands:</li>
                   {Array.isArray(concert.bands) &&
                     concert.bands.map((band, index) => (
                       <li
@@ -78,15 +78,15 @@ function ListView() {
                     style={{ listStyleType: "none" }}
                     key={index}
                   >
-                    -{concert.venue}
+                    At: {concert.venue} in  {concert.city}, {concert.state}
                   </li>
-                  <li
+                  {/* <li
                     className="liLocation"
                     style={{ listStyleType: "none" }}
                     key={index}
                   >
                     {concert.city}, {concert.state}
-                  </li>
+                  </li> */}
                   <hr />
                 </ul>
               </div>
