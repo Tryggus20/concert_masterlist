@@ -25,18 +25,7 @@ function RegisterPage() {
       <br /> <br />
       <br />
       <br />
-      <br />
-      <br />
-      <br /> <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <br/>
     </div>
   );
 }

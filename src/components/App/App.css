@@ -3,16 +3,24 @@ body,
 #react-root {
   height: 100%;
 } */
-
+input {
+  background-color: white;
+}
 body {
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
-  font-family: "Comic Sans MS";
+  font-family: "Roboto";
   margin: 0px;
+  background-color: #333;
+  /* background-image: url(../../../public/banner.jpeg);
+  background-size: 100% auto;
+  background-repeat: repeat-y; */
+
+  /* color: #efefef; */
+}
+body.login, body.register {
   background-image: url(../../../public/banner.jpeg);
   background-size: 100% auto;
   background-repeat: repeat-y;
-
-  /* color: #efefef; */
 }
 
 /* img {
@@ -67,13 +75,12 @@ button {
   color: white;
 }
 
-
 .btn_asLink:hover {
   background-color: transparent;
   border-color: #dd2476;
   color: #dd2476;
 }
-button{
+button {
   border-color: #dd2476;
   background-color: rgba(51, 51, 51, 1);
   color: white;
@@ -82,7 +89,7 @@ button{
 button:hover {
   border-color: #dd2476;
   background-color: white;
-  color: rgba(51,51,51,1);
+  color: rgba(51, 51, 51, 1);
 }
 /* --------------------------------------------------------------------------------
 Alert
@@ -118,7 +125,8 @@ Form Treatment
 }
 
 .listViewContainer {
-  margin-left: 25px;
+  margin-left: 40px;
+  align-items: center;
 }
 input,
 textarea {
@@ -132,28 +140,40 @@ textarea {
   font-weight: bold;
 }
 
-.concertList {
-  max-width: 50%;
-}
 .about {
   text-align: center;
 }
-
+.listSearch{
+  margin-left:70px;
+}
+.listHeader {
+text-align: center;
+background: rgba(51, 51, 51, 0.55);
+align-items: center;
+}
 .listView {
   transition: all 0.4s ease;
-  background: rgba(51, 51, 51, 0.1);
+  background: rgba(51, 51, 51, 0.3);
+  padding-left: 30px;
+  max-width: 50%;
+}
+
+.listViewContainer {
+  /* display: flex; */
+  display: inline;
+  margin-right: auto;
+  margin-left: auto;
 
 }
 .listView:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .card:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 5px rgba(255, 255, 255, 2);
 }
 .card {
   /* background: #333; */
@@ -293,28 +313,37 @@ body {
   margin: 2 1rem;
   transition: transform 0.4s ease;
   cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
 }
 
-.concertForm, .editForm {
+.concertForm,
+.editForm {
   background: rgba(51, 51, 51, 0.55);
   border: 1px solid #dd2476;
   margin: 0 auto;
   max-width: 33%;
 }
-
-.login, .about, .register {
+li {
+  display: flex;
+}
+.login,
+.about,
+.register {
   background: rgba(51, 51, 51, 0.55);
 }
-.login, .register {
+.login,
+.register {
   border: 1px solid #dd2476;
-
 }
+
 @media (max-width: 728px) {
   body {
     background-color: #333;
     background-image: none;
   }
 }
+
 /* 
 button {
   border: 5px solid;

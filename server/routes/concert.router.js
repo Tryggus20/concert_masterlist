@@ -31,7 +31,7 @@ router.get("/:id", (req, res) => {
   concerts.venue,
   concerts.city,
   concerts.state,
-  json_agg(bands.name) AS bands
+  json_agg(bands.name ORDER BY band_concerts.id ASC) AS bands
 FROM
   users
 JOIN
