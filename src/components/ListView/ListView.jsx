@@ -40,12 +40,13 @@ function ListView() {
   return (
     <div className="container listViewContainer">
       <h1 className="listHeader">List View</h1>
+      <div className="searchHolder">
       <input className="listSearch"
         placeholder="Search"
         type="text"
         value={searchQuery}
         onChange={handleSearchInputChange}
-      ></input>
+      ></input></div>
       <div>
         {(searchQuery ? processedSearchResults : concertList).map(
           (concert, index) => (
@@ -93,6 +94,7 @@ function ListView() {
           )
         )}
       </div>
+      <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>
   );
 }
