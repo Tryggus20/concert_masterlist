@@ -3,6 +3,9 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Fuse from "fuse.js";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {Form, Container, Row, Col, Button} from 'react-bootstrap'
+
 function ListView() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -39,15 +42,15 @@ function ListView() {
   }, [searchQuery, concertList]);
   return (
     <div className=" listViewContainer">
-      <h1 className="listHeader">List View</h1>
+      <h1 className="listHeader">Search</h1>
       <div className="searchHolder">
-        <input
+        <Form.Control
           className="listSearch"
           placeholder="Search"
           type="text"
           value={searchQuery}
           onChange={handleSearchInputChange}
-        ></input>
+        />
       </div>
       <div>
         {(searchQuery ? processedSearchResults : concertList).map(

@@ -31,7 +31,7 @@ function DetailBand({ bandpictures }) {
   return (
     <>
       {bandpictures?.map((bandpictures, index) => (
-        <div className="detailContainer">
+        <div className="artistContainer">
           <script></script>
           <div className="bandName">
             <h3 className="bold">{bandpictures.band}</h3>
@@ -43,9 +43,9 @@ function DetailBand({ bandpictures }) {
               src={featuredPic}
               alt="Large Image"
               style={{
-                maxHeight: "400px",
-                maxWidth: "400px",
-                width: "60%",
+                // maxHeight: "400px",
+                maxWidth: "300px",
+                // width: "50%",
                 cursor: "pointer",
               }}
             />

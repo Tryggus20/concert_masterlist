@@ -25,10 +25,9 @@ function Nav() {
         {user.id && (
           <>
             <Link className="navLink" to="/users">
-              Home Card View
-            </Link>
+Collection            </Link>
             <Link className="navLink" to="/list">
-              List View
+              Search 
             </Link>
             <Link className="navLink" to="/form">
               Add Concert

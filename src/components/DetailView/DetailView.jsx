@@ -60,10 +60,9 @@ function DetailView() {
 
       <p className="">{concertDetails[0].venue} in  {concertDetails[0].city}, {concertDetails[0].state}</p>
       </div>
-      <hr />
-      </div>
+       </div>
       {/* Details View starts here!!!!!! */}
-      <div className="container">
+      <div className="detailContainer">
       {concertDetails.map((item, index) => (
 
 <DetailBand bandpictures={item.bandpictures} />

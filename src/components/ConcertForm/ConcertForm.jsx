@@ -5,10 +5,11 @@ import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 import AddBandPics from "../EditBandPics/EditBandPics";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Form, Container, Row, Col, Button } from "react-bootstrap";
 
 // TODO: have a button to cancel adding a picture (clear that field)
 // TODO: have spotify add a picture for new band being added if no picture is uploaded
-
 
 export default function ConcertForm() {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ export default function ConcertForm() {
       alert("Please select a valid date in the format mm/dd/yy.");
       return;
     }
-    if ( venue === "" || city === "") {
+    if (venue === "" || city === "") {
       alert("Please fill in all fields.");
       return; // Do not proceed with submission if a field is empty
     }
@@ -75,72 +76,92 @@ export default function ConcertForm() {
     history.push("/");
   };
   return (
-    <div className="inputs concertForm">
+    <>
       <h1>Add A New Concert</h1>
-      <label>
-        Date:
-        <input
-          type="date"
-          id="date"
-          onChange={(e) => setDate(e.target.value)}
-        />
-      </label>
-      <br />
-      <label>
-        Venue:
-        <input
-          type="text"
-          id="venue"
-          placeholder="Venue"
-          onChange={(e) => setVenue(e.target.value)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        City :
-        <input
-          type="text"
-          id="city"
-          placeholder="City"
-          onChange={(e) => setCity(e.target.value)}
-        ></input>
-      </label>
-      <br />
-      <label>
-        State:
-        <input
-          type="text"
-          id="state"
-          maxLength="2"
-          placeholder="State Abbr."
-          onChange={(e) => setStateAbr(e.target.value)}
-        ></input>
-      </label>
+      <div className="inputs concertForm">
+        <Form>
+          <div class="mb-3">
+            <Form.Label for="date" className="form-label">
+              Date:
+              <Form.Control
+                type="date"
+                id="date"
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </Form.Label>
+          </div>
+          <Form.Label>
+            Venue:
+            <Form.Control
+              type="text"
+              id="venue"
+              placeholder="Venue"
+              onChange={(e) => setVenue(e.target.value)}
+            />
+          </Form.Label>
+          <br />
+          <Form.Label>
+            City :
+            <Form.Control
+              type="text"
+              id="city"
+              placeholder="City"
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </Form.Label>
+          <br />
+          <Form.Label>
+            State:
+            <Form.Control
+              type="text"
+              id="state"
+              maxLength="2"
+              placeholder="State Abbr."
+              onChange={(e) => setStateAbr(e.target.value)}
+            />
+          </Form.Label>
 
-      <br />
-      <BandInput onAddBand={handleAddBand} />
-      {bands.map((band, bandIndex) => (
-        <div key={bandIndex}>
-          <h2>{band.band}</h2>
-          {band.pictures.map((url, pictureIndex) => (
-            <div key={pictureIndex}><img src={url} style={{maxHeight: '250px', maxWidth: '250px' }}></img> <button> Remove</button></div>
+          <br />
+          <BandInput onAddBand={handleAddBand} />
+          {bands.map((band, bandIndex) => (
+            <div key={bandIndex}>
+              <h2>{band.band}</h2>
+              {band.pictures.map((url, pictureIndex) => (
+                <div key={pictureIndex}>
+                  <img
+                    src={url}
+                    style={{ maxHeight: "230px", maxWidth: "230px" }}
+                  ></img>{" "}
+                  {/* <button> Remove</button> */}
+                </div>
+              ))}{" "}
+              <PictureInput
+                bandIndex={bandIndex}
+                onAddPicture={handleAddPicture}
+              />
+              {/* Set the current band index when adding pictures */}
+            </div>
           ))}
-          <PictureInput bandIndex={bandIndex} onAddPicture={handleAddPicture} />
-          {/* Set the current band index when adding pictures */}
-        </div>
-      ))}
-  
-      <br />
-      <textarea
-        rows="3"
-        cols="30"
-        placeholder="Comments"
-        onChange={(e) => setComments(e.target.value)}
-      ></textarea>
-      <br />
-      <br />
-      <button onClick={handleSubmit}>Submit</button>
-      <br /><br /><br /><br /><br /><br /><br />
-    </div>
+
+          <br />
+          <textarea
+            rows="3"
+            cols="30"
+            placeholder="Comments"
+            onChange={(e) => setComments(e.target.value)}
+          ></textarea>
+          <br />
+          <br />
+          <button onClick={handleSubmit}>Submit</button>
+        </Form>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+    </>
   );
 }

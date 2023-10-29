@@ -125,7 +125,7 @@ Form Treatment
 }
 
 .listViewContainer {
-  /* margin-left: 0px; */
+  margin-left: 0px;
   align-items: center;
 }
 .listSearch {
@@ -140,7 +140,7 @@ Form Treatment
 
 input,
 textarea {
-  /* margin: 5px; */
+  margin: 5px;
   margin-bottom: 10px;
 }
 .inputs {
@@ -174,7 +174,6 @@ textarea {
   padding-left: 0px;
   max-width: 50%;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-
 }
 
 ul {
@@ -201,9 +200,9 @@ ul {
   box-shadow: 0 1px 5px rgba(255, 255, 255, 2);
 }
 .card {
-  /* background: #333; */
-  /* border: 1px solid #dd2476; */
-  /* color: rgba(250, 250, 250, 0.8); */
+  background: #333;
+  border: 1px solid #dd2476;
+  color: rgba(250, 250, 250, 0.8);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin: 2 1rem;
   padding: 2rem;
@@ -353,6 +352,12 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+.concertCard {
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 .concertForm,
 .editForm {
   background: rgba(51, 51, 51, 0.55);
@@ -380,28 +385,31 @@ li {
   }
 }
 
-.spotifyPlayer{
-display: flex;
-}
-.detailContainer{
+.spotifyPlayer {
   display: flex;
-  flex-direction: column;
+}
+
+.detailContainer {
+  display: flex;
+  flex-direction: row;
   width: fit-content;
-  background-color: rgba(44, 44, 44, .6);
+  background-color: rgba(44, 44, 44, 0.6);
   margin: 1.74rem;
+  justify-content: space-between;
   padding: 1.75rem;
+  align-self: flex-start;
   border-radius: 10px;
 }
-.detailVenue{
+.detailVenue {
   text-align: center;
-  background-color: rgba(44, 44, 44, .6);
- padding-top: 0px;
- padding-bottom: 0px;
- margin-bottom: 3px;
+  background-color: rgba(44, 44, 44, 0.6);
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 3px;
 }
 
 h3.bold {
-  margin: 0
+  margin: 0;
 }
 
 .image-container {
@@ -409,14 +417,21 @@ h3.bold {
   width: fit-content;
 }
 
-/* .image-container{
-margin-left: -140px;
-margin-top: 50px
-} */
+ /* .image-container{
+ margin-left: -140px; 
+ margin-top: 50px ;
+}  */
 
-.container{
+.container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+.artistContainer {
+  display: flex;
+  
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  /* justify-content: space-around; */
 }

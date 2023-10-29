@@ -17,7 +17,7 @@ function CardView() {
   }, []);
   
   return (
-    <div className="container">
+    <div className="">
       <h1>Card View</h1>
       <div>
         <section className="concertCard">
