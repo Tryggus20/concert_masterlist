@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 
 export default function PictureInput({ bandIndex, onAddPicture }) {

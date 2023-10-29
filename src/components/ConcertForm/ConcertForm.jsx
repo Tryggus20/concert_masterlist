@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 import AddBandPics from "../EditBandPics/EditBandPics";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 
 // TODO: have a button to cancel adding a picture (clear that field)

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, Container, Row, Col, Button } from "react-bootstrap";
 
 export default function BandInput({ onAddBand }) {
