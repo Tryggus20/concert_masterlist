@@ -168,7 +168,7 @@ export default function EditConcert() {
       <br />
       <EditBandPics entireConcertDetail={entireConcertDetail} />
       <div>
-        <br/>
+        
         {entireConcertDetail &&
           entireConcertDetail.length > 0 &&
           entireConcertDetail.map((band, index) => (
