@@ -3,7 +3,7 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Fuse from "fuse.js";
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import {Form, Container, Row, Col, Button} from 'react-bootstrap'
 
 function ListView() {
