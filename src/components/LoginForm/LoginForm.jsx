@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {Form, Container, Row, Col, Button} from 'react-bootstrap'
+
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -25,7 +28,7 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel login" onSubmit={login}>
+    <Form className="formPanel login" onSubmit={login}>
       <h2>Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
@@ -33,33 +36,33 @@ function LoginForm() {
         </h3>
       )}
       <div>
-        <label htmlFor="username">
+        <Form.Label htmlFor="username">
           Username:
-          <input
+          <Form.Control
             type="text"
             name="username"
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
+        </Form.Label>
       </div>
       <div>
-        <label htmlFor="password">
+        <Form.Label htmlFor="password">
           Password:
-          <input
+          <Form.Control
             type="password"
             name="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </Form.Label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <input className="button" type="submit" name="submit" value="Log In" />
       </div>
-    </form>
+    </Form>
   );
 }
 

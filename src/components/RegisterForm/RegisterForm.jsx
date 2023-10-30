@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import AboutPage from '../AboutPage/AboutPage';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import {Form, Container, Row, Col, Button} from 'react-bootstrap'
+
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -21,7 +24,7 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel register" onSubmit={registerUser}>
+    <Form className="formPanel register" onSubmit={registerUser}>
       <h2>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
@@ -29,33 +32,33 @@ function RegisterForm() {
         </h3>
       )}
       <div>
-        <label htmlFor="username">
+        <Form.Label htmlFor="username">
           Username:
-          <input
+          <Form.Control
             type="text"
             name="username"
             value={username}
             required
             onChange={(event) => setUsername(event.target.value)}
           />
-        </label>
+        </Form.Label>
       </div>
       <div>
-        <label htmlFor="password">
+        <Form.Label htmlFor="password">
           Password:
-          <input
+          <Form.Control
             type="password"
             name="password"
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
           />
-        </label>
+        </Form.Label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <input className="button" type="submit" name="submit" value="Register" />
       </div>
-    </form>
+    </Form>
   );
 }
 

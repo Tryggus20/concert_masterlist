@@ -17,8 +17,8 @@ function CardView() {
   }, []);
   
   return (
-    <div className="container">
-      <h1>Card View</h1>
+    <div className="">
+      <h1>Concerts</h1>
       <div>
         <section className="concertCard">
                {/* map over concertCard here  */}

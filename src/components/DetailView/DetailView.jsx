@@ -60,18 +60,18 @@ function DetailView() {
 
       <p className="">{concertDetails[0].venue} in  {concertDetails[0].city}, {concertDetails[0].state}</p>
       </div>
-      <hr />
-      </div>
+      
+       </div>
       {/* Details View starts here!!!!!! */}
-      <div className="container">
+      <div className="detailContainer">
       {concertDetails.map((item, index) => (
 
 <DetailBand bandpictures={item.bandpictures} />
 ))}
       </div>
       {/* Details View ends here !!!!!! */}
-      <p>
-      <button onClick={() => history.push(`/edit/${id}`)}>edit</button>  {""}
+      <p style={{textAlign: "center"}}>
+      <button onClick={() => history.push(`/edit/${id}`)}>Edit</button>  {""}
        <button onClick={handleDelete}>Delete Concert</button>  </p>
       <br />
       <br />

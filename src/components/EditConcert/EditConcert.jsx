@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import EditBandPics from "../EditBandPics/EditBandPics";
 import Swal from "sweetalert2";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Form, Container, Row, Col, Button, Control } from "react-bootstrap";
 
 export default function EditConcert() {
   const dispatch = useDispatch();
@@ -15,10 +17,7 @@ export default function EditConcert() {
   const entireConcertDetail = useSelector(
     (state) => state.concertDetail.concertDetailReducer
   );
-  /* TODO:  how things are set up, the band with the lowest id is the headliner. 
-  If a "new band" to the database gets added and the opener is re-used, 
-  the opener will be the headliner. Will need to implement concert position after all
-  may need to use array location (+1) to get that value */
+ 
 
   useEffect(() => {
     if (concertData) {
@@ -40,9 +39,7 @@ export default function EditConcert() {
   const [bands, setBands] = useState([]);
   const [pictures, setPictures] = useState([]);
 
-  // const handleAddBand = (band) => {
-  //   setBands([...bands, { band, pictures: [] }]);
-  // };
+  
   
   useEffect(() => {
     if (concertData) {
@@ -113,74 +110,77 @@ export default function EditConcert() {
   return (
     <div className="inputs editForm">
       <h1>Edit Concert</h1>
-      <label>
+      <Form>
+      <Form.Label>
         Date:
-        <input
+        <Form.Control className="control"
           type="date"
           id="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
         />
-      </label>
+      </Form.Label>
       <br />
-      <label>
+      <Form.Label>
         Venue:
-        <input
+        <Form.Control className="control"
           type="text"
           id="venue"
           value={venue}
           placeholder="Venue"
           onChange={(e) => setVenue(e.target.value)}
-        ></input>
-      </label>
+        ></Form.Control>
+      </Form.Label>
       <br />
-      <label>
+      <Form.Label>
         City :
-        <input
+        <Form.Control className="control"
           type="text"
           id="city"
           value={city}
           placeholder="City"
           onChange={(e) => setCity(e.target.value)}
-        ></input>
-      </label>
+        ></Form.Control>
+      </Form.Label>
       <br />
-      <label>
+      <Form.Label>
         State:
-        <input
+        <Form.Control className="control"
           type="text"
           id="state"
           maxLength="2"
           value={stateAbr}
           placeholder="State Abbr."
           onChange={(e) => setStateAbr(e.target.value)}
-        ></input>
-      </label>
+        ></Form.Control>
+      </Form.Label>
       <br />
-      <textarea
+      <Form.Control as="textarea" 
         rows="3"
         cols="30"
         placeholder="Comments"
         value={comments}
         onChange={(e) => setComments(e.target.value)}
-      ></textarea>
+      ></Form.Control>
       <br /> <button onClick={handleSubmit}>Update Concert Info</button>
       <hr />
       {/* START OF EDIT BAND AND PICTURES */}
       <br />
       <EditBandPics entireConcertDetail={entireConcertDetail} />
       <div>
+        
         {entireConcertDetail &&
           entireConcertDetail.length > 0 &&
           entireConcertDetail.map((band, index) => (
             <div key={band.id}>
-              <h2>{band.bands}</h2> 
+            
+              {/* <h2>{band.bands}</h2>  */}
             </div>
           ))}
       </div>
       <button onClick={handleCancel}>Cancel</button>
       <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
+      </Form>
     </div>
   );
 }
