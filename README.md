@@ -16,9 +16,7 @@ _Duration: 2 Week Sprint_
 Welcome to my app called Concert Masterlist. It is designed to help music enthusiasts and casual concert goers keep track of past events and the memories attached. It would be a shame if those moments went forgotten. Imagine never forgetting the name of an incredible opener act. What if you could have all your concert memories neatly organized and easily accessible. Maybe you have seen an opening band that will become famous over time and you can look back and realize you saw them before they made it big. It has happened to me before. That is why the Concert Masterlist saves the date, venue, performers, pictures, and comments about the experience in an easy to read, easy to interact environment. Sort it by date, artist, or venue. You will always have a complete record of your concert adventures, making it easier to relive those unforgettable moments. Make sure you do not forget another concert again!
 
 
-## Screen Shot
 
-Include one or two screen shots of your project here (optional). Remove if unused.
 
 ### Prerequisites
 
