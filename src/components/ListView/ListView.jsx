@@ -44,8 +44,8 @@ function ListView() {
     <div className=" listViewContainer">
       <h1 className="listHeader">Search</h1>
       <div className="searchHolder">
-        <Form.Control
-          className="listSearch"
+        <Form.Control 
+          className="listSearch control"
           placeholder="Search"
           type="text"
           value={searchQuery}

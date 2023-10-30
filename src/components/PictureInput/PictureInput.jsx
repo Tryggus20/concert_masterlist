@@ -15,7 +15,7 @@ export default function PictureInput({ bandIndex, onAddPicture }) {
       <Form.Label>
         {" "}
         Add a Picture
-        <Form.Control
+        <Form.Control className="control"
           type="text"
           placeholder="Picture URL only"
           value={url}

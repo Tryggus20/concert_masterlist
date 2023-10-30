@@ -16,7 +16,7 @@ export default function BandInput({ onAddBand }) {
     <div>
       <Form.Label>
         Add Band:
-        <Form.Control
+        <Form.Control className="control"
           type="text"
           placeholder="Band"
           value={band}

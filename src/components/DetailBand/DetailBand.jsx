@@ -31,7 +31,7 @@ function DetailBand({ bandpictures }) {
   return (
     <>
       {bandpictures?.map((bandpictures, index) => (
-        <div className="artistContainer">
+        <div className="artistContainer control">
           <script></script>
           <div className="bandName">
             <h3 className="bold">{bandpictures.band}</h3>

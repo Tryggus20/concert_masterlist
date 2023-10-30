@@ -113,7 +113,7 @@ export default function EditConcert() {
       <Form>
       <Form.Label>
         Date:
-        <Form.Control
+        <Form.Control className="control"
           type="date"
           id="date"
           value={date}
@@ -123,7 +123,7 @@ export default function EditConcert() {
       <br />
       <Form.Label>
         Venue:
-        <Form.Control
+        <Form.Control className="control"
           type="text"
           id="venue"
           value={venue}
@@ -134,7 +134,7 @@ export default function EditConcert() {
       <br />
       <Form.Label>
         City :
-        <Form.Control
+        <Form.Control className="control"
           type="text"
           id="city"
           value={city}
@@ -145,7 +145,7 @@ export default function EditConcert() {
       <br />
       <Form.Label>
         State:
-        <Form.Control
+        <Form.Control className="control"
           type="text"
           id="state"
           maxLength="2"
@@ -155,7 +155,7 @@ export default function EditConcert() {
         ></Form.Control>
       </Form.Label>
       <br />
-      <Form.Control as="textarea"
+      <Form.Control as="textarea" 
         rows="3"
         cols="30"
         placeholder="Comments"

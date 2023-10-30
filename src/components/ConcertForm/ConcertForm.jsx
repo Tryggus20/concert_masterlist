@@ -83,7 +83,7 @@ export default function ConcertForm() {
           <div className="">
             <Form.Label htmlFor="date" className="form-label">
               Date:
-              <Form.Control
+              <Form.Control className="control"
                 type="date"
                 id="date"
                 onChange={(e) => setDate(e.target.value)}
@@ -92,7 +92,7 @@ export default function ConcertForm() {
           </div>
           <Form.Label>
             Venue:
-            <Form.Control
+            <Form.Control className="control"
               type="text"
               id="venue"
               placeholder="Venue"
@@ -102,7 +102,7 @@ export default function ConcertForm() {
           <br />
           <Form.Label>
             City :
-            <Form.Control
+            <Form.Control className="control"
               type="text"
               id="city"
               placeholder="City"
@@ -112,7 +112,7 @@ export default function ConcertForm() {
           <br />
           <Form.Label>
             State:
-            <Form.Control
+            <Form.Control className="control"
               type="text"
               id="state"
               maxLength="2"

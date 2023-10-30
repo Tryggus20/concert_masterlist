@@ -67,6 +67,8 @@ button {
 /* This line makes the "Register" and "Login" buttons look like links */
 .btn_asLink {
   padding: 0;
+  border: 1px solid #dd2476;
+
   border-width: 0;
   border-bottom: 1px solid #444;
   border-radius: 0;
@@ -80,13 +82,14 @@ button {
   border-color: #dd2476;
   color: #dd2476;
 }
-button {
+button, .button {
   border-color: #dd2476;
   background-color: rgba(51, 51, 51, 1);
   color: white;
 }
 
-button:hover {
+
+button:hover, .button:hover {
   border-color: #dd2476;
   background-color: white;
   color: rgba(51, 51, 51, 1);
@@ -138,11 +141,7 @@ Form Treatment
   justify-content: center;
 }
 
-input,
-textarea {
-  margin: 5px;
-  margin-bottom: 10px;
-}
+
 .inputs {
   text-align: center;
 }
@@ -266,10 +265,16 @@ ul {
 }
 input,
 textarea {
-  border: 1.5px solid #ff0000;
+  border: 1.5px solid #dd2476;
+  margin: 5px;
+  margin-bottom: 10px;
+}
+.control {
+  border: 1.5px solid #dd2476;
+
 }
 hr {
-  height: 1px;
+  height: 2px;
   border: none;
   background-color: #dd2476;
   margin: 10px 0;
@@ -349,6 +354,7 @@ body {
 }
 
 .listView {
+
   margin-left: auto;
   margin-right: auto;
 }
@@ -372,6 +378,7 @@ li {
 .about,
 .register {
   background: rgba(51, 51, 51, 0.65);
+  border: 1.5px solid #dd2476;
 }
 .login,
 .register {
@@ -430,8 +437,11 @@ h3.bold {
 }
 .artistContainer {
   display: flex;
-  
+  border: 1px solid #dd2476;
+  margin-bottom: 25px;
   flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
   /* flex-wrap: wrap; */
   /* justify-content: space-around; */
 }
