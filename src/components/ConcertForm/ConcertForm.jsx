@@ -5,8 +5,8 @@ import { useHistory } from "react-router-dom";
 import BandInput from "../BandInput/BandInput";
 import PictureInput from "../PictureInput/PictureInput";
 import AddBandPics from "../EditBandPics/EditBandPics";
-// import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Form, Container, Row, Col, Button, Control } from "react-bootstrap";
 
 // TODO: have a button to cancel adding a picture (clear that field)
 // TODO: have spotify add a picture for new band being added if no picture is uploaded
@@ -79,9 +79,9 @@ export default function ConcertForm() {
     <>
       <h1>Add A New Concert</h1>
       <div className="inputs concertForm">
-        <Form>
-          <div class="mb-3">
-            <Form.Label for="date" className="form-label">
+        <Form >
+          <div className="">
+            <Form.Label htmlFor="date" className="form-label">
               Date:
               <Form.Control
                 type="date"

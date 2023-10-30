@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Form, Container, Row, Col, Button, Control } from "react-bootstrap";
 
 const Band = ({ concertData }) => {
   const dispatch = useDispatch();
@@ -15,11 +17,11 @@ const Band = ({ concertData }) => {
         <div key={bandIndex}>
           <div>
             <h2>{bandName}</h2>
-            <input
+            <Form.Control
               type="text"
               value={bandName}
               onChange={handleNameChange}
-            ></input>
+            ></Form.Control>
             <button
               onClick={() => {
                 dispatch({
