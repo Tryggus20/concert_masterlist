@@ -4,10 +4,7 @@ const concertListReducer = (state = [], action) => {
   switch (action.type) {
     case "SET_LIST_VIEW":
      const newState= action.payload
-      return newState;
-      // case "ADD_CONCERT":
-      //   return [...state, action.payload]
-    
+      return newState;    
     default:
       return state;
   }

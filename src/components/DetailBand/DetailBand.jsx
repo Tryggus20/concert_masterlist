@@ -11,6 +11,8 @@ function DetailBand({ bandpictures }) {
 
   console.log(bandpictures);
   useEffect(() => {
+    // In case the user did not upload a picture, a placeholder pic is added for consistency.
+    // may change it to pull an image from spotify if no pics are uploaded
     const defaultImageUrl =
       "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29uY2VydHxlbnwwfHwwfHx8MA%3D%3D&w=1400";
 

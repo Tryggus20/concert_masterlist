@@ -5,14 +5,10 @@ const router = express.Router();
 
 const app = express();
 
-// call env here:
-const CLIENT_ID = "YOUR_SPOTIFY_CLIENT_ID";
-const CLIENT_SECRET = "YOUR_SPOTIFY_CLIENT_SECRET";
-const REDIRECT_URI = "http://localhost:3000/callback";
 
-
-// POST for spotify token
+// POST for spotify token.
 async function getAppToken() {
+  // call env here
     const encodedCredentials = Buffer.from(`${process.env.SPOTIFY_CLIENT_ID}:${process.env.SPOTIFY_CLIENT_SECRET}`).toString('base64');
     
     const headers = {
@@ -30,7 +26,7 @@ async function getAppToken() {
         throw error;
       }
     }
-
+// search using the band name to get the first result's id from Spotify
     router.get("/search-artist/:artistName", async (req, res) => {
         try {
           const token = await getAppToken();

@@ -25,9 +25,10 @@ function Nav() {
         {user.id && (
           <>
             <Link className="navLink" to="/users">
-Collection            </Link>
+              Collection{" "}
+            </Link>
             <Link className="navLink" to="/list">
-              Search 
+              Search
             </Link>
             <Link className="navLink" to="/form">
               Add Concert

@@ -9,20 +9,23 @@ export default function PictureInput({ bandIndex, onAddPicture }) {
     onAddPicture(bandIndex, url);
     setUrl("");
   };
-
+// add pictures associated to a specific band
   return (
     <div>
       <Form.Label>
         {" "}
         Add a Picture
-        <Form.Control className="control"
+        <Form.Control
+          className="control"
           type="text"
           placeholder="Picture URL only"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
       </Form.Label>
-      <button onClick={handleAddPicture} style={{marginLeft:"10px"}}>Add Picture</button>
+      <button onClick={handleAddPicture} style={{ marginLeft: "10px" }}>
+        Add Picture
+      </button>
     </div>
   );
 }

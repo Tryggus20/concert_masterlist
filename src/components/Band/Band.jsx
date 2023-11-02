@@ -11,6 +11,8 @@ const Band = ({ concertData }) => {
     const newName = e.target.value;
     setBandName(newName);
   };
+  // this component maps through the bands in the concert to be able to 
+  // edit the band name of each band
   return (
     <>
       {concertData.bands.map((band, bandIndex) => (

@@ -2,7 +2,7 @@ const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
 
-// "delete" specific concert. will need to add conditional rendering to GET requests on this page
+// "delete" specific concert (soft delete)
 router.put("/delete/:id", (req, res) => {
   const id = req.params.id;
   const query = `UPDATE "user_concerts" 

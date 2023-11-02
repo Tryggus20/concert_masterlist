@@ -53,7 +53,7 @@ function* fetchDetailedViewSaga(action) {
     console.log(err, "error in fetchDetailViewSaga");
   }
 }
-
+// Delete concert
 function* deleteConcertSaga(action) {
   try {
     yield axios({
@@ -81,7 +81,7 @@ function* addConcertSaga(action) {
   }
 }
 
-// Editing Concert
+// Editing Concert info
 function* editConcertSaga(action) {
   try {
     const response = yield axios({
@@ -93,7 +93,7 @@ function* editConcertSaga(action) {
     console.log(err, "error in editConcertSaga", action.payload);
   }
 }
-
+// Edit Band info
 function* editBandNameSaga(action) {
   try {
     const response = yield axios({
@@ -106,6 +106,7 @@ function* editBandNameSaga(action) {
     console.log(err, "error in editBandNameSaga", action.payload);
   }
 }
+// Getting band id from spotify api
 function* getArtistSpotifyIdSaga(action) {
   try {
     const response = yield axios({
@@ -125,7 +126,6 @@ function* concertSaga() {
   yield takeEvery("FETCH_CARD_VIEW", fetchCardViewSaga);
   yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailedViewSaga);
   yield takeEvery("DELETE_CONCERT", deleteConcertSaga);
-  // yield takeEvery("UPDATE_CONCERT", updateConcertSaga);
   yield takeEvery("FETCH_DETAIL_VIEW", fetchDetailViewSaga);
   yield takeEvery("ADD_CONCERT", addConcertSaga);
   yield takeEvery("EDIT_CONCERT", editConcertSaga);
