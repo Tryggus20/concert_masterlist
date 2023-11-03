@@ -11,7 +11,7 @@ export default function SpotifyPlayer({ band }) {
   useEffect(() => {
     dispatch({ type: "GET_ARTIST_SPOTIFY_ID", payload: band });
   }, [dispatch, band]);
-// just a component holder for the spotify player so it can be called for each band
+// component for the spotify player so it can be called for each band
   return (
     <div className="spotifyPlayer">
       {" "}
