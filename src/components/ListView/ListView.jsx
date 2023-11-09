@@ -3,8 +3,8 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Fuse from "fuse.js";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import {Form, Container, Row, Col, Button} from 'react-bootstrap'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Form, Container, Row, Col, Button } from "react-bootstrap";
 
 function ListView() {
   const history = useHistory();
@@ -27,6 +27,7 @@ function ListView() {
   useEffect(() => {
     // trying fuzzy search
     const fuse = new Fuse(concertList, {
+      // every key the fuzzy search will search through
       keys: [["bands"], "venue", "city", "date", "state"],
       threshold: 0.2,
     });
@@ -44,7 +45,7 @@ function ListView() {
     <div className=" listViewContainer">
       <h1 className="listHeader">Search</h1>
       <div className="searchHolder">
-        <Form.Control 
+        <Form.Control
           className="listSearch control"
           placeholder="Search"
           type="text"
@@ -65,7 +66,10 @@ function ListView() {
               >
                 <ul>
                   <hr />
-                  <li className="indentHeader" style={{ listStyleType: "none" }}>
+                  <li
+                    className="indentHeader"
+                    style={{ listStyleType: "none" }}
+                  >
                     {new Date(concert.date).toLocaleDateString()}
                   </li>
                   <li className="bold indentHeader">Bands:</li>
@@ -84,16 +88,11 @@ function ListView() {
                     className="liLocation indentBand"
                     style={{ listStyleType: "none" }}
                     key={index}
+                    // combined into one to make it free up vertical space
                   >
                     {concert.venue} in {concert.city}, {concert.state}
                   </li>
-                  {/* <li
-                    className="liLocation"
-                    style={{ listStyleType: "none" }}
-                    key={index}
-                  >
-                    {concert.city}, {concert.state}
-                  </li> */}
+
                   <hr />
                 </ul>
               </div>

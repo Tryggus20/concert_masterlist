@@ -7,8 +7,6 @@ is_admin BOOLEAN default false,
 password VARCHAR(1000) not null
 );
 
-INSERT INTO users ("username", "is_admin", "password")
-VALUES ('david', TRUE, 1234), ('scott', FALSE, 1234);
 
 INSERT INTO bands ("name")
 VALUES ('Dropkick Murphys'), ('The Interrupters'), ('Jesse Ahern')
@@ -52,7 +50,7 @@ comments VARCHAR(1000),
 seat_location VARCHAR(35)
 );
 
---ENHANCEMENTS
+--ENHANCEMENTS  // need to implement this in the future
 CREATE TABLE enhancements (
 id SERIAL PRIMARY KEY,
 user_concert_id INTEGER REFERENCES user_concerts(id) ON DELETE CASCADE,
@@ -61,7 +59,7 @@ description VARCHAR(1000)
 -- description is updated. was too small.
 );
 
--- FRIENDS 
+-- FRIENDS  // need to implement this in the future
 CREATE TABLE friends (
 id SERIAL PRIMARY KEY,
 user_1 INTEGER REFERENCES users(id) ON DELETE CASCADE,

@@ -6,7 +6,7 @@ export default function EditBandPics({ entireConcertDetail }) {
     <div>
       {entireConcertDetail.map((concertData, band_concert_id) => (
         <div>
-          <br/>
+          <br />
           <Band concertData={concertData} band_concert_id={band_concert_id} />
         </div>
       ))}

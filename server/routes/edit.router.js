@@ -5,7 +5,7 @@ const router = express.Router();
 // TODO: will need a route for editing band/images.
 // Not sure how I want to tackle it so I do not have a route for it yet
 
-// route is edit/concertId/userId
+// route is edit/user_concert_id
 router.put("/:user_concert_id", async (req, res) => {
   try {
     const userConcertId = req.params.user_concert_id;

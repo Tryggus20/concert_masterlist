@@ -15,7 +15,7 @@ function CardView() {
   useEffect(() => {
     dispatch({ type: "FETCH_CARD_VIEW", payload: user });
   }, []);
-  
+  // Main page of the project. 
   return (
     <div className="">
       <h1>Concerts</h1>
@@ -33,7 +33,8 @@ function CardView() {
               </div>
               <div className="cardImgHolder">
                 <img className="cardImg" 
-                  src={concert.pictureurl || "https://cdn.pixabay.com/photo/2018/05/10/11/34/concert-3387324_1280.jpg"}  // ADD image here!!!!!!
+             //    Sets a default picture if no picture is uploaded. May change it to pull artist pic from spotify in the future
+                  src={concert.pictureurl || "https://cdn.pixabay.com/photo/2018/05/10/11/34/concert-3387324_1280.jpg"}  
                   alt="Concert"
                 />
               </div>

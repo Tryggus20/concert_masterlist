@@ -18,8 +18,7 @@ export default function ConcertForm() {
   const [date, setDate] = useState("");
   const [venue, setVenue] = useState("");
   const [city, setCity] = useState("");
-  // actual USA State (initials) not a generic "useState"
-  const [stateAbr, setStateAbr] = useState("");
+  const [stateAbr, setStateAbr] = useState(""); // state and setState are frowned upon
   const [comments, setComments] = useState("");
 
   const [bands, setBands] = useState([]);
@@ -132,14 +131,14 @@ export default function ConcertForm() {
                     src={url}
                     style={{ maxHeight: "230px", maxWidth: "230px" }}
                   ></img>{" "}
-                  {/* <button> Remove</button> */}
+                  {/* TODO: <button> Remove</button> */}
                 </div>
               ))}{" "}
               <PictureInput
                 bandIndex={bandIndex}
                 onAddPicture={handleAddPicture}
               />
-              {/* Set the current band index when adding pictures */}
+              {/* TODO: Set the current band index when adding pictures */}
             </div>
           ))}
 

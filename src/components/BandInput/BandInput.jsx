@@ -12,20 +12,19 @@ export default function BandInput({ onAddBand }) {
     onAddBand(band);
     setBand("");
   };
+  // Input fields for adding bands to the concert
   return (
     <div>
       <Form.Label>
         Add Band:
-        <Form.Control className="control"
+        <Form.Control
+          className="control"
           type="text"
           placeholder="Band"
           value={band}
           onChange={(e) => setBand(e.target.value)}
         />
         <button onClick={handleAddBand}> Add Band</button>
-        {/* <Form.Text className="text-muted">
-          Enter band and click "Add"
-        </Form.Text> */}
       </Form.Label>
     </div>
   );
