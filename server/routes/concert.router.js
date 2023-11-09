@@ -21,6 +21,8 @@ router.put("/delete/:id", (req, res) => {
 });
 
 // GET request for a specific user for LIST VIEW
+// 11/08/2023 is the day I realized I could have just used the 
+// get request for the "Card View" instead and just not use the picture....
 router.get("/:id", (req, res) => {
   const id = req.params.id;
 
