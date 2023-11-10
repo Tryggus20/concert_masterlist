@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 export default function PictureInput({ bandIndex, onAddPicture }) {
-  const [url, setUrl] = useState("");
+  const [file, setFile] = useState(null);
+  const dispatch = useDispatch();
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+  };
 
   const handleAddPicture = () => {
-    onAddPicture(bandIndex, url);
-    setUrl("");
+    if (!file) {
+      return;
+    }
+
+    dispatch(uploadPictureRequest(bandIndex, file));
+    setFile(null);
   };
 // add pictures associated to a specific band
   return (
@@ -18,7 +28,7 @@ export default function PictureInput({ bandIndex, onAddPicture }) {
         <Form.Control
           className="control"
           type="text"
-          placeholder="Picture URL only"
+          placeholder="Upload Picture"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
