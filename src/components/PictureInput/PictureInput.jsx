@@ -13,7 +13,7 @@ export default function PictureInput({ bandIndex }) {
   };
 
   const getPresignedUrl = async (file) => {
-    console.log("aws lets goooooooooo!!!!");
+    console.log("aws lets go!!!!");
     const response = await axios.post('/api/aws', {
       fileName: file.name,
       fileType: file.type,
