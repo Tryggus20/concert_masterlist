@@ -10,6 +10,7 @@ import { Form, Container, Row, Col, Button, Control } from "react-bootstrap";
 
 // TODO: have a button to cancel adding a picture (clear that field)
 // TODO: have spotify add a picture for new band being added if no picture is uploaded
+// TODO: add validation to make sure at least 1 band was added. Ideally, change layout?
 
 export default function ConcertForm() {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ export default function ConcertForm() {
   const [date, setDate] = useState("");
   const [venue, setVenue] = useState("");
   const [city, setCity] = useState("");
-  const [stateAbr, setStateAbr] = useState(""); // state and setState are frowned upon
+  const [stateAbr, setStateAbr] = useState(""); // state and setState are confusing in regard to States in the US
   const [comments, setComments] = useState("");
 
   const [bands, setBands] = useState([]);
@@ -49,6 +50,14 @@ export default function ConcertForm() {
       alert("Please fill in all fields.");
       return; // Do not proceed with submission if a field is empty
     }
+    if (bands.length === 0) {
+      alert("Please add at least one band.");
+      return; // Do not proceed with submission if no bands have been added
+    }
+    if (bands.length === 0) {
+      alert("Please add at least one band.");
+      return; // Do not proceed with submission if no bands have been added
+    }
     const concertData = {
       date,
       venue,
@@ -78,11 +87,12 @@ export default function ConcertForm() {
     <>
       <h1>Add A New Concert</h1>
       <div className="inputs concertForm">
-        <Form >
+        <Form>
           <div className="">
             <Form.Label htmlFor="date" className="form-label">
               Date:
-              <Form.Control className="control"
+              <Form.Control
+                className="control"
                 type="date"
                 id="date"
                 onChange={(e) => setDate(e.target.value)}
@@ -91,7 +101,8 @@ export default function ConcertForm() {
           </div>
           <Form.Label>
             Venue:
-            <Form.Control className="control"
+            <Form.Control
+              className="control"
               type="text"
               id="venue"
               placeholder="Venue"
@@ -101,7 +112,8 @@ export default function ConcertForm() {
           <br />
           <Form.Label>
             City :
-            <Form.Control className="control"
+            <Form.Control
+              className="control"
               type="text"
               id="city"
               placeholder="City"
@@ -111,7 +123,8 @@ export default function ConcertForm() {
           <br />
           <Form.Label>
             State:
-            <Form.Control className="control"
+            <Form.Control
+              className="control"
               type="text"
               id="state"
               maxLength="2"
