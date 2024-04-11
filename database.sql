@@ -46,6 +46,7 @@ CREATE TABLE
     );
 
 --BANDS TABLE
+-- TODO: actually save off spotify_id
 CREATE TABLE
     bands (
         id SERIAL PRIMARY KEY,
