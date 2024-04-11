@@ -33,7 +33,7 @@ Welcome to my app called Concert Masterlist. It is designed to help music enthus
 
 ## Usage
 
-Login or register and feel free to add concerts to your page. Once a band is added, an input appears where you can put in a url for an image. Add as many photos as you like for each band and click submit. You will be redirected to your main page and can view all of the concerts in a card style view. If you are lookng for a specific concert, you can click on the search button in the navbar and search in real time. It is a sticky search so even if there are slight misspellings, the concert will show up. If you click on the concert in any view, it brings you to the detail view where you can see all of the photos associated with the concert as well as a Spotify player for each band. 
+Login or register and feel free to add concerts to your page. Once a band is added, an input appears where you can put in a url for an image. Add as many photos as you like for each band and click submit. You will be redirected to your main page and can view all of the concerts in a card style view. If you are looking for a specific concert, you can click on the search button in the navbar and search in real time. It is a sticky search so even if there are slight misspellings, the concert will show up. If you click on the concert in any view, it brings you to the detail view where you can see all of the photos associated with the concert as well as a Spotify player for each band. 
 
 
 ## Built With
