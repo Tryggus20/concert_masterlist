@@ -31,8 +31,8 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: "FETCH_USER" });
+    console.log("user id is", user.id);
   }, [dispatch]);
-
   return (
     <Router>
       <div>
@@ -70,8 +70,7 @@ function App() {
           <ProtectedRoute
             // logged in shows List View else shows LoginPage
             exact
-            path="/friends"
-          >
+            path={`/${user.id}/friends`}          >
             <FriendsTab />
           </ProtectedRoute>
 

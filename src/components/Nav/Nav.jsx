@@ -30,7 +30,7 @@ function Nav() {
             <Link className="navLink" to="/list">
               Search
             </Link>
-            <Link className="navLink" to="/friends">Friends</Link>
+            <Link className="navLink" to={`/${user.id}/friends`}> Friends</Link>
             <Link className="navLink" to="/form">
               Add Concert
             </Link>

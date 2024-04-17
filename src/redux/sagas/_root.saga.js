@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import concertSaga from './concert.saga';
 import axios from "axios"
+import friendsSaga from './friends.saga';
 
 
 // rootSaga is the primary saga.
@@ -19,5 +20,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     concertSaga(),
+    friendsSaga(),
   ]);
 }
