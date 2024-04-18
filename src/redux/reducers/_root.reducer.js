@@ -5,6 +5,7 @@ import concertList from './concertList.reducer'
 import concertCard from './concertCard.reducer';
 import concertDetail from './concertDetail.reducer';
 import spotifyReducer from './spotify.reducer';
+import friendsReducer from './friends.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   concertCard,
   concertDetail,
   spotifyReducer,
+  friendsReducer,
 });
 
 export default rootReducer;

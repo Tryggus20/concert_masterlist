@@ -19,6 +19,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import DetailView from "../DetailView/DetailView";
 import ConcertForm from "../ConcertForm/ConcertForm";
+import FriendsTab from "../FriendsTab/FriendsTab";
 
 import "./App.css";
 import EditConcert from "../EditConcert/EditConcert";
@@ -30,8 +31,8 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: "FETCH_USER" });
+    console.log("user id is", user.id);
   }, [dispatch]);
-
   return (
     <Router>
       <div>
@@ -64,6 +65,13 @@ function App() {
             path="/list"
           >
             <ListView />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows List View else shows LoginPage
+            exact
+            path={`/${user.id}/friends`}          >
+            <FriendsTab />
           </ProtectedRoute>
 
           <ProtectedRoute
