@@ -18,6 +18,9 @@ function FriendsTab() {
     <div>
       <p>Hello Friends</p>
       <ul>
+        {/* TODO: make a component that returns the <li> and makes it clickable
+        and routes to /u.id/friends/f.id to show the friend's concerts
+        */}
         {friends &&
           friends.map((friend) => <li key={friend.id}>{friend.username}</li>)}
       </ul>
